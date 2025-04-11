@@ -113,6 +113,9 @@ function bo_theme_customize_nav_colors() {
 		#shopping-cart-menu-toggle:hover {
 			color: <?php echo esc_attr( $nav_link_hover_color ); ?>;
 		}
+		.site-header {
+            background-color: <?php echo get_theme_mod( 'nav_background_color', '#000000' ); ?>;
+        }
     </style>
     <?php
 }

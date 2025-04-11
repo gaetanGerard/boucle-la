@@ -23,7 +23,7 @@
 <div id="page" class="site">
     <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'bo-theme' ); ?></a>
 
-    <header id="masthead" class="site-header bg-black text-white">
+    <header id="masthead" class="site-header bg-black text-white fixed top-0 left-0 z-10 w-full">
     <div class="px-4 flex items-center justify-between relative h-[100px] md:h-[120px] shadow-lg">
         <!-- Menu hamburger (mobile only) -->
         <div class="lg:hidden flex text-white text-2xl order-3">

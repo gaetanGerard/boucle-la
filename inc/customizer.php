@@ -41,6 +41,18 @@ function bo_theme_customize_register( $wp_customize ) {
 		'section'  => 'colors',
 		'settings' => 'nav_link_hover_color',
 	) ) );
+
+	$wp_customize->add_setting( 'nav_background_color', array(
+        'default'           => '#000000', // Couleur noire par défaut
+        'sanitize_callback' => 'sanitize_hex_color',
+        'transport'         => 'refresh',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'nav_background_color', array(
+        'label'    => __( 'Couleur de fond de la barre de navigation', 'bo-theme' ),
+        'section'  => 'colors',
+        'settings' => 'nav_background_color',
+    ) ) );
 	//
 	// Section pour enregistrer les options de personnalisation de couleur
 	// FIN
