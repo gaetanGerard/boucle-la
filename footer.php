@@ -28,6 +28,18 @@
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
+<script>
+document.getElementById('mobile-menu-toggle').addEventListener('click', function() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenu.classList.toggle('-translate-x-full'); // Ouvre le menu en supprimant la classe
+});
+
+document.getElementById('close-mobile-menu').addEventListener('click', function() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenu.classList.add('-translate-x-full'); // Ferme le menu en ajoutant la classe
+});
+</script>
+
 <?php wp_footer(); ?>
 
 </body>

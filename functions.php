@@ -95,6 +95,30 @@ function bo_theme_widgets_init() {
 }
 add_action( 'widgets_init', 'bo_theme_widgets_init' );
 
+function bo_theme_customize_nav_colors() {
+    $nav_link_color = get_theme_mod( 'nav_link_color', '#0073aa' );
+    $nav_link_hover_color = get_theme_mod( 'nav_link_hover_color', '#005177' );
+    ?>
+    <style type="text/css">
+        /* Couleur des liens de navigation */
+        #masthead a {
+            color: <?php echo esc_attr( $nav_link_color ); ?>;
+        }
+
+        /* Couleur des liens de navigation au survol */
+        #masthead a:hover {
+            color: <?php echo esc_attr( $nav_link_hover_color ); ?>;
+			text-decoration: underline;
+        }
+		#shopping-cart-menu-toggle:hover {
+			color: <?php echo esc_attr( $nav_link_hover_color ); ?>;
+		}
+    </style>
+    <?php
+}
+add_action( 'wp_head', 'bo_theme_customize_nav_colors' );
+
+
 /**
  * Enqueue scripts and styles.
  */

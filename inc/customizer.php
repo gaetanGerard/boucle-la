@@ -15,6 +15,37 @@ function bo_theme_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
+	//
+	// Section pour enregistrer les options de personnalisation de couleur
+	// DEBUT
+	$wp_customize->add_setting( 'nav_link_color', array(
+		'default'           => '#0073aa',
+		'sanitize_callback' => 'sanitize_hex_color',
+		'transport'         => 'refresh',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'nav_link_color', array(
+		'label'    => __( 'Couleur des liens de navigation', 'bo-theme' ),
+		'section'  => 'colors',
+		'settings' => 'nav_link_color',
+	) ) );
+
+	$wp_customize->add_setting( 'nav_link_hover_color', array(
+		'default'           => '#005177',
+		'sanitize_callback' => 'sanitize_hex_color',
+		'transport'         => 'refresh',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'nav_link_hover_color', array(
+		'label'    => __( 'Couleur des liens de navigation au survol', 'bo-theme' ),
+		'section'  => 'colors',
+		'settings' => 'nav_link_hover_color',
+	) ) );
+	//
+	// Section pour enregistrer les options de personnalisation de couleur
+	// FIN
+
+
 	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial(
 			'blogname',
