@@ -92,30 +92,61 @@ function bo_theme_widgets_init() {
 			'after_title'   => '</h2>',
 		)
 	);
+    register_sidebar( array(
+        'name'          => 'Footer Widget Area',
+        'id'            => 'footer-widget-area',
+        'before_widget' => '<div class="footer-widget flex justify-center items-center">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="footer-widget-title">',
+        'after_title'   => '</h3>',
+    ) );
 }
 add_action( 'widgets_init', 'bo_theme_widgets_init' );
 
+// Add font from googlefont
+function bo_theme_enqueue_fonts() {
+    wp_enqueue_style(
+        'bo-theme-fonts',
+        'https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap',
+        false
+    );
+}
+add_action( 'wp_enqueue_scripts', 'bo_theme_enqueue_fonts' );
+
+// Apply color customizations in the head
 function bo_theme_customize_nav_colors() {
     $nav_link_color = get_theme_mod( 'nav_link_color', '#0073aa' );
     $nav_link_hover_color = get_theme_mod( 'nav_link_hover_color', '#005177' );
+	$button_color = get_theme_mod( 'button_color', '#ee0e5b' );
+    $button_hover = get_theme_mod( 'button_hover_color', '#f23b78' );
     ?>
     <style type="text/css">
-        /* Couleur des liens de navigation */
         #masthead a {
             color: <?php echo esc_attr( $nav_link_color ); ?>;
         }
-
-        /* Couleur des liens de navigation au survol */
-        #masthead a:hover {
+        #masthead a:hover, .footer-widgets a:hover {
             color: <?php echo esc_attr( $nav_link_hover_color ); ?>;
 			text-decoration: underline;
         }
 		#shopping-cart-menu-toggle:hover {
 			color: <?php echo esc_attr( $nav_link_hover_color ); ?>;
 		}
-		.site-header {
-            background-color: <?php echo get_theme_mod( 'nav_background_color', '#000000' ); ?>;
+		.site-header, .footer-widgets {
+            background-color: <?php echo get_theme_mod( 'nav_background_color', '#000000' ); ?> !important;
         }
+		.wp-block-button__link {
+            background-color: <?php echo esc_html( $button_color ); ?>;
+            color: <?php echo esc_html( $nav_link_color ); ?> !important;
+            border-radius: 0;
+            transition: background-color 0.3s ease;
+        }
+        .wp-block-button__link:hover {
+            background-color: <?php echo esc_html( $button_hover ); ?> !important;
+			color: <?php echo esc_html( $nav_link_color ); ?> !important;
+        }
+		.wp-block-group {
+			padding: 0 !important;
+		}
     </style>
     <?php
 }

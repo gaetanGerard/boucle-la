@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "settings": {
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "'Corinthia', cursive",
+          "name": "Corinthia",
+          "slug": "corinthia"
+        },
+        {
+          "fontFamily": "'Poppins', sans-serif",
+          "name": "Poppins",
+          "slug": "poppins"
+        }
+      ]
+    },
+    "border": {
+      "radius": "0px"
+    },
+    "blocks": {
+      "core/button": {
+        "settings": {
+          "border": {
+            "radius": "0px"
+          }
+        }
+      }
+    }
+  }
+}

@@ -43,7 +43,7 @@ function bo_theme_customize_register( $wp_customize ) {
 	) ) );
 
 	$wp_customize->add_setting( 'nav_background_color', array(
-        'default'           => '#000000', // Couleur noire par défaut
+        'default'           => '#000000',
         'sanitize_callback' => 'sanitize_hex_color',
         'transport'         => 'refresh',
     ) );
@@ -53,6 +53,30 @@ function bo_theme_customize_register( $wp_customize ) {
         'section'  => 'colors',
         'settings' => 'nav_background_color',
     ) ) );
+
+	$wp_customize->add_setting( 'button_color', array(
+		'default'   => '#ee0e5b',
+		'transport' => 'refresh',
+		'sanitize_callback' => 'sanitize_hex_color',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'button_color_control', array(
+		'label'    => __( 'Couleur des boutons', 'bo-theme' ),
+		'section'  => 'colors',
+		'settings' => 'button_color',
+	) ) );
+
+	$wp_customize->add_setting( 'button_hover_color', array(
+		'default'   => '#f23b78',
+		'transport' => 'refresh',
+		'sanitize_callback' => 'sanitize_hex_color',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'button_hover_color_control', array(
+		'label'    => __( 'Couleur de survol des boutons', 'bo-theme' ),
+		'section'  => 'colors',
+		'settings' => 'button_hover_color',
+	) ) );
 	//
 	// Section pour enregistrer les options de personnalisation de couleur
 	// FIN
