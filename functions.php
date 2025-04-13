@@ -135,6 +135,59 @@ function bo_theme_enqueue_fonts() {
 }
 add_action( 'wp_enqueue_scripts', 'bo_theme_enqueue_fonts' );
 
+
+// Pass the amount of product in the url
+add_filter( 'loop_shop_per_page', function( $cols ) {
+	if ( isset( $_GET['products_per_page'] ) ) {
+		$per_page = intval( $_GET['products_per_page'] );
+
+		$allowed = [12, 20, 30, 50, 100];
+		if ( in_array( $per_page, $allowed ) ) {
+			return $per_page;
+		}
+	}
+
+	return $cols;
+}, 20 );
+
+
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+
+// Wrap the native woocommerce filter inside a div
+// and add a custom select for the number of products per page
+add_action( 'woocommerce_before_shop_loop', function() {
+	echo '<div class="shop-controls-wrapper">';
+
+	woocommerce_catalog_ordering();
+
+	$options = [12, 20, 30, 50, 100];
+	$current = isset($_GET['products_per_page']) ? intval($_GET['products_per_page']) : '';
+
+	$query_args = '';
+	foreach ($_GET as $key => $value) {
+		if ($key === 'products_per_page') continue;
+		$query_args .= '<input type="hidden" name="' . esc_attr($key) . '" value="' . esc_attr($value) . '">';
+	}
+
+	echo '<form method="get" class="products-per-page-form" style="margin: 0;">';
+	echo $query_args;
+	echo '<label for="products_per_page" class="screen-reader-text">Produits par page</label>';
+	echo '<select name="products_per_page" id="products_per_page" onchange="this.form.submit()">';
+	foreach ( $options as $opt ) {
+		printf(
+			'<option value="%1$d"%2$s>%1$d produits</option>',
+			$opt,
+			selected( $current, $opt, false )
+		);
+	}
+	echo '</select>';
+	echo '</form>';
+
+	echo '</div>';
+}, 20 );
+
+
+
 // Apply color customizations in the head
 function bo_theme_customize_nav_colors() {
     $nav_link_color = get_theme_mod( 'nav_link_color', '#0073aa' );

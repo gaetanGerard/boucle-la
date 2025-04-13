@@ -196,6 +196,60 @@ $woocommerce__color-info: #3d9cd2;
   }
 }
 
+.products-per-page-form {
+	display: inline-block;
+	margin-left: 1rem;
+
+	select {
+		font-size: 1rem;
+    font-weight: 600;
+    color: #151515;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    background-color: #f7f7f7;
+    border: 1px solid #eaeaea;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: #eaeaea;
+      border-color: #d4d4d4;
+      cursor: pointer;
+    }
+	}
+}
+
+.shop-controls-wrapper {
+	display: flex;
+  flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	width: 100%;
+	margin-bottom: 1.5rem;
+
+	.woocommerce-ordering select,
+	.products-per-page-form select {
+		font-size: 1rem;
+    font-weight: 600;
+    color: #151515;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    background-color: #f7f7f7;
+    border: 1px solid #eaeaea;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: #eaeaea;
+      border-color: #d4d4d4;
+      cursor: pointer;
+    }
+	}
+
+  @media (min-width: 768px) {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+  }
+}
+
 // Import variables and mixins
 @import "abstracts/abstracts";
 

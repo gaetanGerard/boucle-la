@@ -165,6 +165,58 @@ WooCommerce styles override
   cursor: pointer;
 }
 
+.products-per-page-form {
+  display: inline-block;
+  margin-left: 1rem;
+}
+.products-per-page-form select {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #151515;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background-color: #f7f7f7;
+  border: 1px solid #eaeaea;
+  transition: all 0.3s ease-in-out;
+}
+.products-per-page-form select:hover {
+  background-color: #eaeaea;
+  border-color: #d4d4d4;
+  cursor: pointer;
+}
+
+.shop-controls-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+.shop-controls-wrapper .woocommerce-ordering select,
+.shop-controls-wrapper .products-per-page-form select {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #151515;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background-color: #f7f7f7;
+  border: 1px solid #eaeaea;
+  transition: all 0.3s ease-in-out;
+}
+.shop-controls-wrapper .woocommerce-ordering select:hover,
+.shop-controls-wrapper .products-per-page-form select:hover {
+  background-color: #eaeaea;
+  border-color: #d4d4d4;
+  cursor: pointer;
+}
+@media (min-width: 768px) {
+  .shop-controls-wrapper {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+  }
+}
+
 /**
  * Shop tables
  */
