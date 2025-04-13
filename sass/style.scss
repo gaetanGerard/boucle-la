@@ -100,3 +100,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /* Alignments
 --------------------------------------------- */
 @import "utilities/alignments";
+
+.footer-widgets {
+	h2 {
+		font-weight: 800;
+	}
+}

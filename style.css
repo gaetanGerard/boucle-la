@@ -967,3 +967,7 @@ textarea {
 	margin-right: auto;
 	margin-bottom: 1.5em;
 }
+
+.footer-widgets h2 {
+	font-weight: 800;
+}

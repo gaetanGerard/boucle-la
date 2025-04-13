@@ -196,10 +196,10 @@ function bo_theme_customize_nav_colors() {
     $button_hover = get_theme_mod( 'button_hover_color', '#f23b78' );
     ?>
     <style type="text/css">
-        #masthead a {
+        #masthead a, #menu-footer-menu li a {
             color: <?php echo esc_attr( $nav_link_color ); ?>;
         }
-        #masthead a:hover, .footer-widgets a:hover {
+        #masthead a:hover, .footer-widgets a:hover, #menu-footer-menu li a:hover {
             color: <?php echo esc_attr( $nav_link_hover_color ); ?>;
 			text-decoration: underline;
         }
