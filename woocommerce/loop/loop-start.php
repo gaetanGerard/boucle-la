@@ -19,4 +19,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<ul class="flex flex-wrap gap-4">
+<ul class="flex flex-wrap gap-6">

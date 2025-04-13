@@ -103,6 +103,28 @@ function bo_theme_widgets_init() {
 }
 add_action( 'widgets_init', 'bo_theme_widgets_init' );
 
+remove_all_actions( 'woocommerce_after_shop_loop_item' );
+
+// change style of the button for the product card
+add_action( 'woocommerce_after_shop_loop_item', function() {
+    global $product;
+    echo apply_filters(
+        'woocommerce_loop_add_to_cart_link',
+        sprintf(
+            '<a href="%s" data-quantity="1" class="button add_to_cart_button" %s>Ajouter au panier</a>',
+            esc_url( $product->add_to_cart_url() ),
+            wc_implode_html_attributes( array(
+                'data-product_id'  => $product->get_id(),
+                'data-product_sku' => $product->get_sku(),
+                'aria-label'       => $product->add_to_cart_description(),
+                'rel'              => 'nofollow',
+            ) ),
+            esc_html( $product->add_to_cart_text() )
+        ),
+        $product
+    );
+}, 10 );
+
 // Add font from googlefont
 function bo_theme_enqueue_fonts() {
     wp_enqueue_style(
@@ -128,19 +150,19 @@ function bo_theme_customize_nav_colors() {
             color: <?php echo esc_attr( $nav_link_hover_color ); ?>;
 			text-decoration: underline;
         }
-		#shopping-cart-menu-toggle:hover {
-			color: <?php echo esc_attr( $nav_link_hover_color ); ?>;
+		#shopping-cart-menu-toggle:hover, .shop-layout aside ul li .block:hover, .shop-layout .product-list ul li a div .price   {
+			color: <?php echo esc_attr( $nav_link_hover_color ); ?> !important;
 		}
 		.site-header, .footer-widgets {
             background-color: <?php echo get_theme_mod( 'nav_background_color', '#000000' ); ?> !important;
         }
-		.wp-block-button__link {
+		.wp-block-button__link, .add_to_cart_button {
             background-color: <?php echo esc_html( $button_color ); ?>;
             color: <?php echo esc_html( $nav_link_color ); ?> !important;
             border-radius: 0;
             transition: background-color 0.3s ease;
         }
-        .wp-block-button__link:hover {
+        .wp-block-button__link:hover, .add_to_cart_button:hover {
             background-color: <?php echo esc_html( $button_hover ); ?> !important;
 			color: <?php echo esc_html( $nav_link_color ); ?> !important;
         }

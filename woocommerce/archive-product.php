@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 get_header( 'shop' );
 
 do_action( 'woocommerce_before_main_content' );
-do_action( 'woocommerce_shop_loop_header' );
+
 
 if ( woocommerce_product_loop() ) {
 	do_action( 'woocommerce_before_shop_loop' );
