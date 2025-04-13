@@ -435,7 +435,7 @@ blockquote {
 }
 
 address {
-	margin: 0 0 1.5em;
+	margin: 0 0;
 }
 
 pre {
@@ -719,7 +719,7 @@ textarea {
 .site-main .comment-navigation,
 .site-main .posts-navigation,
 .site-main .post-navigation {
-	margin: 0 0 1.5em;
+	margin: 0 0;
 }
 
 .comment-navigation .nav-links,
@@ -749,7 +749,7 @@ textarea {
 
 .post,
 .page {
-	margin: 0 0 1.5em;
+	margin: 0 0;
 }
 
 .updated:not(.published) {
@@ -764,7 +764,7 @@ textarea {
 
 .page-links {
 	clear: both;
-	margin: 0 0 1.5em;
+	margin: 0 0;
 }
 
 /* Comments
@@ -780,7 +780,7 @@ textarea {
 /* Widgets
 --------------------------------------------- */
 .widget {
-	margin: 0 0 1.5em;
+	margin: 0 0;
 }
 
 .widget select {
