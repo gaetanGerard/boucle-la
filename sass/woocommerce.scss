@@ -9,6 +9,54 @@ $woocommerce__color-error: #e2401c;
 $woocommerce__color-success: #0f834d;
 $woocommerce__color-info: #3d9cd2;
 
+.woocommerce-boutique {
+    margin: 100px 50px;
+}
+
+.shop-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 2rem;
+
+    aside {
+      width: 100%;
+
+      h2 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      ul {
+        font-size: 0.875rem;
+
+        li + li {
+          margin-top: 0.5rem;
+        }
+      }
+    }
+
+    .product-list {
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+
+        aside {
+            width: 25%;
+          }
+
+          .product-list {
+            width: 75%;
+          }
+      }
+  }
+
 // Import variables and mixins
 @import "abstracts/abstracts";
 

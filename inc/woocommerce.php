@@ -118,7 +118,7 @@ if ( ! function_exists( 'bo_theme_woocommerce_wrapper_before' ) ) {
 	 */
 	function bo_theme_woocommerce_wrapper_before() {
 		?>
-			<main id="primary" class="site-main">
+			<main id="primary" class="woocommerce-boutique site-main">
 		<?php
 	}
 }
