@@ -275,13 +275,13 @@ function bo_theme_customize_nav_colors() {
 		.site-header, .footer-widgets {
             background-color: <?php echo get_theme_mod( 'nav_background_color', '#000000' ); ?> !important;
         }
-		.wp-block-button__link, .add_to_cart_button {
+		.wp-block-button__link, .add_to_cart_button, .btn-style {
             background-color: <?php echo esc_html( $button_color ); ?>;
             color: <?php echo esc_html( $nav_link_color ); ?> !important;
             border-radius: 0;
             transition: background-color 0.3s ease;
         }
-        .wp-block-button__link:hover, .add_to_cart_button:hover {
+        .wp-block-button__link:hover, .add_to_cart_button:hover, .btn-style:hover {
             background-color: <?php echo esc_html( $button_hover ); ?> !important;
 			color: <?php echo esc_html( $nav_link_color ); ?> !important;
         }
