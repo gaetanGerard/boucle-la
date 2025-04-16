@@ -13,7 +13,7 @@ if ( ! $product->is_purchasable() ) {
 	return;
 }
 
-echo wc_get_stock_html( $product ); // Affiche le stock si activé dans Woo
+echo wc_get_stock_html( $product );
 
 if ( $product->is_in_stock() ) : ?>
 
@@ -46,8 +46,6 @@ if ( $product->is_in_stock() ) : ?>
 	<?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
 
 <?php else : ?>
-
-	<!-- Produit en rupture -->
 	<button class="button disabled out-of-stock-button" disabled style="cursor: not-allowed; background-color: #ccc; color: #666;">
 		<?php esc_html_e( 'Rupture de stock', 'woocommerce' ); ?>
 	</button>

@@ -32,14 +32,7 @@ document.getElementById('close-mobile-menu').addEventListener('click', function(
     mobileMenu.classList.add('-translate-x-full');
 });
 // Toggle mobile menu visibility - END
-window.document.addEventListener(
-  'wc-blocks_product_list_rendered',
-  ( e ) => {
-    const { collection } = e.detail;
-    console.log( collection ) // -> collection name, e.g. woocommerce/product-collection/on-sale
-  }
-);
-
+// JS to handle add product to cart
 jQuery(document.body).on('added_to_cart', function() {
     jQuery(document.body).trigger('wc_fragment_refresh');
 });

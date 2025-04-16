@@ -18,7 +18,6 @@ $aria_describedby = isset( $args['aria-describedby_text'] )
 
 if ( $product && $product->is_type( 'simple' ) ) {
 	if ( $product->is_in_stock() ) {
-		// Produit en stock → bouton normal
 		echo apply_filters(
 			'woocommerce_loop_add_to_cart_link',
 			sprintf(
@@ -34,14 +33,12 @@ if ( $product && $product->is_type( 'simple' ) ) {
 			$args
 		);
 	} else {
-		// Produit en rupture de stock → bouton désactivé
 		echo sprintf(
 			'<button class="button disabled out-of-stock-button" disabled style="cursor: not-allowed; background-color: #ccc; color: #666;">%s</button>',
 			esc_html__( 'Rupture de stock', 'woocommerce' )
 		);
 	}
 } else {
-	// Pour les autres types de produits (variable, groupé, etc.)
 	echo apply_filters(
 		'woocommerce_loop_add_to_cart_link',
 		sprintf(

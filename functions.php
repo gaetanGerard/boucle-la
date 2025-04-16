@@ -238,7 +238,7 @@ remove_action('woocommerce_before_single_product', 'woocommerce_output_all_notic
 remove_action('woocommerce_before_cart', 'woocommerce_output_all_notices', 10);
 remove_action('woocommerce_before_checkout_form', 'woocommerce_output_all_notices', 10);
 
-
+// Feature to count the amount of product in cart and show it inside a small red bullet
 add_filter('woocommerce_add_to_cart_fragments', 'update_cart_count_fragment');
 function update_cart_count_fragment($fragments) {
     ob_start();
@@ -341,4 +341,23 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  */
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
+}
+
+// Redirect to the current page after adding a product to the cart.
+// This prevents the behavior of adding a product to the cart when page is refreshed.
+add_action('woocommerce_add_to_cart_redirect', 'bo_theme_add_to_cart_redirect');
+
+function bo_theme_add_to_cart_redirect($url = false) {
+    // If URL is set respect if
+    if (!empty($url)) {
+        return $url;
+    }
+
+    // Redirect to predvious URL
+    if (isset($_SERVER['HTTP_REFERER'])) {
+        return esc_url($_SERVER['HTTP_REFERER']);
+    }
+
+    // If nothing back to home
+    return home_url('/');
 }

@@ -31,7 +31,7 @@
     <div class="px-4 flex items-center justify-between relative h-[100px] md:h-[120px] shadow-lg">
         <!-- Menu hamburger (mobile only) -->
         <div class="lg:hidden flex text-white text-2xl order-3">
-            <button id="shopping-cart-menu-toggle" class="bg-transparent border-none cursor-pointer text-white text-2xl ml-4 relative">
+            <button id="shopping-cart-menu-toggle-desktop" class="bg-transparent border-none cursor-pointer text-white text-2xl ml-4 relative">
                 <i class="fas fa-shopping-cart relative">
                     <?php if ( WC()->cart->get_cart_contents_count() > 0 ) : ?>
                         <span class="cart-count absolute bottom-[-10px] right-[-10px] bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -72,7 +72,7 @@
                 'menu_class'     => 'flex text-lg font-medium gap-10 m-0',
             ));
             ?>
-            <button id="shopping-cart-menu-toggle" class="bg-transparent border-none cursor-pointer text-white text-2xl ml-4 relative">
+            <button id="shopping-cart-menu-toggle-mobile" class="bg-transparent border-none cursor-pointer text-white text-2xl ml-4 relative">
                 <i class="fas fa-shopping-cart relative">
                     <?php if ( WC()->cart->get_cart_contents_count() > 0 ) : ?>
                         <span class="cart-count absolute bottom-[-10px] right-[-10px] bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
