@@ -31,12 +31,15 @@
     <div class="px-4 flex items-center justify-between relative h-[100px] md:h-[120px] shadow-lg">
         <!-- Menu hamburger (mobile only) -->
         <div class="lg:hidden flex text-white text-2xl order-3">
-            <!-- Panier (à gauche du hamburger en mode mobile) -->
-            <button id="shopping-cart-menu-toggle" class="bg-transparent border-none cursor-pointer text-white">
-                <i class="fa-solid fa-basket-shopping"></i>
+            <button id="shopping-cart-menu-toggle" class="bg-transparent border-none cursor-pointer text-white text-2xl ml-4 relative">
+                <i class="fas fa-shopping-cart relative">
+                    <?php if ( WC()->cart->get_cart_contents_count() > 0 ) : ?>
+                        <span class="cart-count absolute bottom-[-10px] right-[-10px] bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                            <?php echo WC()->cart->get_cart_contents_count(); ?>
+                        </span>
+                    <?php endif; ?>
+                </i>
             </button>
-
-            <!-- Menu hamburger (mobile only) -->
             <button id="mobile-menu-toggle" class="bg-transparent border-none cursor-pointer text-white">
                 <i class="fas fa-bars"></i>
             </button>
@@ -59,7 +62,7 @@
             <?php the_custom_logo(); ?>
         </div>
 
-        <!-- Right menu + panier (desktop only) -->
+        <!-- Right menu (desktop only) -->
         <div class="hidden lg:flex flex-1 justify-start items-center order-3">
             <?php
             wp_nav_menu(array(
@@ -69,8 +72,14 @@
                 'menu_class'     => 'flex text-lg font-medium gap-10 m-0',
             ));
             ?>
-            <button id="shopping-cart-menu-toggle" class="bg-transparent border-none cursor-pointer text-white text-2xl ml-4">
-                <i class="fa-solid fa-basket-shopping"></i>
+            <button id="shopping-cart-menu-toggle" class="bg-transparent border-none cursor-pointer text-white text-2xl ml-4 relative">
+                <i class="fas fa-shopping-cart relative">
+                    <?php if ( WC()->cart->get_cart_contents_count() > 0 ) : ?>
+                        <span class="cart-count absolute bottom-[-10px] right-[-10px] bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                            <?php echo WC()->cart->get_cart_contents_count(); ?>
+                        </span>
+                    <?php endif; ?>
+                </i>
             </button>
         </div>
     </div>
@@ -106,5 +115,4 @@
         </div>
     </nav>
 </header>
-
 </div>

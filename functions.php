@@ -106,24 +106,39 @@ add_action( 'widgets_init', 'bo_theme_widgets_init' );
 remove_all_actions( 'woocommerce_after_shop_loop_item' );
 
 // change style of the button for the product card
+// Add a condition to check if the product is in stock or not
+// If the product is not in stock, add a class to the button and change the text
 add_action( 'woocommerce_after_shop_loop_item', function() {
     global $product;
-    echo apply_filters(
-        'woocommerce_loop_add_to_cart_link',
-        sprintf(
-            '<a href="%s" data-quantity="1" class="button add_to_cart_button" %s>Ajouter au panier</a>',
-            esc_url( $product->add_to_cart_url() ),
-            wc_implode_html_attributes( array(
-                'data-product_id'  => $product->get_id(),
-                'data-product_sku' => $product->get_sku(),
-                'aria-label'       => $product->add_to_cart_description(),
-                'rel'              => 'nofollow',
-            ) ),
-            esc_html( $product->add_to_cart_text() )
-        ),
-        $product
-    );
+
+    if ( ! $product->is_in_stock() ) {
+        echo apply_filters(
+            'woocommerce_loop_add_to_cart_link',
+            sprintf(
+                '<a href="#" class="button add_to_cart_button disabled" style="pointer-events: none; background-color: #ccc; color: #666;" aria-disabled="true">%s</a>',
+                esc_html__( 'Rupture de stock', 'woocommerce' )
+            ),
+            $product
+        );
+    } else {
+        echo apply_filters(
+            'woocommerce_loop_add_to_cart_link',
+            sprintf(
+                '<a href="%s" data-quantity="1" class="button add_to_cart_button" %s>%s</a>',
+                esc_url( $product->add_to_cart_url() ),
+                wc_implode_html_attributes( array(
+                    'data-product_id'  => $product->get_id(),
+                    'data-product_sku' => $product->get_sku(),
+                    'aria-label'       => $product->add_to_cart_description(),
+                    'rel'              => 'nofollow',
+                ) ),
+                esc_html( $product->add_to_cart_text() )
+            ),
+            $product
+        );
+    }
 }, 10 );
+
 
 // Add font from googlefont
 function bo_theme_enqueue_fonts() {
@@ -141,7 +156,7 @@ add_filter( 'loop_shop_per_page', function( $cols ) {
 	if ( isset( $_GET['products_per_page'] ) ) {
 		$per_page = intval( $_GET['products_per_page'] );
 
-		$allowed = [12, 20, 30, 50, 100];
+		$allowed = [12, 24, 48, 96];
 		if ( in_array( $per_page, $allowed ) ) {
 			return $per_page;
 		}
@@ -160,7 +175,7 @@ add_action( 'woocommerce_before_shop_loop', function() {
 
 	woocommerce_catalog_ordering();
 
-	$options = [12, 20, 30, 50, 100];
+	$options = [12, 24, 48, 96];
 	$current = isset($_GET['products_per_page']) ? intval($_GET['products_per_page']) : '';
 
 	$query_args = '';
@@ -186,7 +201,58 @@ add_action( 'woocommerce_before_shop_loop', function() {
 	echo '</div>';
 }, 20 );
 
+// Create a Toast for woocommerce to notify the user when an action is done
+// like adding a product to the cart or removing it
+// remove the default woocommerce messages
+add_action('wp_footer', function () {
+	?>
+	<script>
+	  document.addEventListener('DOMContentLoaded', () => {
+		const messages = document.querySelectorAll('.woocommerce-message');
 
+		messages.forEach((msg) => {
+		  const toast = document.createElement('div');
+		  toast.className = 'toast-woocommerce';
+
+		  toast.innerHTML = `
+			<svg class="toast-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+			  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+			</svg>
+			<div class="toast-text">${msg.innerHTML}</div>
+		  `;
+
+		  document.body.appendChild(toast);
+		  msg.remove();
+		  setTimeout(() => {
+			toast.style.opacity = '0';
+			toast.style.transition = 'opacity 0.4s ease';
+			setTimeout(() => toast.remove(), 400);
+		  }, 4000);
+		});
+	  });
+	</script>
+	<?php
+  });
+
+remove_action('woocommerce_before_single_product', 'woocommerce_output_all_notices', 10);
+remove_action('woocommerce_before_cart', 'woocommerce_output_all_notices', 10);
+remove_action('woocommerce_before_checkout_form', 'woocommerce_output_all_notices', 10);
+
+
+add_filter('woocommerce_add_to_cart_fragments', 'update_cart_count_fragment');
+function update_cart_count_fragment($fragments) {
+    ob_start();
+    $count = WC()->cart->get_cart_contents_count();
+    if ( $count > 0 ) {
+        ?>
+        <span class="cart-count absolute bottom-[-10px] right-[-10px] bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+            <?php echo $count; ?>
+        </span>
+        <?php
+    }
+    $fragments['span.cart-count'] = ob_get_clean();
+    return $fragments;
+}
 
 // Apply color customizations in the head
 function bo_theme_customize_nav_colors() {
@@ -203,9 +269,9 @@ function bo_theme_customize_nav_colors() {
             color: <?php echo esc_attr( $nav_link_hover_color ); ?>;
 			text-decoration: underline;
         }
-		#shopping-cart-menu-toggle:hover, .shop-layout aside ul li .block:hover, .shop-layout .product-list ul li a div .price   {
-			color: <?php echo esc_attr( $nav_link_hover_color ); ?> !important;
-		}
+		.price {
+            color: <?php echo esc_attr( $nav_link_hover_color ); ?>;
+        }
 		.site-header, .footer-widgets {
             background-color: <?php echo get_theme_mod( 'nav_background_color', '#000000' ); ?> !important;
         }
@@ -226,7 +292,6 @@ function bo_theme_customize_nav_colors() {
     <?php
 }
 add_action( 'wp_head', 'bo_theme_customize_nav_colors' );
-
 
 /**
  * Enqueue scripts and styles.
