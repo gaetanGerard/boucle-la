@@ -341,6 +341,10 @@ a.button.disabled {
   text-decoration: none;             /* Supprime la sous-ligne */
 }
 
+.cart-panel-header {
+  padding-top: 3rem;
+}
+
 @keyframes slideFadeIn {
   from {
     opacity: 0;

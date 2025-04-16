@@ -117,11 +117,11 @@
 </header>
 
 <div id="cart-panel" class="fixed inset-0 bg-black text-white transform translate-x-full transition-transform duration-300 ease-in-out z-20 flex flex-col">
-    <div class="cart-panel-header flex flex-row-reverse justify-between text-white text-2xl gap-4 px-4 py-4">
+    <div class="py-8 cart-panel-header flex flex-row-reverse justify-between content-center items-center text-white text-2xl gap-4 px-4 py-4">
         <div class="site-branding mx-10 w-[80px] md:w-[100px] flex-shrink-0 order-2">
             <?php the_custom_logo(); ?>
         </div>
-        <button id="close-cart-panel" class="text-white text-2xl self-end bg-transparent border-none cursor-pointer">
+        <button id="close-cart-panel" class="text-white text-2xl self-center bg-transparent border-none cursor-pointer">
             <i class="fas fa-times"></i>
         </button>
     </div>

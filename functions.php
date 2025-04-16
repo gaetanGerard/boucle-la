@@ -280,6 +280,7 @@ function bo_theme_customize_nav_colors() {
             color: <?php echo esc_html( $nav_link_color ); ?> !important;
             border-radius: 0;
             transition: background-color 0.3s ease;
+			padding: 0.5rem 1rem;
         }
         .wp-block-button__link:hover, .add_to_cart_button:hover, .btn-style:hover {
             background-color: <?php echo esc_html( $button_hover ); ?> !important;
