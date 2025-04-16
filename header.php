@@ -116,20 +116,67 @@
     </nav>
 </header>
 
-<div id="cart-panel" class="fixed inset-0 bg-black text-white transform translate-x-full transition-transform duration-300 ease-in-out z-20 flex flex-col">
-    <div class="py-8 cart-panel-header flex flex-row-reverse justify-between content-center items-center text-white text-2xl gap-4 px-4 py-4">
+<div id="cart-panel" class="hidden fixed inset-0 transform bg-white translate-x-full transition-transform duration-300 ease-in-out z-20 flex flex-col overflow-y-auto">
+    <div class="cart-panel-header flex flex-row-reverse justify-between text-white text-2xl gap-4 px-4 py-4">
         <div class="site-branding mx-10 w-[80px] md:w-[100px] flex-shrink-0 order-2">
             <?php the_custom_logo(); ?>
         </div>
-        <button id="close-cart-panel" class="text-white text-2xl self-center bg-transparent border-none cursor-pointer">
+        <button id="close-cart-panel" class="text-black text-2xl self-center bg-transparent border-none cursor-pointer">
             <i class="fas fa-times"></i>
         </button>
     </div>
-    <div class="cart-panel-body flex-1 flex flex-col items-center justify-center space-y-4">
-        <p><?php esc_html_e( 'Votre panier est actuellement vide.', 'bo-theme' ); ?></p>
-        <a href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>" class="px-4 py-2 text-white transition whitespace-nowrap btn-style">
-            <?php esc_html_e( 'Aller à la boutique', 'bo-theme' ); ?>
-        </a>
+    <div class="cart-panel-body flex-1 flex flex-col items-center justify-center space-y-4 w-full px-4">
+        <?php if ( WC()->cart->is_empty() ) : ?>
+            <p><?php esc_html_e( 'Votre panier est actuellement vide.', 'bo-theme' ); ?></p>
+            <a href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>" class="button">
+                <?php esc_html_e( 'Aller à la boutique', 'bo-theme' ); ?>
+            </a>
+        <?php else : ?>
+            <h2 class="text-center text-3xl font-bold">Votre panier</h2>
+            <ul class="cart-items w-full space-y-4">
+                <?php foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) : ?>
+                    <?php
+                    $product = $cart_item['data'];
+                    $product_name = $product->get_name();
+                    $product_price = wc_price( $product->get_price() );
+                    $product_quantity = $cart_item['quantity'];
+                    $product_permalink = $product->is_visible() ? $product->get_permalink() : '';
+                    $product_image = $product->get_image( 'thumbnail' );
+                    ?>
+                    <li class="product-card flex items-center justify-between gap-4 border-b border-gray-700 pb-4">
+                        <div class="product-container w-1/2 flex items-center gap-4">
+                            <div class="product-img w-1/4">
+                                <?php echo $product_image; ?>
+                            </div>
+                            <div class="product-content w-1/2">
+                                <a href="<?php echo esc_url( $product_permalink ); ?>" class="text-black hover:underline block font-bold">
+                                    <?php echo esc_html( $product_name ); ?>
+                                </a>
+                                <span class="text-gray-400 block">
+                                    <?php echo $product_price; ?>
+                                </span>
+                                <span class="text-gray-400 block">
+                                    <?php esc_html_e( 'Quantité :', 'bo-theme' ); ?> <?php echo $product_quantity; ?>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="product-container-for-add-more-or-remove-qty w-1/4 flex flex-col items-center gap-2">
+                            <button class="button">+</button>
+                            <button class="button">-</button>
+                            <button class="button text-red-600">X</button>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <div class="cart-total w-full mt-4 flex justify-between items-center border-t border-gray-700 pt-4">
+                <span class="text-black font-bold text-lg">
+                    <?php esc_html_e( 'Total :', 'bo-theme' ); ?> <?php echo WC()->cart->get_cart_total(); ?>
+                </span>
+                <a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="button">
+                    <?php esc_html_e( 'Passer à la caisse', 'bo-theme' ); ?>
+                </a>
+            </div>
+        <?php endif; ?>
     </div>
 </div>
 </div>

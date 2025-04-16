@@ -257,6 +257,7 @@ function update_cart_count_fragment($fragments) {
 // Apply color customizations in the head
 function bo_theme_customize_nav_colors() {
     $nav_link_color = get_theme_mod( 'nav_link_color', '#0073aa' );
+	$nav_link_color_light = get_theme_mod( 'nav_link_color_light', '#000000' );
     $nav_link_hover_color = get_theme_mod( 'nav_link_hover_color', '#005177' );
 	$button_color = get_theme_mod( 'button_color', '#ee0e5b' );
     $button_hover = get_theme_mod( 'button_hover_color', '#f23b78' );
@@ -265,7 +266,10 @@ function bo_theme_customize_nav_colors() {
         #masthead a, #menu-footer-menu li a {
             color: <?php echo esc_attr( $nav_link_color ); ?>;
         }
-        #masthead a:hover, .footer-widgets a:hover, #menu-footer-menu li a:hover {
+		.product-content a {
+            color: <?php echo esc_attr( $nav_link_color_light ); ?>;
+        }
+        #masthead a:hover, .footer-widgets a:hover, #menu-footer-menu li a:hover, .product-content a:hover {
             color: <?php echo esc_attr( $nav_link_hover_color ); ?>;
 			text-decoration: underline;
         }

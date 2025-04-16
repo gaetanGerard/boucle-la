@@ -30,6 +30,18 @@ function bo_theme_customize_register( $wp_customize ) {
 		'settings' => 'nav_link_color',
 	) ) );
 
+	$wp_customize->add_setting( 'nav_link_color_light', array(
+		'default'           => '#000000',
+		'sanitize_callback' => 'sanitize_hex_color',
+		'transport'         => 'refresh',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'nav_link_color_light', array(
+		'label'    => __( 'Couleur des liens de navigation sur fond Blanc', 'bo-theme' ),
+		'section'  => 'colors',
+		'settings' => 'nav_link_color_light',
+	) ) );
+
 	$wp_customize->add_setting( 'nav_link_hover_color', array(
 		'default'           => '#005177',
 		'sanitize_callback' => 'sanitize_hex_color',

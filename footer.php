@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Ensure the cart panel is closed by default
     cartPanel.classList.add('-translate-x-full');
+    cartPanel.classList.add('hidden');
 
     const cartToggleButtons = [
         document.getElementById('shopping-cart-menu-toggle-desktop'),
@@ -53,16 +54,19 @@ document.addEventListener('DOMContentLoaded', function () {
     cartToggleButtons.forEach(button => {
         button.addEventListener('click', () => {
             cartPanel.classList.toggle('-translate-x-full');
+            cartPanel.classList.toggle('hidden');
         });
     });
 
     closeCartButton.addEventListener('click', () => {
         cartPanel.classList.add('-translate-x-full');
+        cartPanel.classList.add('hidden');
     });
 
     document.addEventListener('click', (event) => {
         if (!cartPanel.contains(event.target) && !cartToggleButtons.some(button => button.contains(event.target))) {
             cartPanel.classList.add('-translate-x-full');
+            cartPanel.classList.add('hidden');
         }
     });
 });
