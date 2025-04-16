@@ -116,7 +116,7 @@
     </nav>
 </header>
 
-<div id="cart-panel" class="hidden fixed inset-0 transform bg-white translate-x-full transition-transform duration-300 ease-in-out z-20 flex flex-col overflow-y-auto">
+<div id="cart-panel" class="cart-panel">
     <div class="cart-panel-header flex flex-row-reverse justify-between text-white text-2xl gap-4 px-4 py-4">
         <div class="site-branding mx-10 w-[80px] md:w-[100px] flex-shrink-0 order-2">
             <?php the_custom_logo(); ?>
@@ -179,6 +179,33 @@
         <?php endif; ?>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const cartPanel = document.getElementById('cart-panel');
+        const cartToggleButtons = [
+            document.getElementById('shopping-cart-menu-toggle-desktop'),
+            document.getElementById('shopping-cart-menu-toggle-mobile')
+        ];
+        const closeCartButton = document.getElementById('close-cart-panel');
+
+        cartToggleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                cartPanel.classList.toggle('cart-panel-open');
+            });
+        });
+
+        closeCartButton.addEventListener('click', () => {
+            cartPanel.classList.remove('cart-panel-open');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!cartPanel.contains(event.target) && !cartToggleButtons.some(button => button.contains(event.target))) {
+                cartPanel.classList.remove('cart-panel-open');
+            }
+        });
+    });
+</script>
 </div>
 </body>
 </html>

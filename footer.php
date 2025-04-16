@@ -40,35 +40,41 @@ jQuery(document.body).on('added_to_cart', function() {
 
 document.addEventListener('DOMContentLoaded', function () {
     const cartPanel = document.getElementById('cart-panel');
-
-    // Ensure the cart panel is closed by default
-    cartPanel.classList.add('-translate-x-full');
-    cartPanel.classList.add('hidden');
-
     const cartToggleButtons = [
         document.getElementById('shopping-cart-menu-toggle-desktop'),
         document.getElementById('shopping-cart-menu-toggle-mobile')
     ];
     const closeCartButton = document.getElementById('close-cart-panel');
 
-    cartToggleButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            cartPanel.classList.toggle('-translate-x-full');
-            cartPanel.classList.toggle('hidden');
+    if (cartPanel && cartToggleButtons.every(button => button)) {
+        console.log('Cart panel and toggle buttons found.');
+
+        cartToggleButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                console.log('Toggle button clicked.');
+                cartPanel.classList.add('cart-panel-open');
+                console.log('cart-panel-open class added:', cartPanel.classList.contains('cart-panel-open'));
+            });
         });
-    });
 
-    closeCartButton.addEventListener('click', () => {
-        cartPanel.classList.add('-translate-x-full');
-        cartPanel.classList.add('hidden');
-    });
-
-    document.addEventListener('click', (event) => {
-        if (!cartPanel.contains(event.target) && !cartToggleButtons.some(button => button.contains(event.target))) {
-            cartPanel.classList.add('-translate-x-full');
-            cartPanel.classList.add('hidden');
+        if (closeCartButton) {
+            closeCartButton.addEventListener('click', () => {
+                console.log('Close button clicked.');
+                cartPanel.classList.remove('cart-panel-open');
+                console.log('cart-panel-open class removed:', !cartPanel.classList.contains('cart-panel-open'));
+            });
         }
-    });
+
+        document.addEventListener('click', (event) => {
+            if (!cartPanel.contains(event.target) && !cartToggleButtons.some(button => button.contains(event.target))) {
+                console.log('Clicked outside cart panel.');
+                cartPanel.classList.remove('cart-panel-open');
+                console.log('cart-panel-open class removed:', !cartPanel.classList.contains('cart-panel-open'));
+            }
+        });
+    } else {
+        console.error('Cart panel or toggle buttons not found.');
+    }
 });
 </script>
 
