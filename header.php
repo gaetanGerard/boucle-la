@@ -33,7 +33,7 @@
 
         <header id="masthead" class="site-header bg-black text-white fixed top-0 left-0 z-10 w-full">
             <div class="px-4 flex items-center justify-between relative h-[100px] md:h-[120px] shadow-lg">
-                <!-- Menu hamburger (mobile only) -->
+                <!-- Menu hamburger -->
                 <div class="lg:hidden flex text-white text-2xl order-3">
                     <button id="shopping-cart-menu-toggle-desktop"
                         class="bg-transparent border-none cursor-pointer text-white text-2xl ml-4 relative">
@@ -51,7 +51,7 @@
                     </button>
                 </div>
 
-                <!-- Left menu (desktop only) -->
+                <!-- Left menu -->
                 <div class="hidden lg:flex flex-1 justify-end order-1">
                     <?php
                     wp_nav_menu(array(
@@ -68,7 +68,7 @@
                     <?php the_custom_logo(); ?>
                 </div>
 
-                <!-- Right menu (desktop only) -->
+                <!-- Right menu -->
                 <div class="hidden lg:flex flex-1 justify-start items-center order-3">
                     <?php
                     wp_nav_menu(array(
@@ -92,9 +92,9 @@
                 </div>
             </div>
 
-            <!-- Mobile menu (hidden by default) -->
+            <!-- Mobile menu -->
             <nav id="mobile-menu"
-                class="lg:hidden fixed inset-0 bg-black text-white transform -translate-x-full transition-transform duration-300 ease-in-out">
+                class="lg:hidden fixed inset-0 z-50 bg-black text-white transform -translate-x-full transition-transform duration-300 ease-in-out">
                 <div class="flex flex-col px-4 py-16 space-y-4">
                     <div class="flex flex-row-reverse justify-between text-white text-2xl gap-4">
                         <div class="site-branding mx-10 w-[80px] md:w-[100px] flex-shrink-0 order-2">
@@ -106,7 +106,7 @@
                         </button>
                     </div>
 
-                    <div class="flex-1">
+                    <div class="flex flex-col gap-4">
                         <?php
                         wp_nav_menu(array(
                             'theme_location' => 'left-menu',

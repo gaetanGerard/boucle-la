@@ -10,13 +10,12 @@
 	width: map-get($columns, $numberColumns) - ( ( $columns__margin * ( $numberColumns - 1 ) ) / $numberColumns );
 }
 
-@mixin product-card() {
-	width: 250px !important;
+@mixin product-card($width: 250px) {
+	width: $width !important;
 	height: 400px !important;
 	display: grid;
 	grid-auto-flow: row;
 	gap: 0.5rem;
-	align-items: space-between;
 	margin: 0 0 0 0 !important;
 
 
@@ -41,7 +40,6 @@
 
 	.add_to_cart_button {
 	  padding: 0.5rem 1rem;
-	  border-radius: 0.25rem;
 	  font-size: 1rem;
 	  font-weight: 600;
 	  text-decoration: none;
@@ -53,4 +51,40 @@
 		text-decoration: none;
 	  }
 	}
+}
+
+@mixin disabled-btn() {
+	background-color: #ccc !important;
+	color: #666 !important;
+	cursor: not-allowed !important;
+	box-shadow: none !important;
+	pointer-events: none;
+	transition: none !important;
+}
+
+@mixin sticker($bgColor, $color) {
+	background: $bgColor;
+	color: $color;
+	padding: 0.5rem 1rem;
+	max-width: fit-content;
+	font-weight: bold;
+	margin-bottom: 1rem;
+	box-shadow: 1px 1px 2px $color
+}
+
+@mixin input-style() {
+	font-size: 1rem;
+    font-weight: 600;
+    color: #151515;
+    padding: 0.5rem 1rem;
+    background-color: #f7f7f7;
+    border: 1px solid #eaeaea;
+	box-shadow: 1px 1px 2px #eaeaea;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: #eaeaea;
+      border-color: #d4d4d4;
+      cursor: pointer;
+    }
 }

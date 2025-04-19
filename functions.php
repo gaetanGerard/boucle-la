@@ -22,7 +22,6 @@ function bo_theme_setup()
 	add_theme_support('title-tag');
 	add_theme_support('post-thumbnails');
 
-	// Register multiple navigation menus
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__('Primary', 'bo-theme'),
@@ -57,7 +56,6 @@ function bo_theme_setup()
 
 	add_theme_support('customize-selective-refresh-widgets');
 
-	// Support du logo personnalisé
 	add_theme_support(
 		'custom-logo',
 		array(
@@ -284,7 +282,6 @@ function bo_theme_increase_cart_item()
 		wp_send_json_error(['message' => 'Article introuvable.']);
 	}
 	$current_qty = $items[$cart_item_key]['quantity'];
-	// Increase quantity by 1 and refresh totals
 	WC()->cart->set_quantity($cart_item_key, $current_qty + 1, true);
 	wp_send_json_success();
 }
@@ -304,10 +301,8 @@ function bo_theme_decrease_cart_item()
 	}
 	$current_qty = $cart[$cart_item_key]['quantity'];
 	if ($current_qty <= 1) {
-		// Remove item if quantity would drop to zero
 		WC()->cart->remove_cart_item($cart_item_key);
 	} else {
-		// Decrease quantity by 1
 		WC()->cart->set_quantity($cart_item_key, $current_qty - 1, true);
 	}
 	wp_send_json_success();
@@ -322,12 +317,9 @@ function bo_theme_decrease_cart_item()
 add_filter('woocommerce_add_to_cart_fragments', 'bo_theme_update_cart_panel_html');
 function bo_theme_update_cart_panel_html($fragments)
 {
-	// Cart panel body
 	ob_start();
 	get_template_part('partials/cart-panel-body');
 	$fragments['div.cart-panel-body'] = ob_get_clean();
-
-	// Cart total only
 	ob_start();
 	?>
 	<span class="custom-cart-total">
@@ -336,7 +328,6 @@ function bo_theme_update_cart_panel_html($fragments)
 	<?php
 	$fragments['span.custom-cart-total'] = ob_get_clean();
 
-	// Cart count fragment
 	$cart_count = WC()->cart->get_cart_contents_count();
 	if ($cart_count > 0) {
 		ob_start();
@@ -356,7 +347,6 @@ function bo_theme_add_composition_tab($tabs)
 {
 	global $product;
 
-	// Récupération du champ personnalisé "composition"
 	$composition = get_post_meta($product->get_id(), '_composition', true);
 
 	if (!empty($composition)) {
@@ -388,7 +378,7 @@ function bo_theme_add_composition_metabox()
 		__('Composition du produit', 'bo-theme'),
 		'bo_theme_render_composition_metabox',
 		'product',
-		'normal', // même niveau que la description principale
+		'normal',
 		'default'
 	);
 }
@@ -417,11 +407,6 @@ function bo_theme_save_composition_metabox($post_id)
 
 	update_post_meta($post_id, '_composition', wp_kses_post($_POST['_composition']));
 }
-//
-//
-// Section to handle Product Tab and WYSIWYG editor for the composition of the product
-// START
-//
 
 
 // Apply color customizations in the head
@@ -441,7 +426,9 @@ function bo_theme_customize_nav_colors()
 			;
 		}
 
-		.product-content a {
+		.product-content a,
+		.category-link,
+		.csp-product-categories a {
 			color:
 				<?php echo esc_attr($nav_link_color_light); ?>
 			;
@@ -450,14 +437,17 @@ function bo_theme_customize_nav_colors()
 		#masthead a:hover,
 		.footer-widgets a:hover,
 		#menu-footer-menu li a:hover,
-		.product-content a:hover {
+		.product-content a:hover,
+		.category-link:hover,
+		.csp-product-categories a:hover {
 			color:
 				<?php echo esc_attr($nav_link_hover_color); ?>
-			;
-			text-decoration: underline;
+				!important;
+			text-decoration: underline !important;
 		}
 
-		.price {
+		.price,
+		.csp-product-price {
 			color:
 				<?php echo esc_attr($nav_link_hover_color); ?>
 			;
@@ -472,7 +462,10 @@ function bo_theme_customize_nav_colors()
 
 		.wp-block-button__link,
 		.add_to_cart_button,
-		.btn-style {
+		.btn-style,
+		.category-link-active,
+		.single_add_to_cart_button,
+		.page-numbers.current {
 			background-color:
 				<?php echo esc_html($button_color); ?>
 			;
@@ -486,7 +479,10 @@ function bo_theme_customize_nav_colors()
 
 		.wp-block-button__link:hover,
 		.add_to_cart_button:hover,
-		.btn-style:hover {
+		.btn-style:hover,
+		.category-link-active:hover,
+		.single_add_to_cart_button:hover,
+		.page-numbers.current:hover {
 			background-color:
 				<?php echo esc_html($button_hover); ?>
 				!important;

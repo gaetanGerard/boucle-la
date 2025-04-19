@@ -125,6 +125,40 @@
             });
         });
     });
+
+    // Handle Accordeon Tabs
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.accordion-trigger').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                content.classList.toggle('hidden');
+                const icon = btn.querySelector('.toggle-icon');
+                icon.textContent = content.classList.contains('hidden') ? '+' : '–';
+            });
+        });
+    });
+
+    // Handle Open Image Modal for Zoom
+    document.addEventListener("DOMContentLoaded", function () {
+        const openBtn = document.getElementById("openImageModal");
+        const modal = document.getElementById("imageModal");
+        const closeBtn = document.getElementById("closeImageModal");
+
+        openBtn?.addEventListener("click", () => {
+            modal?.classList.add("active");
+        });
+
+        closeBtn?.addEventListener("click", () => {
+            modal?.classList.remove("active");
+        });
+
+        modal?.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.classList.remove("active");
+            }
+        });
+    });
+
 </script>
 
 <?php wp_footer(); ?>
