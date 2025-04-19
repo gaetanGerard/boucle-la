@@ -252,13 +252,11 @@ function gg_remove_from_cart()
 	$removed = WC()->cart->remove_cart_item($cart_item_key);
 
 	if ($removed) {
-		// Après la suppression, on actualise le panier
 		$cart_count = WC()->cart->get_cart_contents_count();
-		$cart_html = ''; // Contient le HTML du panier mis à jour
+		$cart_html = '';
 
-		// On récupère à nouveau le fragment du panier
 		ob_start();
-		get_template_part('partials/cart-panel-body'); // Cela génère le HTML du panier mis à jour
+		get_template_part('partials/cart-panel-body');
 		$cart_html = ob_get_clean();
 
 		wp_send_json_success([
@@ -272,7 +270,7 @@ function gg_remove_from_cart()
 	}
 }
 
-// AJAX handler to increase quantity of a cart item
+// AJAX function to increase quantity of a cart item
 add_action('wp_ajax_increase_cart_item', 'gg_increase_cart_item');
 add_action('wp_ajax_nopriv_increase_cart_item', 'gg_increase_cart_item');
 function gg_increase_cart_item()
@@ -291,7 +289,7 @@ function gg_increase_cart_item()
 	wp_send_json_success();
 }
 
-// AJAX handler to decrease quantity of a cart item
+// AJAX function to decrease quantity of a cart item
 add_action('wp_ajax_decrease_cart_item', 'gg_decrease_cart_item');
 add_action('wp_ajax_nopriv_decrease_cart_item', 'gg_decrease_cart_item');
 function gg_decrease_cart_item()
@@ -423,6 +421,24 @@ function bo_theme_customize_nav_colors()
 
 		.wp-block-group {
 			padding: 0 !important;
+		}
+
+		.btn-product-delete {
+			background-color:
+				<?php echo esc_html($button_color); ?>
+			;
+			color:
+				<?php echo esc_html($nav_link_color); ?>
+				!important;
+		}
+
+		.btn-product-delete:hover {
+			background-color:
+				<?php echo esc_html($button_hover); ?>
+				!important;
+			color:
+				<?php echo esc_html($nav_link_color); ?>
+				!important;
 		}
 	</style>
 	<?php

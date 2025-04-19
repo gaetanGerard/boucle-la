@@ -49,10 +49,10 @@ if (!function_exists('WC') || !WC()->cart instanceof WC_Cart) {
                         </div>
                     </div>
 
-                    <div class="product-container-for-add-more-or-remove-qty w-1/4 flex flex-col items-center gap-2">
-                        <button class="button btn-increase-item-in-cart" type="button">+</button>
-                        <button class="button btn-decrease-item-in-cart" type="button">-</button>
-                        <button class="button btn-remove-item-from-cart text-red-600" type="button">X</button>
+                    <div class="product-container-for-add-more-or-remove-qty w-1/4">
+                        <button class="button btn-decrease-item-in-cart btn-product btn-product-qty" type="button">-</button>
+                        <button class="button btn-increase-item-in-cart btn-product btn-product-qty" type="button">+</button>
+                        <button class="button btn-remove-item-from-cart btn-product btn-product-delete" type="button">X</button>
                     </div>
                 </li>
             <?php endforeach; ?>
