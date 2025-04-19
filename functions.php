@@ -240,9 +240,9 @@ add_action('wp_footer', function () {
 });
 
 // Ajax function to remove a product from the cart
-add_action('wp_ajax_remove_from_cart', 'gg_remove_from_cart');
-add_action('wp_ajax_nopriv_remove_from_cart', 'gg_remove_from_cart');
-function gg_remove_from_cart()
+add_action('wp_ajax_remove_from_cart', 'bo_theme_remove_from_cart');
+add_action('wp_ajax_nopriv_remove_from_cart', 'bo_theme_remove_from_cart');
+function bo_theme_remove_from_cart()
 {
 	if (!isset($_POST['cart_item_key'])) {
 		wp_send_json_error(['message' => 'Clé du panier manquante.']);
@@ -271,9 +271,9 @@ function gg_remove_from_cart()
 }
 
 // AJAX function to increase quantity of a cart item
-add_action('wp_ajax_increase_cart_item', 'gg_increase_cart_item');
-add_action('wp_ajax_nopriv_increase_cart_item', 'gg_increase_cart_item');
-function gg_increase_cart_item()
+add_action('wp_ajax_increase_cart_item', 'bo_theme_increase_cart_item');
+add_action('wp_ajax_nopriv_increase_cart_item', 'bo_theme_increase_cart_item');
+function bo_theme_increase_cart_item()
 {
 	if (!isset($_POST['cart_item_key'])) {
 		wp_send_json_error(['message' => 'Clé du panier manquante.']);
@@ -290,9 +290,9 @@ function gg_increase_cart_item()
 }
 
 // AJAX function to decrease quantity of a cart item
-add_action('wp_ajax_decrease_cart_item', 'gg_decrease_cart_item');
-add_action('wp_ajax_nopriv_decrease_cart_item', 'gg_decrease_cart_item');
-function gg_decrease_cart_item()
+add_action('wp_ajax_decrease_cart_item', 'bo_theme_decrease_cart_item');
+add_action('wp_ajax_nopriv_decrease_cart_item', 'bo_theme_decrease_cart_item');
+function bo_theme_decrease_cart_item()
 {
 	if (empty($_POST['cart_item_key'])) {
 		wp_send_json_error(['message' => 'Clé du panier manquante.']);
@@ -313,9 +313,14 @@ function gg_decrease_cart_item()
 	wp_send_json_success();
 }
 
+//
+//
+// Section to handle Product Tab and WYSIWYG editor for the composition of the product
+// START
+//
 // Update the cart panel HTML after adding a product to the cart
-add_filter('woocommerce_add_to_cart_fragments', 'gg_update_cart_panel_html');
-function gg_update_cart_panel_html($fragments)
+add_filter('woocommerce_add_to_cart_fragments', 'bo_theme_update_cart_panel_html');
+function bo_theme_update_cart_panel_html($fragments)
 {
 	// Cart panel body
 	ob_start();
@@ -345,7 +350,78 @@ function gg_update_cart_panel_html($fragments)
 
 	return $fragments;
 }
+// Add a custom tabs for the composition of the product
+add_filter('woocommerce_product_tabs', 'bo_theme_add_composition_tab');
+function bo_theme_add_composition_tab($tabs)
+{
+	global $product;
 
+	// Récupération du champ personnalisé "composition"
+	$composition = get_post_meta($product->get_id(), '_composition', true);
+
+	if (!empty($composition)) {
+		$tabs['composition'] = array(
+			'title' => __('Composition', 'bo-theme'),
+			'priority' => 25,
+			'callback' => 'bo_theme_composition_tab_content'
+		);
+	}
+
+	return $tabs;
+}
+function bo_theme_composition_tab_content()
+{
+	global $post;
+
+	$composition = get_post_meta($post->ID, '_composition', true);
+
+	if (!empty($composition)) {
+		echo wp_kses_post($composition);
+	}
+}
+// Add a WYSIWYG editor for the composition tab in admin
+add_action('add_meta_boxes', 'bo_theme_add_composition_metabox');
+function bo_theme_add_composition_metabox()
+{
+	add_meta_box(
+		'bo_theme_composition_metabox',
+		__('Composition du produit', 'bo-theme'),
+		'bo_theme_render_composition_metabox',
+		'product',
+		'normal', // même niveau que la description principale
+		'default'
+	);
+}
+function bo_theme_render_composition_metabox($post)
+{
+	$composition = get_post_meta($post->ID, '_composition', true);
+
+	wp_editor(
+		$composition,
+		'bo_theme_composition_editor',
+		array(
+			'textarea_name' => '_composition',
+			'media_buttons' => true,
+			'textarea_rows' => 10,
+		)
+	);
+}
+// Composition in Admin save content
+add_action('save_post', 'bo_theme_save_composition_metabox');
+function bo_theme_save_composition_metabox($post_id)
+{
+	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+		return;
+	if (!isset($_POST['_composition']))
+		return;
+
+	update_post_meta($post_id, '_composition', wp_kses_post($_POST['_composition']));
+}
+//
+//
+// Section to handle Product Tab and WYSIWYG editor for the composition of the product
+// START
+//
 
 
 // Apply color customizations in the head
@@ -445,14 +521,14 @@ function bo_theme_customize_nav_colors()
 }
 add_action('wp_head', 'bo_theme_customize_nav_colors');
 
-function gg_enqueue_cart_fragments()
+function bo_theme_enqueue_cart_fragments()
 {
 	if (is_cart() || is_checkout())
 		return;
 
 	wp_enqueue_script('wc-cart-fragments');
 }
-add_action('wp_enqueue_scripts', 'gg_enqueue_cart_fragments', 20);
+add_action('wp_enqueue_scripts', 'bo_theme_enqueue_cart_fragments', 20);
 
 /**
  * Enqueue scripts and styles.

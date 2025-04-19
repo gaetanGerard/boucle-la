@@ -5,7 +5,8 @@ if (!function_exists('WC') || !WC()->cart instanceof WC_Cart) {
 }
 ?>
 
-<div class="cart-panel-body flex-1 flex flex-col items-center justify-center space-y-4 w-full px-4">
+<div
+    class="cart-panel-body flex-1 flex flex-col items-center <?php echo WC()->cart->is_empty() ? 'justify-center empty-cart' : 'justify-start'; ?> space-y-4 w-full px-4">
     <?php if (WC()->cart->is_empty()): ?>
         <p><?php esc_html_e('Votre panier est actuellement vide.', 'bo-theme'); ?></p>
         <a href="<?php echo esc_url(wc_get_page_permalink('shop')); ?>" class="button btn-style">

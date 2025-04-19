@@ -131,6 +131,66 @@ WooCommerce styles override
   }
 }
 
+.related {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.related h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.related ul .product-card {
+  width: 250px !important;
+  height: 400px !important;
+  display: grid;
+  grid-auto-flow: row;
+  gap: 0.5rem;
+  align-items: space-between;
+  margin: 0 0 0 0 !important;
+}
+.related ul .product-card .product-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.related ul .product-card h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #151515;
+}
+.related ul .product-card .price {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+.related ul .product-card .add_to_cart_button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  align-self: end;
+}
+.related ul .product-card .add_to_cart_button:hover {
+  text-decoration: none;
+}
+@media (min-width: 768px) {
+  .related {
+    flex-direction: column;
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+  .related .product-list {
+    width: 75%;
+  }
+}
+
 .product-list {
   padding-bottom: 2rem;
 }
@@ -311,7 +371,7 @@ a.button.disabled {
   background: white;
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
-  z-index: 20;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -330,7 +390,7 @@ a.button.disabled {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   gap: 1rem;
   width: 100%;
   padding: 1rem;
@@ -397,6 +457,9 @@ a.button.disabled {
   font-size: 1.125rem;
   font-weight: bold;
   color: black;
+}
+.cart-panel .empty-cart {
+  justify-content: center;
 }
 
 .cart-panel-open {
