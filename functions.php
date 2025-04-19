@@ -272,6 +272,49 @@ function gg_remove_from_cart()
 	}
 }
 
+// AJAX handler to increase quantity of a cart item
+add_action('wp_ajax_increase_cart_item', 'gg_increase_cart_item');
+add_action('wp_ajax_nopriv_increase_cart_item', 'gg_increase_cart_item');
+function gg_increase_cart_item()
+{
+	if (!isset($_POST['cart_item_key'])) {
+		wp_send_json_error(['message' => 'Clé du panier manquante.']);
+	}
+	$cart_item_key = sanitize_text_field($_POST['cart_item_key']);
+	$items = WC()->cart->get_cart();
+	if (empty($items[$cart_item_key])) {
+		wp_send_json_error(['message' => 'Article introuvable.']);
+	}
+	$current_qty = $items[$cart_item_key]['quantity'];
+	// Increase quantity by 1 and refresh totals
+	WC()->cart->set_quantity($cart_item_key, $current_qty + 1, true);
+	wp_send_json_success();
+}
+
+// AJAX handler to decrease quantity of a cart item
+add_action('wp_ajax_decrease_cart_item', 'gg_decrease_cart_item');
+add_action('wp_ajax_nopriv_decrease_cart_item', 'gg_decrease_cart_item');
+function gg_decrease_cart_item()
+{
+	if (empty($_POST['cart_item_key'])) {
+		wp_send_json_error(['message' => 'Clé du panier manquante.']);
+	}
+	$cart_item_key = sanitize_text_field($_POST['cart_item_key']);
+	$cart = WC()->cart->get_cart();
+	if (empty($cart[$cart_item_key])) {
+		wp_send_json_error(['message' => 'Article introuvable.']);
+	}
+	$current_qty = $cart[$cart_item_key]['quantity'];
+	if ($current_qty <= 1) {
+		// Remove item if quantity would drop to zero
+		WC()->cart->remove_cart_item($cart_item_key);
+	} else {
+		// Decrease quantity by 1
+		WC()->cart->set_quantity($cart_item_key, $current_qty - 1, true);
+	}
+	wp_send_json_success();
+}
+
 // Update the cart panel HTML after adding a product to the cart
 add_filter('woocommerce_add_to_cart_fragments', 'gg_update_cart_panel_html');
 function gg_update_cart_panel_html($fragments)

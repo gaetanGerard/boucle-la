@@ -89,6 +89,42 @@
             });
         });
     });
+
+    // Handle increase item quantity via AJAX
+    jQuery(function ($) {
+        $(document).on('click', '.btn-increase-item-in-cart', function (event) {
+            event.preventDefault();
+            var cartKey = $(this).closest('.product-card').data('cart-item-key');
+            $.post('<?php echo admin_url("admin-ajax.php"); ?>', {
+                action: 'increase_cart_item',
+                cart_item_key: cartKey
+            }, function (response) {
+                if (response.success) {
+                    $(document.body).trigger('wc_fragment_refresh');
+                } else {
+                    alert(response.data.message || 'Erreur lors de l\'augmentation du produit.');
+                }
+            });
+        });
+    });
+
+    // Handle decrease item quantity via AJAX
+    jQuery(function ($) {
+        $(document).on('click', '.btn-decrease-item-in-cart', function (event) {
+            event.preventDefault();
+            var cartKey = $(this).closest('.product-card').data('cart-item-key');
+            $.post('<?php echo admin_url("admin-ajax.php"); ?>', {
+                action: 'decrease_cart_item',
+                cart_item_key: cartKey
+            }, function (response) {
+                if (response.success) {
+                    $(document.body).trigger('wc_fragment_refresh');
+                } else {
+                    alert(response.data.message || 'Erreur lors de la mise à jour du panier.');
+                }
+            });
+        });
+    });
 </script>
 
 <?php wp_footer(); ?>

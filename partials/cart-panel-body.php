@@ -50,8 +50,8 @@ if (!function_exists('WC') || !WC()->cart instanceof WC_Cart) {
                     </div>
 
                     <div class="product-container-for-add-more-or-remove-qty w-1/4 flex flex-col items-center gap-2">
-                        <button class="button" type="button">+</button>
-                        <button class="button" type="button">-</button>
+                        <button class="button btn-increase-item-in-cart" type="button">+</button>
+                        <button class="button btn-decrease-item-in-cart" type="button">-</button>
                         <button class="button btn-remove-item-from-cart text-red-600" type="button">X</button>
                     </div>
                 </li>
