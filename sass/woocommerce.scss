@@ -426,7 +426,7 @@ a.button.disabled {
       padding-top: 1rem;
       font-size: 1.125rem;
       font-weight: bold;
-      color: white;
+      color: black;
     }
   }
 }
@@ -435,6 +435,22 @@ a.button.disabled {
   transform: translateX(0);
 }
 
+.cart-count {
+  position: absolute;
+  right: -0.3rem;
+  bottom: -0.3rem;
+  background-color: $woocommerce__color-error;
+  color: #fff;
+  border-radius: 9999px;
+  width: 1rem;
+  height: 1rem;
+  font-size: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  z-index: 10;
+}
 
 @keyframes slideFadeIn {
   from {
