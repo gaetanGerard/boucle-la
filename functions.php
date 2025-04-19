@@ -239,7 +239,7 @@ add_action('wp_footer', function () {
 	<?php
 });
 
-// Fonction AJAX pour supprimer un article du panier
+// Ajax function to remove a product from the cart
 add_action('wp_ajax_remove_from_cart', 'gg_remove_from_cart');
 add_action('wp_ajax_nopriv_remove_from_cart', 'gg_remove_from_cart');
 function gg_remove_from_cart()
@@ -263,7 +263,7 @@ function gg_remove_from_cart()
 
 		wp_send_json_success([
 			'cart_count' => $cart_count,
-			'cart_html' => $cart_html,  // Envoie le HTML du panier mis à jour
+			'cart_html' => $cart_html,
 			'cart_total' => WC()->cart->get_cart_total(),
 			'message' => $cart_count === 0 ? 'Votre panier est actuellement vide.' : '',
 		]);
@@ -272,13 +272,13 @@ function gg_remove_from_cart()
 	}
 }
 
-// Mise à jour du HTML du panneau du panier et du total du panier
+// Update the cart panel HTML after adding a product to the cart
 add_filter('woocommerce_add_to_cart_fragments', 'gg_update_cart_panel_html');
 function gg_update_cart_panel_html($fragments)
 {
 	// Cart panel body
 	ob_start();
-	get_template_part('partials/cart-panel-body'); // Cela génère le HTML du panneau du panier
+	get_template_part('partials/cart-panel-body');
 	$fragments['div.cart-panel-body'] = ob_get_clean();
 
 	// Cart total only
