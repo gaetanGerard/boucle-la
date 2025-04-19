@@ -24,14 +24,13 @@ if (!function_exists('WC') || !WC()->cart instanceof WC_Cart) {
                 $product_permalink = $product->is_visible() ? $product->get_permalink() : '';
                 $product_image = $product->get_image('thumbnail');
                 ?>
-                <li class="product-card flex items-center justify-between gap-4 border-b border-gray-700 pb-4"
-                    data-cart-item-key="<?php echo esc_attr($cart_item_key); ?>">
+                <li class="product-card" data-cart-item-key="<?php echo esc_attr($cart_item_key); ?>">
 
-                    <div class="product-container w-1/2 flex items-center gap-4">
-                        <div class="product-img w-1/4">
+                    <div class="product-container">
+                        <div class="product-img">
                             <?php echo $product_image; ?>
                         </div>
-                        <div class="product-content w-1/2">
+                        <div class="product-content">
                             <?php if ($product_permalink): ?>
                                 <a href="<?php echo esc_url($product_permalink); ?>"
                                     class="text-black hover:underline block font-bold">

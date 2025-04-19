@@ -401,51 +401,103 @@ a.button.disabled {
   flex-direction: column;
   gap: 1rem;
 }
-.cart-panel .cart-panel-body .cart-items .product-container {
+.cart-panel .cart-panel-body .cart-items .product-card {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
-}
-.cart-panel .cart-panel-body .cart-items .product-container .product-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 1rem;
   border-bottom: 1px solid #4a4a4a;
   padding-bottom: 1rem;
-}
-.cart-panel .cart-panel-body .cart-items .product-container .product-card .product-img {
-  width: 25%;
-}
-.cart-panel .cart-panel-body .cart-items .product-container .product-card .product-content {
-  width: 50%;
-}
-.cart-panel .cart-panel-body .cart-items .product-container-for-add-more-or-remove-qty {
-  width: 25%;
-  display: flex;
-  flex-direction: row;
   align-items: center;
+}
+.cart-panel .cart-panel-body .cart-items .product-card .product-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+.cart-panel .cart-panel-body .cart-items .product-card .product-container .product-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.cart-panel .cart-panel-body .cart-items .product-card .product-container .product-img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.cart-panel .cart-panel-body .cart-items .product-card .product-container .product-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
 }
-.cart-panel .cart-panel-body .cart-items .product-container-for-add-more-or-remove-qty .btn-product {
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease-in-out;
+.cart-panel .cart-panel-body .cart-items .product-card .product-container-for-add-more-or-remove-qty {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
 }
-.cart-panel .cart-panel-body .cart-items .product-container-for-add-more-or-remove-qty .btn-product:hover {
-  cursor: pointer;
-}
-.cart-panel .cart-panel-body .cart-items .product-container-for-add-more-or-remove-qty .btn-product .btn-product-qty {
-  background-color: #f7f7f7;
-  border: 1px solid #eaeaea;
-  transition: all 0.3s ease-in-out;
-}
-.cart-panel .cart-panel-body .cart-items .product-container-for-add-more-or-remove-qty .btn-product .btn-product-qty:hover {
-  background-color: #eaeaea;
-  border-color: #d4d4d4;
+@media (min-width: 768px) {
+  .cart-panel .cart-panel-body .cart-items {
+    flex-direction: column;
+    width: 100%;
+  }
+  .cart-panel .cart-panel-body .cart-items .product-card {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid #4a4a4a;
+    padding-bottom: 1rem;
+    width: 100%;
+  }
+  .cart-panel .cart-panel-body .cart-items .product-card .product-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .cart-panel .cart-panel-body .cart-items .product-card .product-container .product-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+  .cart-panel .cart-panel-body .cart-items .product-card .product-container .product-img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  .cart-panel .cart-panel-body .cart-items .product-card .product-container .product-content {
+    width: 50%;
+  }
+  .cart-panel .cart-panel-body .cart-items .product-card .product-container-for-add-more-or-remove-qty {
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    gap: 0.5rem;
+    justify-content: end;
+  }
+  .cart-panel .cart-panel-body .cart-items .product-card .product-container-for-add-more-or-remove-qty .btn-product {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+  }
+  .cart-panel .cart-panel-body .cart-items .product-card .product-container-for-add-more-or-remove-qty .btn-product:hover {
+    cursor: pointer;
+  }
+  .cart-panel .cart-panel-body .cart-items .product-card .product-container-for-add-more-or-remove-qty .btn-product .btn-product-qty {
+    background-color: #f7f7f7;
+    border: 1px solid #eaeaea;
+    transition: all 0.3s ease-in-out;
+  }
+  .cart-panel .cart-panel-body .cart-items .product-card .product-container-for-add-more-or-remove-qty .btn-product .btn-product-qty:hover {
+    background-color: #eaeaea;
+    border-color: #d4d4d4;
+  }
 }
 .cart-panel .cart-panel-body .cart-total {
   width: 100%;
