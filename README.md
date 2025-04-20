@@ -1,9 +1,5 @@
 # TODO
 
-## DATA
-1) modification des produits pour utiliser tab description et composition
-2) Vérifier car durant dev j'ai trouver la tab avis de présent (peut-être devrais-je la designer ? à voir)
-
 ## Page à propos
 1) Design de la page à propos
 
