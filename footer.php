@@ -133,6 +133,57 @@
         }
     });
 
+    // Woocomerce Toast Notification for Product Page and Gift Card
+    // A problem occur with my current toast solution, my solution show for a short time the native solution
+    // of Woocmmerce but that is not alright so I completely deactivated it
+    // The problem occur when I click on the button "Ajouter au panier" for a single product or gift card as the call
+    // use post the toast solution cannot work after try different solution this one is the only one I managed to make it work
+    // ! I think this solution should be consider as temporary as its implys a lot of code
+    // ! as a V2 I should find a way to completely remove my toast and only use the native solution of woocommerce
+    // ! but in accordance with the design of my website
+    jQuery(function ($) {
+        // Show Toast Notification
+        function showWooToast(message) {
+            var toast = $('<div class="toast-woocommerce"></div>');
+            toast.html(`
+                <svg class="toast-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <div class="toast-text">${message}</div>
+            `);
+            $('body').append(toast);
+            setTimeout(function () {
+                toast.css('opacity', '0');
+                toast.css('transition', 'opacity 0.4s ease');
+                setTimeout(function () { toast.remove(); }, 400);
+            }, 4000);
+        }
+
+        // Detect on which page we are on
+        var isSingleProduct = $('body').hasClass('single-product');
+        var isGiftCard = $('.gift-card-form').length > 0;
+        if (isSingleProduct || isGiftCard) {
+            // 1. Store a message in localStorage when add item to cart
+            var $form = isGiftCard ? $('form.gift-card-form') : $('form.cart');
+            $form.on('submit', function (e) {
+                var msg = $('.single-product .product_title').text() || 'Produit ajouté au panier !';
+                localStorage.setItem('woo_add_to_cart_message', msg + ' ajouté au panier !');
+            });
+            // 2. After page have reloaded (or even on initial loading), check if a message is in localStorage
+            // and show it if it exists
+            // 3. Remove the message from localStorage after showing it
+            $(function () {
+                var msg = localStorage.getItem('woo_add_to_cart_message');
+                if (msg) {
+                    showWooToast(msg);
+                    setTimeout(function () {
+                        localStorage.removeItem('woo_add_to_cart_message');
+                    }, 4000);
+                }
+            });
+        }
+    });
+
     // Handle Accordeon Tabs
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.accordion-trigger').forEach(btn => {
