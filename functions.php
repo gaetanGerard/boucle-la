@@ -218,11 +218,11 @@ add_action('wp_footer', function () {
 				toast.className = 'toast-woocommerce';
 
 				toast.innerHTML = `
-			<svg class="toast-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-			  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-			</svg>
-			<div class="toast-text">${msg.innerHTML}</div>
-		  `;
+					<svg class="toast-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+					</svg>
+					<div class="toast-text">${msg.innerHTML}</div>
+				`;
 
 				document.body.appendChild(toast);
 				msg.remove();
@@ -268,7 +268,7 @@ function bo_theme_remove_from_cart()
 	}
 }
 
-// AJAX function to increase quantity of a cart item
+// AJAX function to increase quantity or gift card amount
 add_action('wp_ajax_increase_cart_item', 'bo_theme_increase_cart_item');
 add_action('wp_ajax_nopriv_increase_cart_item', 'bo_theme_increase_cart_item');
 function bo_theme_increase_cart_item()
@@ -278,15 +278,30 @@ function bo_theme_increase_cart_item()
 	}
 	$cart_item_key = sanitize_text_field($_POST['cart_item_key']);
 	$items = WC()->cart->get_cart();
+
 	if (empty($items[$cart_item_key])) {
 		wp_send_json_error(['message' => 'Article introuvable.']);
 	}
-	$current_qty = $items[$cart_item_key]['quantity'];
-	WC()->cart->set_quantity($cart_item_key, $current_qty + 1, true);
+
+	$cart_item = $items[$cart_item_key];
+
+	if (isset($cart_item['gift_card']['amount'])) {
+		$current_amount = $cart_item['gift_card']['amount'];
+		$new_amount = $current_amount + 5;
+		$cart_item['gift_card']['amount'] = $new_amount;
+		$cart_item['data']->set_price($new_amount);
+		WC()->cart->cart_contents[$cart_item_key] = $cart_item;
+		WC()->cart->calculate_totals();
+
+	} else {
+		$current_qty = $cart_item['quantity'];
+		WC()->cart->set_quantity($cart_item_key, $current_qty + 1, true);
+	}
 	wp_send_json_success();
 }
 
-// AJAX function to decrease quantity of a cart item
+
+// AJAX function to decrease quantity or gift card amount
 add_action('wp_ajax_decrease_cart_item', 'bo_theme_decrease_cart_item');
 add_action('wp_ajax_nopriv_decrease_cart_item', 'bo_theme_decrease_cart_item');
 function bo_theme_decrease_cart_item()
@@ -296,17 +311,36 @@ function bo_theme_decrease_cart_item()
 	}
 	$cart_item_key = sanitize_text_field($_POST['cart_item_key']);
 	$cart = WC()->cart->get_cart();
+
 	if (empty($cart[$cart_item_key])) {
 		wp_send_json_error(['message' => 'Article introuvable.']);
 	}
-	$current_qty = $cart[$cart_item_key]['quantity'];
-	if ($current_qty <= 1) {
-		WC()->cart->remove_cart_item($cart_item_key);
+
+	$cart_item = $cart[$cart_item_key];
+
+	if (isset($cart_item['gift_card']['amount'])) {
+		$current_amount = $cart_item['gift_card']['amount'];
+		$new_amount = $current_amount - 5;
+		if ($new_amount < 5) {
+			$new_amount = 5;
+		}
+		$cart_item['gift_card']['amount'] = $new_amount;
+		$cart_item['data']->set_price($new_amount);
+		WC()->cart->cart_contents[$cart_item_key] = $cart_item;
+
 	} else {
-		WC()->cart->set_quantity($cart_item_key, $current_qty - 1, true);
+		$current_qty = $cart_item['quantity'];
+		if ($current_qty <= 1) {
+			WC()->cart->remove_cart_item($cart_item_key);
+		} else {
+			WC()->cart->set_quantity($cart_item_key, $current_qty - 1, true);
+		}
 	}
+	WC()->cart->calculate_totals();
 	wp_send_json_success();
 }
+
+
 
 //
 //
@@ -407,6 +441,9 @@ function bo_theme_save_composition_metabox($post_id)
 
 	update_post_meta($post_id, '_composition', wp_kses_post($_POST['_composition']));
 }
+
+// Handle Gift Cards Features
+require get_template_directory() . '/inc/gift-card.php';
 
 
 // Apply color customizations in the head

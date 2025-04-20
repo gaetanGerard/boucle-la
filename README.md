@@ -1,13 +1,8 @@
 # TODO
 
-## Panier
-1) ajouter interactivité sur les boutons du panier pour ajouter/enlever quantité produits ou supprimer du panier
-2) Design du panier a terminer
-
-## Page produit
-
-1) Design d'une page produit
-2) design des produits associés
+## DATA
+1) modification des produits pour utiliser tab description et composition
+2) Vérifier car durant dev j'ai trouver la tab avis de présent (peut-être devrais-je la designer ? à voir)
 
 ## Page carte cadeau
 1) Design d'une page carte cadeau

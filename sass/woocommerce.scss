@@ -692,6 +692,105 @@ $woocommerce__color-info: #3d9cd2;
 // -------------------END----------------------------
 // --------------------------------------------------
 
+// Woocommerce Gift Card Styling
+//
+// --------------------------------------------------
+// -------------------START--------------------------
+// --------------------------------------------------
+.gift-card-container {
+  max-width: 1200px;
+  margin: 6rem auto;
+  padding: 0 2rem;
+}
+
+.gift-card-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.gift-card-image {
+  flex: 1;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.gift-card-info {
+  flex: 1;
+}
+
+.gift-card-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.gift-card-short-description {
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.gift-card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  input,
+  textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+
+    &:focus {
+      outline: none;
+      border-color: #999;
+    }
+  }
+}
+
+.gift-card-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background-color: #004a99;
+  }
+}
+
+.gift-card-full-description {
+  margin-top: 4rem;
+
+  p {
+    line-height: 1.6;
+  }
+}
+
 // Animations
 @keyframes slideFadeIn {
   from {

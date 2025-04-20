@@ -90,11 +90,22 @@
         });
     });
 
-    // Handle increase item quantity via AJAX
+    // Handle increase/decrease item quantity or amount via AJAX
     jQuery(function ($) {
         $(document).on('click', '.btn-increase-item-in-cart', function (event) {
             event.preventDefault();
             var cartKey = $(this).closest('.product-card').data('cart-item-key');
+            increaseItem(cartKey);
+        });
+
+        $(document).on('click', '.btn-decrease-item-in-cart', function (event) {
+            event.preventDefault();
+            var cartKey = $(this).closest('.product-card').data('cart-item-key');
+            decreaseItem(cartKey);
+        });
+
+        // Function for Increase QTY or Amount
+        function increaseItem(cartKey) {
             $.post('<?php echo admin_url("admin-ajax.php"); ?>', {
                 action: 'increase_cart_item',
                 cart_item_key: cartKey
@@ -105,14 +116,10 @@
                     alert(response.data.message || 'Erreur lors de l\'augmentation du produit.');
                 }
             });
-        });
-    });
+        }
 
-    // Handle decrease item quantity via AJAX
-    jQuery(function ($) {
-        $(document).on('click', '.btn-decrease-item-in-cart', function (event) {
-            event.preventDefault();
-            var cartKey = $(this).closest('.product-card').data('cart-item-key');
+        // function for Decrease QTY or Amount
+        function decreaseItem(cartKey) {
             $.post('<?php echo admin_url("admin-ajax.php"); ?>', {
                 action: 'decrease_cart_item',
                 cart_item_key: cartKey
@@ -123,7 +130,7 @@
                     alert(response.data.message || 'Erreur lors de la mise à jour du panier.');
                 }
             });
-        });
+        }
     });
 
     // Handle Accordeon Tabs

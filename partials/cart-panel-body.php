@@ -19,7 +19,13 @@ if (!function_exists('WC') || !WC()->cart instanceof WC_Cart) {
             <?php foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item):
                 $product = $cart_item['data'];
                 $product_name = $product->get_name();
-                $product_price = wc_price($product->get_price());
+
+                if (isset($cart_item['gift_card']['amount'])) {
+                    $product_price = wc_price($cart_item['gift_card']['amount']);
+                } else {
+                    $product_price = wc_price($product->get_price());
+                }
+
                 $product_quantity = $cart_item['quantity'];
                 $product_permalink = $product->is_visible() ? $product->get_permalink() : '';
                 $product_image = $product->get_image('thumbnail');

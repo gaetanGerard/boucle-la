@@ -1,3 +1,18 @@
+<?php
+defined('ABSPATH') || exit;
+
+global $product;
+
+if (!$product) {
+	$product = wc_get_product(get_the_ID());
+}
+
+if ($product && $product->get_slug() === 'carte-cadeau') {
+	wc_get_template_part('single-product', 'gift-card');
+	return;
+}
+?>
+
 <?php global $product; ?>
 
 <div class="csp-single-product-wrapper">
