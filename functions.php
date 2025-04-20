@@ -502,7 +502,8 @@ function bo_theme_customize_nav_colors()
 		.btn-style,
 		.category-link-active,
 		.single_add_to_cart_button,
-		.page-numbers.current {
+		.page-numbers.current,
+		.gift-card-button {
 			background-color:
 				<?php echo esc_html($button_color); ?>
 			;
@@ -519,7 +520,8 @@ function bo_theme_customize_nav_colors()
 		.btn-style:hover,
 		.category-link-active:hover,
 		.single_add_to_cart_button:hover,
-		.page-numbers.current:hover {
+		.page-numbers.current:hover,
+		.gift-card-button:hover {
 			background-color:
 				<?php echo esc_html($button_hover); ?>
 				!important;

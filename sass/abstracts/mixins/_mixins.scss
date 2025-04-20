@@ -1,90 +1,94 @@
 // Center block
 @mixin center-block {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 // Column width with margin
 @mixin column-width($numberColumns: 3) {
-	width: map-get($columns, $numberColumns) - ( ( $columns__margin * ( $numberColumns - 1 ) ) / $numberColumns );
+  width: map-get($columns, $numberColumns) -
+    (($columns__margin * ($numberColumns - 1)) / $numberColumns);
 }
 
 @mixin product-card($width: 250px) {
-	width: $width !important;
-	height: 400px !important;
-	display: grid;
-	grid-auto-flow: row;
-	gap: 0.5rem;
-	margin: 0 0 0 0 !important;
+  width: $width !important;
+  height: 400px !important;
+  display: grid;
+  grid-auto-flow: row;
+  gap: 0.5rem;
+  margin: 0 0 0 0 !important;
 
+  .product-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
 
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #151515;
+  }
 
-	.product-image img {
-	  width: 100%;
-	  height: 200px;
-	  object-fit: cover;
-	}
+  .price {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
 
-	h2 {
-	  font-size: 1.2rem;
-	  font-weight: 600;
-	  margin-bottom: 0.5rem;
-	  color: #151515;
-	}
+  .add_to_cart_button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    align-self: end;
 
-	.price {
-	  font-size: 1.125rem;
-	  font-weight: 600;
-	}
-
-	.add_to_cart_button {
-	  padding: 0.5rem 1rem;
-	  font-size: 1rem;
-	  font-weight: 600;
-	  text-decoration: none;
-	  transition: all 0.3s ease-in-out;
-	  text-align: center;;
-	  align-self: end;
-
-	  &:hover {
-		text-decoration: none;
-	  }
-	}
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 @mixin disabled-btn() {
-	background-color: #ccc !important;
-	color: #666 !important;
-	cursor: not-allowed !important;
-	box-shadow: none !important;
-	pointer-events: none;
-	transition: none !important;
+  background-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  pointer-events: none;
+  transition: none !important;
 }
 
 @mixin sticker($bgColor, $color) {
-	background: $bgColor;
-	color: $color;
-	padding: 0.5rem 1rem;
-	max-width: fit-content;
-	font-weight: bold;
-	margin-bottom: 1rem;
-	box-shadow: 1px 1px 2px $color
+  background: $bgColor;
+  color: $color;
+  padding: 0.5rem 1rem;
+  max-width: fit-content;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  box-shadow: 1px 1px 2px $color;
 }
 
 @mixin input-style() {
-	font-size: 1rem;
-    font-weight: 600;
-    color: #151515;
-    padding: 0.5rem 1rem;
-    background-color: #f7f7f7;
-    border: 1px solid #eaeaea;
-	box-shadow: 1px 1px 2px #eaeaea;
-    transition: all 0.3s ease-in-out;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #151515;
+  padding: 0.5rem 1rem;
+  background-color: #f7f7f7;
+  border: 1px solid #eaeaea;
+  box-shadow: 1px 1px 2px #eaeaea;
+  transition: all 0.3s ease-in-out;
 
-    &:hover {
-      background-color: #eaeaea;
-      border-color: #d4d4d4;
-      cursor: pointer;
-    }
+  &:hover {
+    background-color: #eaeaea;
+    border-color: #d4d4d4;
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #d9d9d9;
+  }
 }
