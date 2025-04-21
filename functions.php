@@ -441,9 +441,23 @@ function bo_theme_save_composition_metabox($post_id)
 
 	update_post_meta($post_id, '_composition', wp_kses_post($_POST['_composition']));
 }
+//
+//
+// Section to handle Product Tab and WYSIWYG editor for the composition of the product
+// END
+//
 
 // Handle Gift Cards Features
 require get_template_directory() . '/inc/gift-card.php';
+
+
+//
+//
+// Section to Account Feature like Register/Login and MyAccount
+// START
+//
+
+
 
 // If user is logged in, change the account menu item to display the user name
 add_filter('wp_nav_menu_objects', function ($items) {
@@ -452,13 +466,69 @@ add_filter('wp_nav_menu_objects', function ($items) {
 	$user = wp_get_current_user();
 	$display_name = $user->display_name ? $user->display_name : $user->user_login;
 	$account_url = wc_get_page_permalink('myaccount');
+	$login_url = site_url('/login');
 	foreach ($items as $item) {
-		if (isset($item->url) && strpos(untrailingslashit($item->url), untrailingslashit($account_url)) === 0) {
-			$item->title = esc_html($display_name);
+		if (isset($item->url)) {
+			$item_url = untrailingslashit($item->url);
+			if ($item_url === untrailingslashit($login_url) || $item_url === untrailingslashit($account_url)) {
+				$item->title = esc_html($display_name);
+				$item->url = $account_url;
+			}
 		}
 	}
 	return $items;
 });
+
+
+
+// Force redirect to home page after logout using wp_logout hook
+add_action('wp_logout', function () {
+	wp_redirect(home_url('/'));
+	exit;
+});
+
+// Shortcode [woocommerce_login_form] Only Login Form
+function custom_woocommerce_login_form()
+{
+	if (is_user_logged_in()) {
+		return '<p>' . __('Vous êtes déjà connecté.', 'bo-theme') . '</p>';
+	}
+	ob_start();
+	woocommerce_login_form([
+		'redirect' => wc_get_page_permalink('myaccount'),
+		'hidden' => false
+	]);
+	?>
+	<div style="margin-top:1rem;">
+		<a href="<?php echo esc_url(site_url('/register')); ?>"
+			class="button"><?php _e('Créer un compte', 'bo-theme'); ?></a>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+add_shortcode('woocommerce_login_form', 'custom_woocommerce_login_form');
+
+// Shortcode [multi_step_register_form] Display Multi Step Register Form
+function bo_theme_multi_step_register_form_shortcode()
+{
+	ob_start();
+	include get_template_directory() . '/woocommerce/auth/register.php';
+	return ob_get_clean();
+}
+add_shortcode('multi_step_register_form', 'bo_theme_multi_step_register_form_shortcode');
+
+//
+//
+// Section to Account Feature like Register/Login and MyAccount
+// END
+//
+
+//
+//
+// Section to Handle Customization of the theme like button color, nav color, etc.
+// START
+//
+
 
 
 // Apply color customizations in the head
@@ -512,9 +582,7 @@ function bo_theme_customize_nav_colors()
 				!important;
 		}
 
-		/* Some button do not require to have their background set with the !important
-											** For example the disabled button have the same class if i Force the bg-color
-											** I face a problem with the disabled */
+		/* Some button do not require to have their background set with the !important For example the disabled button have the same class if i Force the bg-color I face a problem with the disabled */
 		.wp-block-button__link,
 		.add_to_cart_button,
 		.btn-style,
@@ -538,9 +606,7 @@ function bo_theme_customize_nav_colors()
 			text-decoration: none !important;
 		}
 
-		/* Buttons that require to have their bg-color set with important
-												** That is usually the case for button that come from a plugin where I have
-												** no control over the feDiffuseLighting */
+		/* Buttons that require to have their bg-color set with important That is usually the case for button that come from a plugin where I have no control over the feDiffuseLighting */
 		input.tnp-submit {
 			background-color:
 				<?php echo esc_html($button_color); ?>
@@ -593,6 +659,7 @@ function bo_theme_customize_nav_colors()
 	</style>
 	<?php
 }
+
 add_action('wp_head', 'bo_theme_customize_nav_colors');
 
 function bo_theme_enqueue_cart_fragments()
