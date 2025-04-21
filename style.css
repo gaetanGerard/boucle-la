@@ -911,6 +911,19 @@ textarea {
   margin-bottom: 1.5em;
 }
 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#page {
+  flex: 1 0 auto;
+}
+
+.footer-widgets {
+  padding: 0 20px;
+}
 .footer-widgets h2 {
   font-weight: 800;
 }
@@ -976,6 +989,119 @@ textarea {
   }
   .about-block div p {
     padding-bottom: 0;
+  }
+}
+
+.legal-page-container {
+  margin: 6rem 5%;
+}
+.legal-page-container h2 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+.legal-page-container p {
+  line-height: 2;
+  margin-bottom: 1rem;
+}
+.legal-page-container ul {
+  list-style: disc;
+  margin-bottom: 1rem;
+}
+.legal-page-container ul li {
+  margin-left: 2rem;
+}
+.legal-page-container h1 {
+  text-align: left !important;
+}
+@media (min-width: 768px) {
+  .legal-page-container h1 {
+    text-align: center !important;
+  }
+}
+
+.forminator-textarea,
+.forminator-select,
+.forminator-input {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #151515;
+  padding: 0.5rem 1rem;
+  background-color: #f7f7f7;
+  border: 1px solid #eaeaea;
+  box-shadow: 1px 1px 2px #eaeaea;
+  transition: all 0.3s ease-in-out;
+}
+.forminator-textarea:hover,
+.forminator-select:hover,
+.forminator-input:hover {
+  background-color: #eaeaea;
+  border-color: #d4d4d4;
+  cursor: pointer;
+}
+.forminator-textarea:focus,
+.forminator-select:focus,
+.forminator-input:focus {
+  outline: none;
+  border-color: #d9d9d9;
+}
+
+.forminator-guttenberg form {
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+@media (min-width: 768px) {
+  .forminator-guttenberg form {
+    width: 50% !important;
+  }
+}
+
+.newsletter-welcome-page {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 0;
+  margin: 0 auto;
+  gap: 2rem;
+}
+@media (min-width: 768px) {
+  .newsletter-welcome-page {
+    width: 50%;
+  }
+}
+
+.tnp.tnp-subscription form input[type=email] {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #151515;
+  padding: 0.5rem 1rem;
+  background-color: #f7f7f7;
+  border: 1px solid #eaeaea;
+  box-shadow: 1px 1px 2px #eaeaea;
+  transition: all 0.3s ease-in-out;
+}
+.tnp.tnp-subscription form input[type=email]:hover {
+  background-color: #eaeaea;
+  border-color: #d4d4d4;
+  cursor: pointer;
+}
+.tnp.tnp-subscription form input[type=email]:focus {
+  outline: none;
+  border-color: #d9d9d9;
+}
+
+.contact-form-container h1 {
+  text-align: left;
+  padding-left: 50px;
+  padding-top: 50px;
+}
+@media (min-width: 768px) {
+  .contact-form-container h1 {
+    text-align: center;
   }
 }
 

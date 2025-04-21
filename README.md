@@ -1,8 +1,5 @@
 # TODO
 
-## Page à propos
-1) Design de la page à propos
-
 ## Page Login/Register
 1) Design de la page Login/register
 
@@ -21,6 +18,15 @@
 - Page produit (Desktop & Responsive) -- FAIT --
 - Update Admin pour ajout composition dans les produits -- FAIT --
 - Page Carte cadeau (Desktop & Responsive) -- FAIT --
+- Page à propos (Desktop & Responsive) -- FAIT --
+- Page Contact (Desktop & Responsive) -- FAIT --
+- Design d'une page de succès si inscris à la newsletter (Desktop & Responsive) -- FAIT --
+
+# Test Feature
+- Email & Newsletter : J'ai déployer un docker avec Mailhog pour tester en local l'envoie d'email et la souscription à la newsletter tout fonctionne comme je l'attends et les emails sont bien envoyer
+- Panier : Test qu'il est possible de modifier les quantités du panier de manière asynchrone et de les enlever du panier si nécessaire
+- Produit : Test des différents états produit (stock/rupture) veiller a ce que un produit ne puisse être ajouter au panier si en rupture
+- Carte Cadeau : Test de soumission du formulaire pour ajouter une carte cadeau au panier, modifications du prix de la carte cadeau dans le panier
 
 # TO IMPROVE
 

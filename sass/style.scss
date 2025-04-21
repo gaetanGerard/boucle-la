@@ -101,7 +101,18 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 --------------------------------------------- */
 @import "utilities/alignments";
 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#page {
+  flex: 1 0 auto;
+}
+
 .footer-widgets {
+  padding: 0 20px;
   h2 {
     font-weight: 800;
   }
@@ -113,4 +124,88 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 .about-block {
   @include about-block(0, 0);
+}
+
+.legal-page-container {
+  margin: 6rem 5%;
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    line-height: 2;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: disc;
+    margin-bottom: 1rem;
+    li {
+      margin-left: 2rem;
+    }
+  }
+
+  h1 {
+    text-align: left !important;
+
+    @media (min-width: 768px) {
+      text-align: center !important;
+    }
+  }
+}
+
+.forminator-textarea,
+.forminator-select,
+.forminator-input {
+  @include input-style();
+}
+
+.forminator-guttenberg {
+  form {
+    width: 100% !important;
+    margin: 0 auto !important;
+
+    @media (min-width: 768px) {
+      width: 50% !important;
+    }
+  }
+}
+
+.newsletter-welcome-page {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 0;
+  margin: 0 auto;
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+}
+
+.tnp.tnp-subscription {
+  form {
+    input[type="email"] {
+      @include input-style();
+    }
+  }
+}
+
+.contact-form-container {
+  h1 {
+    text-align: left;
+    padding-left: 50px;
+    padding-top: 50px;
+    @media (min-width: 768px) {
+      text-align: center;
+    }
+  }
 }

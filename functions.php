@@ -497,22 +497,44 @@ function bo_theme_customize_nav_colors()
 				!important;
 		}
 
+		/* Some button do not require to have their background set with the !important
+			** For example the disabled button have the same class if i Force the bg-color
+			** I face a problem with the disabled */
 		.wp-block-button__link,
 		.add_to_cart_button,
 		.btn-style,
 		.category-link-active,
 		.single_add_to_cart_button,
 		.page-numbers.current,
-		.gift-card-button {
+		.gift-card-button,
+		.forminator-button,
+		input.tnp-submit {
 			background-color:
 				<?php echo esc_html($button_color); ?>
 			;
 			color:
 				<?php echo esc_html($nav_link_color); ?>
 				!important;
-			border-radius: 0;
-			transition: background-color 0.3s ease;
-			padding: 0.5rem 1rem;
+			border-radius: 0 !important;
+			transition: background-color 0.3s ease !important;
+			padding: 0.5rem 1rem !important;
+			border: none;
+			cursor: pointer;
+			text-decoration: none !important;
+		}
+
+		/* Buttons that require to have their bg-color set with important
+				** That is usually the case for button that come from a plugin where I have
+				** no control over the feDiffuseLighting */
+		input.tnp-submit {
+			background-color:
+				<?php echo esc_html($button_color); ?>
+				!important;
+			color:
+				<?php echo esc_html($nav_link_color); ?>
+				!important;
+			padding: 0.5rem 1rem !important;
+			border: none !important;
 		}
 
 		.wp-block-button__link:hover,
@@ -521,7 +543,9 @@ function bo_theme_customize_nav_colors()
 		.category-link-active:hover,
 		.single_add_to_cart_button:hover,
 		.page-numbers.current:hover,
-		.gift-card-button:hover {
+		.gift-card-button:hover,
+		.forminator-button:hover,
+		input.tnp-submit:hover {
 			background-color:
 				<?php echo esc_html($button_hover); ?>
 				!important;
