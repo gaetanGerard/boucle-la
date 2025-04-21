@@ -102,7 +102,15 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @import "utilities/alignments";
 
 .footer-widgets {
-	h2 {
-		font-weight: 800;
-	}
+  h2 {
+    font-weight: 800;
+  }
+}
+
+.about-block-img-centered {
+  @include about-block(0 auto, 2rem, 400px, contain);
+}
+
+.about-block {
+  @include about-block(0, 0);
 }

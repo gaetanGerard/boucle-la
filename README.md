@@ -13,6 +13,15 @@
 1) Design d'une page de compte utilisateur
 2) Design d'une page pour suivi commandes
 
+# DONE
+
+- Panier (Desktop & Responsive)  -- FAIT --
+- Acceuil (Desktop & Responsive) -- FAIT --
+- Boutique avec catégories et filtre (Desktop & Responsive) -- FAIT --
+- Page produit (Desktop & Responsive) -- FAIT --
+- Update Admin pour ajout composition dans les produits -- FAIT --
+- Page Carte cadeau (Desktop & Responsive) -- FAIT --
+
 # TO IMPROVE
 
 ## Carte cadeaux
@@ -69,3 +78,4 @@ L'objectifs étant d'uniformiser le style et de permettre à l'utilisateur de fa
 5. les réseaux sociaux il faudrait les définir dans le customiseur et les utiliser dans le site en partant des valeurs ajouter a cet endroit
 6. le menu mobile -> permettre à l'utilisateur de l'ouvrir à gauche ou à droite de l'écran (droite serait le défaut)
 7. les input de type texte/select textarea devrait adopter un style similaire au bouton ? ou alors devrait être configurable en suivant plusieurs principe de design comme par exemple le material design de google
+8. page à propos j'utilise des classes CSS about-block et about-block-img-centered il faudrait voire pour créer des blocs dédiés
