@@ -445,6 +445,21 @@ function bo_theme_save_composition_metabox($post_id)
 // Handle Gift Cards Features
 require get_template_directory() . '/inc/gift-card.php';
 
+// If user is logged in, change the account menu item to display the user name
+add_filter('wp_nav_menu_objects', function ($items) {
+	if (!is_user_logged_in())
+		return $items;
+	$user = wp_get_current_user();
+	$display_name = $user->display_name ? $user->display_name : $user->user_login;
+	$account_url = wc_get_page_permalink('myaccount');
+	foreach ($items as $item) {
+		if (isset($item->url) && strpos(untrailingslashit($item->url), untrailingslashit($account_url)) === 0) {
+			$item->title = esc_html($display_name);
+		}
+	}
+	return $items;
+});
+
 
 // Apply color customizations in the head
 function bo_theme_customize_nav_colors()
@@ -498,8 +513,8 @@ function bo_theme_customize_nav_colors()
 		}
 
 		/* Some button do not require to have their background set with the !important
-			** For example the disabled button have the same class if i Force the bg-color
-			** I face a problem with the disabled */
+											** For example the disabled button have the same class if i Force the bg-color
+											** I face a problem with the disabled */
 		.wp-block-button__link,
 		.add_to_cart_button,
 		.btn-style,
@@ -524,8 +539,8 @@ function bo_theme_customize_nav_colors()
 		}
 
 		/* Buttons that require to have their bg-color set with important
-				** That is usually the case for button that come from a plugin where I have
-				** no control over the feDiffuseLighting */
+												** That is usually the case for button that come from a plugin where I have
+												** no control over the feDiffuseLighting */
 		input.tnp-submit {
 			background-color:
 				<?php echo esc_html($button_color); ?>
