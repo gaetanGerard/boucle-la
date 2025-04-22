@@ -284,22 +284,21 @@ function bo_theme_increase_cart_item()
 	}
 
 	$cart_item = $items[$cart_item_key];
+	$product = $cart_item['data'];
 
-	if (isset($cart_item['gift_card']['amount'])) {
-		$current_amount = $cart_item['gift_card']['amount'];
+	if ($product && method_exists($product, 'get_type') && $product->get_type() === 'gift_card') {
+		$current_amount = isset($cart_item['gift_card_amount']) ? floatval($cart_item['gift_card_amount']) : floatval($product->get_price());
 		$new_amount = $current_amount + 5;
-		$cart_item['gift_card']['amount'] = $new_amount;
-		$cart_item['data']->set_price($new_amount);
+		$cart_item['gift_card_amount'] = $new_amount;
+		$product->set_price($new_amount);
 		WC()->cart->cart_contents[$cart_item_key] = $cart_item;
 		WC()->cart->calculate_totals();
-
 	} else {
 		$current_qty = $cart_item['quantity'];
 		WC()->cart->set_quantity($cart_item_key, $current_qty + 1, true);
 	}
 	wp_send_json_success();
 }
-
 
 // AJAX function to decrease quantity or gift card amount
 add_action('wp_ajax_decrease_cart_item', 'bo_theme_decrease_cart_item');
@@ -317,17 +316,18 @@ function bo_theme_decrease_cart_item()
 	}
 
 	$cart_item = $cart[$cart_item_key];
+	$product = $cart_item['data'];
 
-	if (isset($cart_item['gift_card']['amount'])) {
-		$current_amount = $cart_item['gift_card']['amount'];
+	if ($product && method_exists($product, 'get_type') && $product->get_type() === 'gift_card') {
+		$current_amount = isset($cart_item['gift_card_amount']) ? floatval($cart_item['gift_card_amount']) : floatval($product->get_price());
 		$new_amount = $current_amount - 5;
 		if ($new_amount < 5) {
 			$new_amount = 5;
 		}
-		$cart_item['gift_card']['amount'] = $new_amount;
-		$cart_item['data']->set_price($new_amount);
+		$cart_item['gift_card_amount'] = $new_amount;
+		$product->set_price($new_amount);
 		WC()->cart->cart_contents[$cart_item_key] = $cart_item;
-
+		WC()->cart->calculate_totals();
 	} else {
 		$current_qty = $cart_item['quantity'];
 		if ($current_qty <= 1) {
@@ -335,8 +335,8 @@ function bo_theme_decrease_cart_item()
 		} else {
 			WC()->cart->set_quantity($cart_item_key, $current_qty - 1, true);
 		}
+		WC()->cart->calculate_totals();
 	}
-	WC()->cart->calculate_totals();
 	wp_send_json_success();
 }
 
