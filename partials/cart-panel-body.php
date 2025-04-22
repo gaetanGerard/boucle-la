@@ -48,7 +48,6 @@ if (!function_exists('WC') || !WC()->cart instanceof WC_Cart) {
 
                             <?php if ($product->get_type() === 'gift_card'): ?>
                                 <?php
-                                // Affichage pour la nouvelle logique gift_card_amount
                                 if (isset($cart_item['gift_card_amount'])) {
                                     echo '<div class="text-gray-400 block">Montant : ' . wc_price($cart_item['gift_card_amount']) . '</div>';
                                 }

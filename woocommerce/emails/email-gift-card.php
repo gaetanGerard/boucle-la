@@ -6,16 +6,14 @@
  */
 
 if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly.
+    exit;
 }
-
-// WooCommerce email header
-do_action('woocommerce_email_header', esc_html__('Votre carte cadeau', 'bo-theme'), $email ?? null);
+do_action('woocommerce_email_header', esc_html__('Votre carte cadeau', 'bo-theme'), isset($email) ? $email : null);
 ?>
 
 <p><?php esc_html_e('Vous avez reçu une carte cadeau.', 'bo-theme'); ?></p>
 
-<table border="0" cellpadding="0" cellspacing="0"
+<table cellpadding="0" cellspacing="0"
     style="width: 100%; background: #f9f9f9; border-radius: 8px; margin-bottom: 20px;">
     <tr>
         <td style="padding: 30px 40px; text-align: center;">
@@ -54,4 +52,4 @@ do_action('woocommerce_email_header', esc_html__('Votre carte cadeau', 'bo-theme
 </p>
 
 <?php
-do_action('woocommerce_email_footer', $email ?? null);
+do_action('woocommerce_email_footer', isset($email) ? $email : null);

@@ -1,6 +1,6 @@
 <?php
 
-// Désactivation de la logique d'ajout au panier pour la carte cadeau (tout le code gift_card)
+// Deactivate the gift card functionality if not needed
 // add_filter('woocommerce_add_to_cart_validation', 'validate_custom_gift_card_fields', 10, 3);
 // add_filter('woocommerce_add_cart_item_data', 'add_gift_card_fields_to_cart', 10, 2);
 // add_filter('woocommerce_get_item_data', 'display_gift_card_fields_in_cart', 10, 2);

@@ -237,7 +237,6 @@ if (!function_exists('bo_theme_woocommerce_header_cart')) {
 	}
 }
 
-// Gift Card Product Type
 require_once get_template_directory() . '/woocommerce/gift-card/gift-card-product-type.php';
 require_once get_template_directory() . '/woocommerce/gift-card/gift-card-admin.php';
 require_once get_template_directory() . '/woocommerce/gift-card/gift-card-functions.php';

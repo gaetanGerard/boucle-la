@@ -71,6 +71,17 @@
         }
     });
 
+    // Open cart panel if URL parameter is present
+    document.addEventListener('DOMContentLoaded', function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('open_cart') === '1') {
+            const cartPanel = document.getElementById('cart-panel');
+            if (cartPanel) {
+                cartPanel.classList.add('cart-panel-open');
+            }
+        }
+    });
+
     // Handle remove item from cart via AJAX
     jQuery(function ($) {
         $(document).on('click', '.btn-remove-item-from-cart', function (event) {
@@ -81,7 +92,6 @@
                 cart_item_key: cartKey
             }, function (response) {
                 if (response.success) {
-                    // Refresh WooCommerce cart fragments (cart body, total, count)
                     $(document.body).trigger('wc_fragment_refresh');
                 } else {
                     alert(response.data.message || '<?php esc_html_e('Erreur lors de la suppression du produit.', 'bo-theme'); ?>');

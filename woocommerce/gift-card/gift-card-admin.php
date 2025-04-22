@@ -1,7 +1,4 @@
 <?php
-// Gift Card Admin logic here
-
-// Ajout du champ "validité (en mois)" pour le produit Carte Cadeau
 add_action('woocommerce_product_options_general_product_data', function () {
     global $post;
     echo '<div class="options_group show_if_gift_card">';
@@ -20,13 +17,10 @@ add_action('woocommerce_product_options_general_product_data', function () {
     echo '</div>';
 });
 
-// Sauvegarde du champ validité (mois)
 add_action('woocommerce_process_product_meta', function ($post_id) {
     $validity = isset($_POST['_gift_card_validity_months']) ? intval($_POST['_gift_card_validity_months']) : 12;
     update_post_meta($post_id, '_gift_card_validity_months', $validity);
 });
-
-// Affiche le champ seulement pour le type gift_card
 add_action('admin_footer', function () {
     if ('product' != get_post_type())
         return;

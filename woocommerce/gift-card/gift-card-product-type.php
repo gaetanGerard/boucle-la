@@ -1,6 +1,4 @@
 <?php
-// Gift Card Product Type logic here
-
 if (!class_exists('WC_Product_Gift_Card')) {
     class WC_Product_Gift_Card extends WC_Product
     {

@@ -726,6 +726,12 @@ if (class_exists('WooCommerce')) {
 // This prevents the behavior of adding a product to the cart when page is refreshed.
 add_action('woocommerce_add_to_cart_redirect', 'bo_theme_add_to_cart_redirect');
 
+
+// Redirect Section
+//
+// START
+//
+
 function bo_theme_add_to_cart_redirect($url = false)
 {
 	// If URL is set respect if
@@ -741,3 +747,29 @@ function bo_theme_add_to_cart_redirect($url = false)
 	// If nothing back to home
 	return home_url('/');
 }
+
+// Redirect /panier to the shop page if no referer is set or if the referer is /panier
+add_action('template_redirect', function () {
+	if (is_cart()) {
+		$redirect_url = wp_get_referer();
+		if (!$redirect_url && !empty($_SERVER['HTTP_REFERER'])) {
+			$redirect_url = $_SERVER['HTTP_REFERER'];
+		}
+		if (!$redirect_url || strpos($redirect_url, '/panier') !== false) {
+			$shop_url = wc_get_page_permalink('shop');
+			if (empty($shop_url) || get_post_status(url_to_postid($shop_url)) !== 'publish') {
+				$redirect_url = home_url('/');
+			} else {
+				$redirect_url = $shop_url;
+			}
+		}
+		$redirect_url = add_query_arg('open_cart', '1', $redirect_url);
+		wp_redirect($redirect_url);
+		exit;
+	}
+});
+
+// Redirect Section
+//
+// END
+//

@@ -1,7 +1,5 @@
 <?php
-// Gift Card Functions here
-
-// Génération automatique d'un coupon lors de la création d'une commande contenant une carte cadeau
+// Generate a unique coupon code when a gift card is purchased
 add_action('woocommerce_new_order', function ($order_id) {
     $order = wc_get_order($order_id);
     if (!$order)
@@ -9,17 +7,15 @@ add_action('woocommerce_new_order', function ($order_id) {
     foreach ($order->get_items() as $item_id => $item) {
         $product = $item->get_product();
         if ($product && $product->get_type() === 'gift_card') {
-            // Générer un code unique
+            // Generate a unique coupon code
             $code = 'GC-' . strtoupper(wp_generate_password(10, false, false));
-            // Récupérer le montant (prix du produit ou total de la ligne)
             $amount = $item->get_total();
-            // Récupérer la validité en mois
             $validity_months = get_post_meta($product->get_id(), '_gift_card_validity_months', true);
             $validity_months = $validity_months ? intval($validity_months) : 12;
-            // Calculer la date d'expiration
+            // Calculate expiry date
             $now = new DateTime('now', wp_timezone());
             $expiry = $now->modify("+{$validity_months} months")->format('Y-m-d');
-            // Créer le coupon
+            // Create the coupon
             $coupon_id = wp_insert_post(array(
                 'post_title' => $code,
                 'post_content' => __('Carte cadeau générée automatiquement', 'bo-theme'),
@@ -35,7 +31,6 @@ add_action('woocommerce_new_order', function ($order_id) {
                 update_post_meta($coupon_id, 'date_expires', strtotime($expiry));
                 update_post_meta($coupon_id, 'gift_card_order_id', $order_id);
                 update_post_meta($coupon_id, 'gift_card_product_id', $product->get_id());
-                // Attacher le code au méta de la commande et à la note
                 wc_add_order_item_meta($item_id, '_gift_card_code', $code);
                 $order->add_order_note(sprintf(__('Carte cadeau générée : %s (valeur : %s €, expiration : %s)', 'bo-theme'), $code, wc_price($amount), $expiry));
             }
@@ -43,12 +38,11 @@ add_action('woocommerce_new_order', function ($order_id) {
     }
 });
 
-// Ajoute la période de validité dans le détail de la commande pour les cartes cadeaux
+// Add the validity period in the order details for gift cards
 add_action('woocommerce_after_order_itemmeta', function ($item_id, $item, $product) {
     if ($product && $product->get_type() === 'gift_card') {
         $gift_card_code = wc_get_order_item_meta($item_id, '_gift_card_code', true);
         if ($gift_card_code) {
-            // Récupérer le coupon
             $coupon = get_page_by_title($gift_card_code, OBJECT, 'shop_coupon');
             if ($coupon) {
                 $expiry_timestamp = get_post_meta($coupon->ID, 'date_expires', true);
@@ -61,7 +55,7 @@ add_action('woocommerce_after_order_itemmeta', function ($item_id, $item, $produ
     }
 }, 10, 3);
 
-// Affiche le code de la carte cadeau avec un titre personnalisé dans le détail de la commande
+// display gift card code with a custom title in the order details
 add_filter('woocommerce_order_item_display_meta_key', function ($display_key, $meta, $item) {
     if ($meta->key === '_gift_card_code') {
         return __('Code carte cadeau', 'bo-theme');
@@ -69,7 +63,7 @@ add_filter('woocommerce_order_item_display_meta_key', function ($display_key, $m
     return $display_key;
 }, 10, 3);
 
-// Renommer les champs gift card dans l'admin commande
+// Rename the gift card fields in the order admin
 add_filter('woocommerce_order_item_display_meta_key', function ($display_key, $meta, $item) {
     switch ($meta->key) {
         case '_gift_card_amount':
@@ -86,7 +80,7 @@ add_filter('woocommerce_order_item_display_meta_key', function ($display_key, $m
     return $display_key;
 }, 10, 3);
 
-// Afficher le prix formaté pour _gift_card_amount
+// Format the gift card amount in the order details
 add_filter('woocommerce_order_item_display_meta_value', function ($display_value, $meta, $item) {
     if ($meta->key === '_gift_card_amount') {
         return wc_price($meta->value);
@@ -94,7 +88,7 @@ add_filter('woocommerce_order_item_display_meta_value', function ($display_value
     return $display_value;
 }, 10, 3);
 
-// Gérer le montant personnalisé pour la carte cadeau lors de l'ajout au panier
+// Deal with the custom amount for the gift card when adding to cart
 add_filter('woocommerce_add_cart_item_data', function ($cart_item_data, $product_id, $variation_id) {
     if (isset($_POST['gift_card_amount'])) {
         $cart_item_data['gift_card_amount'] = floatval($_POST['gift_card_amount']);
@@ -114,7 +108,7 @@ add_filter('woocommerce_add_cart_item_data', function ($cart_item_data, $product
     return $cart_item_data;
 }, 10, 3);
 
-// Afficher le montant personnalisé dans le panier
+// Display the custom amount in the cart
 add_filter('woocommerce_get_cart_item_from_session', function ($cart_item, $values) {
     if (isset($values['gift_card_amount'])) {
         $cart_item['gift_card_amount'] = $values['gift_card_amount'];
@@ -134,7 +128,8 @@ add_filter('woocommerce_get_cart_item_from_session', function ($cart_item, $valu
     return $cart_item;
 }, 10, 2);
 
-// Définir le prix du produit carte cadeau selon le montant saisi
+// Define the price of the gift card product according to the amount entered
+// (this is a workaround to set the price of the product in the cart)
 add_action('woocommerce_before_calculate_totals', function ($cart) {
     if (is_admin() && !defined('DOING_AJAX'))
         return;
@@ -145,7 +140,7 @@ add_action('woocommerce_before_calculate_totals', function ($cart) {
     }
 });
 
-// Afficher le montant personnalisé dans le panier et la commande
+// Display the custom amount in the cart and order
 add_filter('woocommerce_get_item_data', function ($item_data, $cart_item) {
     if (isset($cart_item['gift_card_amount'])) {
         $item_data[] = array(
@@ -180,7 +175,7 @@ add_filter('woocommerce_get_item_data', function ($item_data, $cart_item) {
     return $item_data;
 }, 10, 2);
 
-// Sauvegarder les champs personnalisés dans la commande
+// Save the custom fields in the order item meta
 add_action('woocommerce_add_order_item_meta', function ($item_id, $values) {
     if (isset($values['gift_card_amount'])) {
         wc_add_order_item_meta($item_id, '_gift_card_amount', $values['gift_card_amount']);
@@ -199,7 +194,7 @@ add_action('woocommerce_add_order_item_meta', function ($item_id, $values) {
     }
 }, 10, 2);
 
-// Envoi du code de la carte cadeau par email HTML stylé après paiement
+// Send the gift card code by email after payment
 add_action('woocommerce_order_status_completed', function ($order_id) {
     $order = wc_get_order($order_id);
     if (!$order)
