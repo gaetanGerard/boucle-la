@@ -494,14 +494,17 @@ function custom_woocommerce_login_form()
 		return '<p>' . __('Vous êtes déjà connecté.', 'bo-theme') . '</p>';
 	}
 	ob_start();
-	woocommerce_login_form([
-		'redirect' => wc_get_page_permalink('myaccount'),
-		'hidden' => false
-	]);
 	?>
-	<div style="margin-top:1rem;">
-		<a href="<?php echo esc_url(site_url('/register')); ?>"
-			class="button"><?php _e('Créer un compte', 'bo-theme'); ?></a>
+	<div class="login-woocommerce-section">
+		<?php woocommerce_login_form([
+			'redirect' => wc_get_page_permalink('myaccount'),
+			'hidden' => false
+		]); ?>
+	</div>
+	<div style="display: flex; align-items: center; margin: 2rem 0;">
+		<hr style="flex: 1; border: none; border-top: 1px solid #ccc; margin: 0 1rem;" />
+		<span style="font-weight: bold; color: #888;">OU</span>
+		<hr style="flex: 1; border: none; border-top: 1px solid #ccc; margin: 0 1rem;" />
 	</div>
 	<?php
 	return ob_get_clean();
@@ -516,6 +519,41 @@ function bo_theme_multi_step_register_form_shortcode()
 	return ob_get_clean();
 }
 add_shortcode('multi_step_register_form', 'bo_theme_multi_step_register_form_shortcode');
+
+// Redirige les utilisateurs connectés qui tentent d'accéder à /login ou /register vers l'accueil
+add_action('template_redirect', function () {
+	if (is_user_logged_in()) {
+		$login_url = untrailingslashit(site_url('/login'));
+		$register_url = untrailingslashit(site_url('/register'));
+		$current_url = untrailingslashit((is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+		if ($current_url === $login_url || $current_url === $register_url) {
+			wp_redirect(home_url('/'));
+			exit;
+		}
+	}
+});
+
+// Dynamically set login/register background image from first image in page content (if present)
+add_action('wp_head', function () {
+	if (is_page('login')) {
+		global $post;
+		if (!$post)
+			return;
+		$content = $post->post_content;
+		$image_url = '';
+		// Try to get first <img> src from content
+		if (preg_match('/<img[^>]+src=["\']([^"\']+)["\']/i', $content, $matches)) {
+			$image_url = esc_url($matches[1]);
+		}
+		// If not found, try featured image
+		if (!$image_url && has_post_thumbnail($post)) {
+			$image_url = get_the_post_thumbnail_url($post, 'full');
+		}
+		if ($image_url) {
+			echo '<style>.login-form-container .wp-block-column:last-child {background-image: url(' . esc_url($image_url) . ') !important;}</style>';
+		}
+	}
+});
 
 //
 //
@@ -591,7 +629,8 @@ function bo_theme_customize_nav_colors()
 		.page-numbers.current,
 		.gift-card-button,
 		.forminator-button,
-		input.tnp-submit {
+		input.tnp-submit,
+		.login-form-container button {
 			background-color:
 				<?php echo esc_html($button_color); ?>
 			;
@@ -626,7 +665,8 @@ function bo_theme_customize_nav_colors()
 		.page-numbers.current:hover,
 		.gift-card-button:hover,
 		.forminator-button:hover,
-		input.tnp-submit:hover {
+		input.tnp-submit:hover,
+		.login-form-container button:hover {
 			background-color:
 				<?php echo esc_html($button_hover); ?>
 				!important;
@@ -681,6 +721,7 @@ function bo_theme_scripts()
 
 	wp_enqueue_style('bo-theme-reset', get_template_directory_uri() . '/css/reset.css', array(), _S_VERSION);
 	wp_enqueue_script('bo-theme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
+	wp_enqueue_style('bo-theme-auth', get_template_directory_uri() . '/auth.css', array(), _S_VERSION);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');

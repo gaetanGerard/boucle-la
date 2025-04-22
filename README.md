@@ -25,6 +25,10 @@
 - Ajout de la possibilité de se connecter avec Google
 - Travail sur les fonctionnalité de la page mon-compte
 
+# Limitations
+## Nextend Login With social
+Nextend me permet d'utiliser des provider de login comme google, facebook (que je n'ai pas pu mettre en place pour l'instant car une connection en https est obligatoire) le plugin est gratuit pour les besoins mais a des limitations au niveau de ses possibilité, lorsque j'ajoute un bouton login with il est automatiquement ajouter au login form de woocommerce et n'est pas possible de le détacher d'ou la raison pour laquel je ne peux appliquer le design initial.
+
 # Test Feature
 - Email & Newsletter : J'ai déployer un docker avec Mailhog pour tester en local l'envoie d'email et la souscription à la newsletter tout fonctionne comme je l'attends et les emails sont bien envoyer
 - Panier : Test qu'il est possible de modifier les quantités du panier de manière asynchrone et de les enlever du panier si nécessaire

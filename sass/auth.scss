@@ -1,3 +1,4 @@
+@import "abstracts/abstracts";
 // Styles for the Multi-steps registration form
 .register-step-form {
   max-width: 400px;
@@ -47,4 +48,154 @@
   border-radius: 4px;
   margin-bottom: 1rem;
   font-size: 0.95rem;
+}
+
+// Login Page
+.login-form-container {
+  display: flex !important;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  box-sizing: border-box;
+
+  .wp-block-column:first-child {
+    flex: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+    form {
+      width: 100%;
+      max-width: 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      p {
+        margin: 0;
+
+        label {
+          font-weight: 400;
+          font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+          @include input-style();
+        }
+      }
+
+      .form-row {
+        display: flex;
+        flex-direction: column;
+
+        &.form-row-first,
+        &.form-row-last {
+          margin-bottom: 0.5rem;
+        }
+
+        &.woocommerce-form__label-for-checkbox {
+          flex-direction: row;
+          align-items: center;
+          font-size: 0.85rem;
+
+          input[type="checkbox"] {
+            margin-right: 0.5rem;
+          }
+        }
+      }
+
+      .lost_password {
+        text-align: right;
+        font-size: 0.8rem;
+
+        a {
+          color: #aaa;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .mo-openid-app-icons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+
+        p {
+          margin: 0 0 0.5rem;
+          font-weight: 500;
+          color: #ccc;
+        }
+
+        a {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          background-color: #1a1a1a;
+          color: white;
+          padding: 0.5rem 1rem;
+          border-radius: 0.375rem;
+          border: 1px solid transparent;
+          transition: all 0.2s;
+
+          img {
+            height: 20px;
+            width: auto;
+          }
+
+          &:hover {
+            background-color: #333;
+            border-color: #555;
+          }
+        }
+      }
+    }
+    .wp-block-button {
+      text-align: center;
+      margin-top: 1rem;
+      width: 100%;
+
+      a {
+        width: 100%;
+      }
+    }
+  }
+
+  .wp-block-column:last-child {
+    display: none;
+  }
+
+  @media (min-width: 1025px) {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: stretch;
+    padding-top: 0;
+
+    .wp-block-column:first-child {
+      flex: 1;
+      width: auto;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .wp-block-column:last-child {
+      display: flex;
+      flex: 1;
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+
+      figure img {
+        display: none;
+      }
+    }
+  }
 }
