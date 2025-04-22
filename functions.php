@@ -526,7 +526,12 @@ add_action('template_redirect', function () {
 		$login_url = untrailingslashit(site_url('/login'));
 		$register_url = untrailingslashit(site_url('/register'));
 		$current_url = untrailingslashit((is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-		if ($current_url === $login_url || $current_url === $register_url) {
+		// Check for /register/?step=1,2,3
+		if (preg_match('#^' . preg_quote($register_url, '#') . '/?($|\\?step=(1|2|3)$)#', $current_url)) {
+			wp_redirect(home_url('/'));
+			exit;
+		}
+		if ($current_url === $login_url) {
 			wp_redirect(home_url('/'));
 			exit;
 		}
@@ -630,7 +635,8 @@ function bo_theme_customize_nav_colors()
 		.gift-card-button,
 		.forminator-button,
 		input.tnp-submit,
-		.login-form-container button {
+		.login-form-container button,
+		.register-step-btn {
 			background-color:
 				<?php echo esc_html($button_color); ?>
 			;
@@ -666,7 +672,8 @@ function bo_theme_customize_nav_colors()
 		.gift-card-button:hover,
 		.forminator-button:hover,
 		input.tnp-submit:hover,
-		.login-form-container button:hover {
+		.login-form-container button:hover,
+		.register-step-btn:hover {
 			background-color:
 				<?php echo esc_html($button_hover); ?>
 				!important;

@@ -4,7 +4,7 @@ Theme Name: bo-theme
 WooCommerce styles override
 */
 .woocommerce-boutique {
-  margin: 100px 50px;
+  margin: 140px 50px;
 }
 
 .category-link-active {
@@ -318,6 +318,7 @@ WooCommerce styles override
   font-size: 1rem;
   font-weight: 600;
   color: #151515;
+  flex-wrap: wrap;
 }
 .woocommerce-pagination .page-numbers li {
   background-color: #f7f7f7;
@@ -378,6 +379,7 @@ WooCommerce styles override
 }
 .shop-controls-wrapper .woocommerce-ordering select,
 .shop-controls-wrapper .products-per-page-form select {
+  width: 100%;
   font-size: 1rem;
   font-weight: 600;
   color: #151515;
@@ -1041,7 +1043,7 @@ WooCommerce styles override
 
 .gift-card-container {
   max-width: 1200px;
-  margin: 6rem auto;
+  margin: 8rem auto;
   padding: 0 2rem;
 }
 .gift-card-container .gift-card-grid {

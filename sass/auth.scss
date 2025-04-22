@@ -1,54 +1,4 @@
 @import "abstracts/abstracts";
-// Styles for the Multi-steps registration form
-.register-step-form {
-  max-width: 400px;
-  margin: 2rem auto;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-  padding: 2rem;
-}
-.register-step-form h2 {
-  margin-bottom: 1.5rem;
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-.register-step-form p {
-  margin-bottom: 1rem;
-}
-.register-step-form label {
-  font-weight: 500;
-}
-.register-step-form input[type="text"],
-.register-step-form input[type="email"],
-.register-step-form input[type="password"] {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-top: 0.25rem;
-}
-.register-step-form button {
-  background: #0f834d;
-  color: #fff;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.register-step-form button:hover {
-  background: #0c6a3a;
-}
-.form-error {
-  background: #ffeaea;
-  color: #c00;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
-}
 
 // Login Page
 .login-form-container {
@@ -195,6 +145,216 @@
 
       figure img {
         display: none;
+      }
+    }
+  }
+}
+
+// Register Page - Multi Step Form
+.register-container {
+  margin-top: 120px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+
+  .register-infos-container {
+    text-align: center;
+
+    .register-infos-header {
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+        color: #555;
+
+        a {
+          color: #6b7280;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .steps-info-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 360px;
+      margin: 2rem auto;
+      position: relative;
+      gap: 2.5rem;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 228px;
+        height: 1px;
+        background-color: #e5e7eb;
+        z-index: 0;
+      }
+
+      .step-info {
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        text-align: center;
+
+        .step-number {
+          background-color: #9ca3af;
+          color: white;
+          font-weight: 600;
+          border-radius: 9999px;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 0.25rem;
+        }
+
+        .step-text {
+          font-size: 0.75rem;
+          color: #6b7280;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        &.step-info-active {
+          .step-number {
+            background-color: #e6005a;
+          }
+        }
+      }
+    }
+  }
+
+  .register-step-form {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin: 2rem auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    padding: 2rem;
+    border-radius: 3px;
+
+    h2 {
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .form-error {
+      color: #e6005a;
+      font-size: 0.875rem;
+      text-align: center;
+      background-color: #fce7ef;
+      border: 1px solid #e6005a;
+      padding: 0.5rem 1rem;
+    }
+
+    p {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+
+      label {
+        font-weight: 500;
+        font-size: 0.875rem;
+        margin-bottom: 0.25rem;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        padding: 0.75rem;
+        border: 1px solid #d1d5db;
+        background-color: #fff;
+        font-size: 0.95rem;
+        color: #111;
+        border-radius: 4px;
+        margin-top: 0.25rem;
+        width: 100%;
+      }
+
+      select {
+        padding: 0.75rem;
+        border: 1px solid #d1d5db;
+        background-color: #fff;
+        font-size: 0.95rem;
+        color: #111;
+        border-radius: 4px;
+        margin-top: 0.25rem;
+        width: 100%;
+        transition: all 0.3s;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+
+        &:focus {
+          outline: none;
+          border-color: #d9d9d9;
+        }
+      }
+    }
+
+    button[type="submit"] {
+      padding: 0.75rem;
+      background-color: #6b7280;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: #4b5563;
+      }
+    }
+  }
+  .large-form {
+    max-width: 1000px;
+    .form-group {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+
+      &-full {
+        grid-template-columns: 1fr;
+      }
+
+      @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .btn-group {
+      a {
+        text-align: center;
+        align-content: center;
+        font-weight: 600;
+        padding: 0.75rem;
+        border-radius: 3px !important;
       }
     }
   }

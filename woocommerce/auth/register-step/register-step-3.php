@@ -46,11 +46,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<form method="post" class="register-step-form">
+<div class="register-infos-container">
+    <div class="register-infos-header">
+        <h1>Créer votre comptre</h1>
+        <p>Déjà un compte ? <a href="/login">Connectez-vous</a>.</p>
+    </div>
+    <div class="steps-info-container">
+        <div class="step-info">
+            <div class="step-number">1</div>
+            <div class="step-text">Email</div>
+        </div>
+        <div class="step-info">
+            <div class="step-number">2</div>
+            <div class="step-text">Informations personnelles</div>
+        </div>
+        <div class="step-info step-info-active">
+            <div class="step-number">3</div>
+            <div class="step-text">Mot de passe</div>
+        </div>
+    </div>
+</div>
+<form method="post" class="register-step-form large-form">
     <h2>Étape 3 : Mot de passe et validation</h2>
-    <?php foreach ($errors as $error): ?>
+    <?php
+    $email_exists_error = false;
+    foreach ($errors as $error): ?>
         <div class="form-error"><?php echo esc_html($error); ?></div>
+        <?php
+        if (stripos($error, 'email') !== false) {
+            $email_exists_error = true;
+        }
+        ?>
     <?php endforeach; ?>
+    <?php if ($email_exists_error): ?>
+        <div class="lost-password-link" style="text-align:center;margin-top:0.5rem;">
+            <a href="<?php echo esc_url(wp_lostpassword_url()); ?>">Mot de passe oublié&nbsp;?</a>
+        </div>
+    <?php endif; ?>
     <p>
         <label>Mot de passe *</label><br>
         <input type="password" name="password" required>
@@ -64,5 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo 'checked'; ?>> J'accepte les <a
                 href="/termes-et-conditions" target="_blank">termes et conditions</a> *</label>
     </p>
-    <button type="submit">S'enregistrer</button>
+    <div class="form-group btn-group">
+        <a href="/register/?step=2" class="register-step-btn">Précédent</a>
+        <button type="submit">S'enregistrer</button>
+    </div>
 </form>

@@ -22,6 +22,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+<div class="register-infos-container">
+    <div class="register-infos-header">
+        <h1>Créer votre comptre</h1>
+        <p>Déjà un compte ? <a href="/login">Connectez-vous</a>.</p>
+    </div>
+    <div class="steps-info-container">
+        <div class="step-info step-info-active">
+            <div class="step-number">1</div>
+            <div class="step-text">Email</div>
+        </div>
+        <div class="step-info">
+            <div class="step-number">2</div>
+            <div class="step-text">Informations personnelles</div>
+        </div>
+        <div class="step-info">
+            <div class="step-number">3</div>
+            <div class="step-text">Mot de passe</div>
+        </div>
+    </div>
+</div>
 <form method="post" class="register-step-form">
     <h2>Étape 1 : Votre email</h2>
     <?php foreach ($errors as $error): ?>
@@ -29,11 +49,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endforeach; ?>
     <p>
         <label>Email *</label><br>
-        <input type="email" name="email" required value="<?php echo esc_attr($email); ?>">
+        <input type="email" name="email" placeholder="john.doe@email.com" required
+            value="<?php echo esc_attr($email); ?>">
     </p>
     <p>
         <label>Confirmez l'email *</label><br>
-        <input type="email" name="email_confirm" required value="<?php echo esc_attr($email_confirm); ?>">
+        <input type="email" name="email_confirm" placeholder="john.doe@email.com" required
+            value="<?php echo esc_attr($email_confirm); ?>">
     </p>
     <button type="submit">Suivant</button>
 </form>

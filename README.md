@@ -1,7 +1,8 @@
 # TODO
 
-## Page Login/Register
-1) Intégrer le style au page de login/register
+# Page secondaire
+1. Design de la page mot de passe oublier
+2. Design de la page 404
 
 ## Checkout
 1) Design de la page de checkout voir woocommerce
@@ -24,10 +25,15 @@
 - Création d'un Formulaire de Login et d'inscription
 - Ajout de la possibilité de se connecter avec Google
 - Travail sur les fonctionnalité de la page mon-compte
+- Intégration du style pour la page de login/register
+- Régler problème de redirection pour les pages panier sur le home et ouverture du cart-panel
+
+# BUG
+- DE temps en temps lorsque je suis en invité sur le site si j'ajoute un produits et que je j'ajoute autant de produit aussi rapidement que possible je suis rediriger vers la page de login de l'admin
 
 # Limitations
 ## Nextend Login With social
-Nextend me permet d'utiliser des provider de login comme google, facebook (que je n'ai pas pu mettre en place pour l'instant car une connection en https est obligatoire) le plugin est gratuit pour les besoins mais a des limitations au niveau de ses possibilité, lorsque j'ajoute un bouton login with il est automatiquement ajouter au login form de woocommerce et n'est pas possible de le détacher d'ou la raison pour laquel je ne peux appliquer le design initial.
+Nextend me permet d'utiliser des provider de login comme google, facebook (que je n'ai pas pu mettre en place pour l'instant car une connection en https est obligatoire) le plugin est gratuit pour les besoins mais a des limitations au niveau de ses possibilité, lorsque j'ajoute un bouton login with il est automatiquement ajouter au login form de woocommerce et n'est pas possible de le détacher d'ou la raison pour laquel je ne peux appliquer le design initial. Je ne peux pas non plus ajouter le bouton des réseaux sociaux pour s'inscrire car il s'agit d'une feature premium
 
 # Test Feature
 - Email & Newsletter : J'ai déployer un docker avec Mailhog pour tester en local l'envoie d'email et la souscription à la newsletter tout fonctionne comme je l'attends et les emails sont bien envoyer
@@ -51,6 +57,9 @@ et plusieurs inconvénients
 2. je serais limité sur le design de la page et sur la solution actuel qui m'oblige a intégré le thème
 
 -> Prochaines étapes : discuter avec le client sur la solution qu'elle préfère
+
+## Registration Page
+1. J'utilise un champs select avec les informations des pays ajouter en dur idéalement se serait plus interéssant d'avoir la possibilité d'ajouter les pays dans le select via le customiseur
 
 ## Améliorations a effectuer
 
@@ -76,7 +85,7 @@ Pour moi la solution à long termes serait :
 1. De laisser tomber complètement tailwind au profit du scss
 2. de construire des blocks pour l'éditeur degutenberg qui utiliserais le style de bo_theme et par conséquent qui n'impliquerais plus de cutomiser le css dans l'éditeur gutenberg
 
-## Intégrer beaucou plus d'option dans le customiseur
+## Intégrer beaucoup plus d'option dans le customiseur
 
 L'intérêt principal de Wordpress réside dans le fait de pouvoir construire un site sans avoir à écrire une ligne de code, bien sur en tant que développeur je ne suis pas gêné par celà mais le client final lui ne devrait pas avoir à passer une minute dans un éditeur de texte à rajouter du css ou a demander à une intelligence artificielle de régler un problème, par conséquent il faut utiliser la feature du customiseur.
 

@@ -16,7 +16,7 @@ $woocommerce__color-info: #3d9cd2;
 // -------------------START--------------------------
 // --------------------------------------------------
 .woocommerce-boutique {
-  margin: 100px 50px;
+  margin: 140px 50px;
 }
 .category-link-active {
   border-radius: 0.25rem;
@@ -164,6 +164,7 @@ $woocommerce__color-info: #3d9cd2;
     font-size: 1rem;
     font-weight: 600;
     color: #151515;
+    flex-wrap: wrap;
 
     li {
       background-color: #f7f7f7;
@@ -208,6 +209,7 @@ $woocommerce__color-info: #3d9cd2;
 
   .woocommerce-ordering select,
   .products-per-page-form select {
+    width: 100%;
     @include input-style;
   }
 
@@ -604,7 +606,7 @@ $woocommerce__color-info: #3d9cd2;
 // --------------------------------------------------
 .gift-card-container {
   max-width: 1200px;
-  margin: 6rem auto;
+  margin: 8rem auto;
   padding: 0 2rem;
 
   .gift-card-grid {
