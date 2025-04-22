@@ -7,7 +7,7 @@ if (!$product) {
 	$product = wc_get_product(get_the_ID());
 }
 
-if ($product && $product->get_slug() === 'carte-cadeau') {
+if ($product && $product->get_type() === 'gift_card') {
 	wc_get_template_part('single-product', 'gift-card');
 	return;
 }

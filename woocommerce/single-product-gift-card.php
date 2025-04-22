@@ -19,8 +19,13 @@ if (!$product)
                 <?php echo apply_filters('woocommerce_short_description', $post->post_excerpt); ?>
             </div>
 
-            <form class="gift-card-form" method="post" enctype="multipart/form-data">
+            <form class="gift-card-form cart" method="post" enctype="multipart/form-data"
+                action="<?php echo esc_url(apply_filters('woocommerce_add_to_cart_form_action', $product->get_permalink())); ?>">
                 <?php do_action('woocommerce_before_add_to_cart_button'); ?>
+
+                <input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>">
+                <input type="hidden" name="product_id" value="<?php echo esc_attr($product->get_id()); ?>">
+                <input type="hidden" name="quantity" value="1">
 
                 <div class="form-group">
                     <label for="gift_card_amount">Montant à offrir (€)</label>
@@ -48,8 +53,7 @@ if (!$product)
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>"
-                        class="gift-card-button">
+                    <button type="submit" class="gift-card-button single_add_to_cart_button button alt">
                         Ajouter au panier
                     </button>
                 </div>

@@ -46,9 +46,30 @@ if (!function_exists('WC') || !WC()->cart instanceof WC_Cart) {
                                 <span class="font-bold"><?php echo esc_html($product_name); ?></span>
                             <?php endif; ?>
 
-                            <span class="text-gray-400 block">
-                                <?php echo $product_price; ?>
-                            </span>
+                            <?php if ($product->get_type() === 'gift_card'): ?>
+                                <?php
+                                // Affichage pour la nouvelle logique gift_card_amount
+                                if (isset($cart_item['gift_card_amount'])) {
+                                    echo '<div class="text-gray-400 block">Montant : ' . wc_price($cart_item['gift_card_amount']) . '</div>';
+                                }
+                                if (isset($cart_item['gift_card_sender'])) {
+                                    echo '<div class="text-gray-400 block">Offert par : ' . esc_html($cart_item['gift_card_sender']) . '</div>';
+                                }
+                                if (isset($cart_item['gift_card_recipient'])) {
+                                    echo '<div class="text-gray-400 block">Destinataire : ' . esc_html($cart_item['gift_card_recipient']) . '</div>';
+                                }
+                                if (isset($cart_item['gift_card_email'])) {
+                                    echo '<div class="text-gray-400 block">Email : ' . esc_html($cart_item['gift_card_email']) . '</div>';
+                                }
+                                if (isset($cart_item['gift_card_message']) && $cart_item['gift_card_message']) {
+                                    echo '<div class="text-gray-400 block">Message : ' . esc_html($cart_item['gift_card_message']) . '</div>';
+                                }
+                                ?>
+                            <?php else: ?>
+                                <span class="text-gray-400 block">
+                                    <?php echo $product_price; ?>
+                                </span>
+                            <?php endif; ?>
                             <span class="text-gray-400 block">
                                 <?php esc_html_e('Quantité :', 'bo-theme'); ?>         <?php echo esc_html($product_quantity); ?>
                             </span>

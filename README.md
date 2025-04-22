@@ -1,13 +1,13 @@
 # TODO
 
 ## Page Login/Register
-1) Design de la page Login/register
+1) Intégrer le style au page de login/register
 
 ## Checkout
 1) Design de la page de checkout voir woocommerce
 
 ## Page compte
-1) Design d'une page de compte utilisateur
+1) Intégrer le style à la page du compte
 2) Design d'une page pour suivi commandes
 
 # DONE
@@ -21,6 +21,9 @@
 - Page à propos (Desktop & Responsive) -- FAIT --
 - Page Contact (Desktop & Responsive) -- FAIT --
 - Design d'une page de succès si inscris à la newsletter (Desktop & Responsive) -- FAIT --
+- Création d'un Formulaire de Login et d'inscription
+- Ajout de la possibilité de se connecter avec Google
+- Travail sur les fonctionnalité de la page mon-compte
 
 # Test Feature
 - Email & Newsletter : J'ai déployer un docker avec Mailhog pour tester en local l'envoie d'email et la souscription à la newsletter tout fonctionne comme je l'attends et les emails sont bien envoyer
