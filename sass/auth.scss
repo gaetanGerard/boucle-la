@@ -747,6 +747,104 @@
         }
       }
     }
+
+    .account-form-card {
+      background: #f7f7fa;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      padding: 2rem 1.5rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      form {
+        width: 100%;
+
+        p {
+          @include profile-input-container-style();
+
+          label {
+            @include profile-label-style();
+          }
+
+          input[type="text"],
+          input[type="password"],
+          input[type="email"] {
+            @include profile-input-style();
+          }
+          span {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.5rem;
+          }
+        }
+
+        fieldset {
+          .password-label-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            label {
+              @include profile-label-style();
+            }
+            .toggle-password-visibility {
+              background: none;
+              border: none;
+              cursor: pointer;
+              padding: 0.2rem 0.5rem;
+              display: flex;
+              align-items: center;
+              svg {
+                display: block;
+              }
+            }
+          }
+          .password-input-wrapper {
+            input[type="password"] {
+              @include profile-input-style();
+            }
+            button {
+              display: none;
+            }
+          }
+        }
+        .account-form-btn {
+          margin-top: 1rem;
+        }
+      }
+    }
+
+    .orders-empty-container {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 2rem;
+      background: none;
+      .orders-empty-img {
+        max-width: 180px;
+        width: 100%;
+        margin: 0 auto;
+        display: block;
+      }
+      .orders-empty-text {
+        font-size: 1.2rem;
+        color: #333;
+        margin: 0;
+        font-weight: 500;
+      }
+      .orders-empty-btn {
+        border-radius: 4px;
+        padding: 0.7rem 2rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: background 0.2s;
+        display: inline-block;
+        border: none;
+      }
+    }
   }
   @media (min-width: 900px) {
     flex-direction: row;

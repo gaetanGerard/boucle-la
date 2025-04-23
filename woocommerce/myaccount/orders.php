@@ -130,9 +130,12 @@ include __DIR__ . '/account-content-header.php';
 	<?php endif; ?>
 
 <?php else: ?>
-
-	<?php wc_print_notice(esc_html__('No order has been made yet.', 'woocommerce') . ' <a class="woocommerce-Button wc-forward button' . esc_attr($wp_button_class) . '" href="' . esc_url(apply_filters('woocommerce_return_to_shop_redirect', wc_get_page_permalink('shop'))) . '">' . esc_html__('Browse products', 'woocommerce') . '</a>', 'notice'); // phpcs:ignore WooCommerce.Commenting.CommentHooks.MissingHookComment ?>
-
+	<div class="orders-empty-container">
+		<img src="<?php echo get_template_directory_uri(); ?>/img/empty-cart.png" alt="Aucune commande"
+			class="orders-empty-img" />
+		<p class="orders-empty-text">Aucune commande n'a encore été passée.</p>
+		<a href="/" class="orders-empty-btn">Parcourir les produits</a>
+	</div>
 <?php endif; ?>
 
 <?php do_action('woocommerce_after_account_orders', $has_orders); ?>

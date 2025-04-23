@@ -2,6 +2,9 @@
 ## Checkout
 1) Design de la page de checkout voir woocommerce
 
+## Email
+1. Créer un template d'email pour la newsletter dans le même style que celui pour les commandes
+
 ## Page compte
 1) Intégrer le style à la page du compte
 2) Design d'une page pour suivi commandes
@@ -27,6 +30,7 @@
 
 # BUG
 - DE temps en temps lorsque je suis en invité sur le site si j'ajoute un produits et que je j'ajoute autant de produit aussi rapidement que possible je suis rediriger vers la page de login de l'admin
+- Sur carte cadeau dans le panier si montant = 0 alors retirer carte cadeau du panier
 
 # Limitations
 ## Nextend Login With social

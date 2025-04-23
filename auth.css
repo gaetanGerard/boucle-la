@@ -704,6 +704,114 @@
   color: #222;
   word-break: break-word;
 }
+.my-account-wrapper .my-account-content .account-form-card {
+  background: #f7f7fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+.my-account-wrapper .my-account-content .account-form-card form {
+  width: 100%;
+}
+.my-account-wrapper .my-account-content .account-form-card form p {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.my-account-wrapper .my-account-content .account-form-card form p label {
+  font-weight: 500;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+.my-account-wrapper .my-account-content .account-form-card form p input[type=text],
+.my-account-wrapper .my-account-content .account-form-card form p input[type=password],
+.my-account-wrapper .my-account-content .account-form-card form p input[type=email] {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  font-size: 0.95rem;
+  color: #111;
+  border-radius: 4px;
+  margin-top: 0.25rem;
+  width: 100%;
+}
+.my-account-wrapper .my-account-content .account-form-card form p span {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+.my-account-wrapper .my-account-content .account-form-card form fieldset .password-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.my-account-wrapper .my-account-content .account-form-card form fieldset .password-label-row label {
+  font-weight: 500;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+.my-account-wrapper .my-account-content .account-form-card form fieldset .password-label-row .toggle-password-visibility {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  display: flex;
+  align-items: center;
+}
+.my-account-wrapper .my-account-content .account-form-card form fieldset .password-label-row .toggle-password-visibility svg {
+  display: block;
+}
+.my-account-wrapper .my-account-content .account-form-card form fieldset .password-input-wrapper input[type=password] {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  font-size: 0.95rem;
+  color: #111;
+  border-radius: 4px;
+  margin-top: 0.25rem;
+  width: 100%;
+}
+.my-account-wrapper .my-account-content .account-form-card form fieldset .password-input-wrapper button {
+  display: none;
+}
+.my-account-wrapper .my-account-content .account-form-card form .account-form-btn {
+  margin-top: 1rem;
+}
+.my-account-wrapper .my-account-content .orders-empty-container {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2rem;
+  background: none;
+}
+.my-account-wrapper .my-account-content .orders-empty-container .orders-empty-img {
+  max-width: 180px;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+.my-account-wrapper .my-account-content .orders-empty-container .orders-empty-text {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 0;
+  font-weight: 500;
+}
+.my-account-wrapper .my-account-content .orders-empty-container .orders-empty-btn {
+  border-radius: 4px;
+  padding: 0.7rem 2rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: background 0.2s;
+  display: inline-block;
+  border: none;
+}
 @media (min-width: 900px) {
   .my-account-wrapper {
     flex-direction: row;

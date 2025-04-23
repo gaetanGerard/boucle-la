@@ -227,6 +227,25 @@
         });
     });
 
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.toggle-password-visibility').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const targetId = btn.getAttribute('data-target');
+                const input = document.getElementById(targetId);
+                const eye = btn.querySelector('.icon-eye');
+                const eyeOff = btn.querySelector('.icon-eye-off');
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    eye.style.display = 'none';
+                    eyeOff.style.display = '';
+                } else {
+                    input.type = 'password';
+                    eye.style.display = '';
+                    eyeOff.style.display = 'none';
+                }
+            });
+        });
+    });
 </script>
 
 <?php wp_footer(); ?>
