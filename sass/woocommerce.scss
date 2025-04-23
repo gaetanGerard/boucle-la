@@ -427,6 +427,9 @@ $woocommerce__color-info: #3d9cd2;
   }
   .accordion-content {
     transition: all 0.3s ease;
+    &.hidden {
+      display: none !important;
+    }
   }
 }
 .related {

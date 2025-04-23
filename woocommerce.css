@@ -755,6 +755,9 @@ WooCommerce styles override
 .accordion-tabs .accordion-tab .accordion-content {
   transition: all 0.3s ease;
 }
+.accordion-tabs .accordion-tab .accordion-content.hidden {
+  display: none !important;
+}
 
 .related {
   display: flex;

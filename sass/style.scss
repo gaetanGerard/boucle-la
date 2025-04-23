@@ -113,22 +113,66 @@ body {
   flex: 1 0 auto;
 }
 
+.hero-container {
+  height: 100vh;
+  .hero-content-container {
+    h2 {
+      font-size: 5em !important;
+
+      @media (min-width: 768px) {
+        font-size: 8em !important;
+      }
+    }
+    p {
+      font-size: 2em !important;
+      margin-bottom: 2rem;
+
+      @media (min-width: 768px) {
+        font-size: 3em !important;
+      }
+    }
+
+    div .custom-link {
+      display: flex;
+      justify-content: center;
+      a {
+        width: 50% !important;
+      }
+    }
+  }
+}
+
 .footer-widgets {
   padding: 0 20px;
+  color: white;
+  padding: 1rem;
   h2 {
     font-weight: 800;
+  }
+  .footer-logo img {
+    margin: 0 auto;
+    object-fit: contain !important;
+  }
+
+  .footer-copyright {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: white;
   }
 }
 
 .about-block-img-centered {
-  @include about-block(0 auto, 2rem, 400px, contain);
+  @include about-block(0 auto, 2rem, 100%, contain);
 }
 
 .home-featured-products {
+  margin: 2rem;
   div {
     .product-list {
       width: 100%;
-
+      padding: 0 !important;
+      margin: 0;
       ul {
         display: flex;
         flex-direction: column;
@@ -363,47 +407,13 @@ body {
   }
 }
 
-.btn-close-mobile-menu,
-.btn-close-cart-panel {
+.btn-close-mobile-menu {
   font-size: 2rem;
   align-self: end;
   background: transparent;
   border: none;
   cursor: pointer;
   margin-bottom: 1rem;
-}
-
-.btn-close-cart-panel {
-  color: black;
-}
-
-.cart-panel-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  color: $header-color;
-  font-size: 2rem;
-  gap: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  .header-logo {
-    width: $logo-width;
-    margin-left: 0;
-    margin-right: 0;
-    flex-shrink: 0;
-    img {
-      width: 100%;
-      height: auto;
-      max-width: 100%;
-      max-height: 100%;
-    }
-    @media (min-width: 768px) {
-      width: $logo-width-md;
-    }
-  }
 }
 
 // --------------------------------------------------
