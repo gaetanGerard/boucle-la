@@ -823,3 +823,17 @@ add_action('template_redirect', function () {
 //
 // END
 //
+
+// Remove the "Téléchargements" link from WooCommerce My Account navigation
+add_filter('woocommerce_account_menu_items', function ($items) {
+	unset($items['downloads']); // Supprime le lien "Téléchargements"
+	return $items;
+});
+
+// Force translation of "Log out" in WooCommerce
+add_filter('gettext', function ($translated, $text, $domain) {
+	if ($text === 'Log out' && $domain === 'woocommerce') {
+		return 'Se déconnecter';
+	}
+	return $translated;
+}, 20, 3);

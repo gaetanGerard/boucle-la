@@ -410,4 +410,106 @@
   }
 }
 
+.my-account-wrapper {
+  min-height: 100vh;
+  display: flex;
+  gap: 2rem;
+  padding-top: 100px;
+}
+.my-account-wrapper .my-account-sidebar {
+  width: 220px;
+  background: #f7f7f7;
+  border-radius: 8px;
+  padding: 2rem 1rem;
+  align-self: flex-start;
+  position: sticky;
+  top: 100px;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+.my-account-wrapper .my-account-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.my-account-wrapper .my-account-sidebar ul li {
+  margin-bottom: 1rem;
+}
+.my-account-wrapper .my-account-sidebar ul li.active a {
+  color: #e6005a;
+  font-weight: bold;
+}
+.my-account-wrapper .my-account-sidebar ul li a {
+  color: #222;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.my-account-wrapper .my-account-sidebar ul li a:hover {
+  color: #e6005a;
+}
+.my-account-wrapper .my-account-content {
+  flex: 1;
+  background: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  min-width: 0;
+  min-height: calc(100vh - 100px);
+}
+.my-account-wrapper .my-account-content .dashboard-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+.my-account-wrapper .my-account-content .dashboard-message {
+  background: #f7f7fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+.my-account-wrapper .my-account-content .dashboard-message p {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+.my-account-wrapper .my-account-content .dashboard-message .dashboard-desc {
+  color: #666;
+  font-size: 1rem;
+  margin: 0;
+}
+@media (min-width: 900px) {
+  .my-account-wrapper {
+    flex-direction: row;
+    padding-top: 100px;
+  }
+  .my-account-wrapper .my-account-sidebar {
+    width: 220px;
+    margin-bottom: 0;
+    height: calc(100vh - 100px);
+    position: sticky;
+    top: 100px;
+  }
+  .my-account-wrapper .my-account-content {
+    padding: 2rem;
+    min-height: calc(100vh - 100px);
+  }
+}
+@media (max-width: 899px) {
+  .my-account-wrapper {
+    flex-direction: column;
+  }
+  .my-account-wrapper .my-account-sidebar {
+    width: 100%;
+    margin-bottom: 2rem;
+    height: auto;
+    position: static;
+    top: auto;
+  }
+  .my-account-wrapper .my-account-content {
+    padding: 1rem;
+    min-height: auto;
+  }
+}
+
 /*# sourceMappingURL=auth.css.map */

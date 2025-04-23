@@ -21,21 +21,17 @@ if (!is_user_logged_in()) {
 	echo '<p>' . esc_html__('Vous devez être connecté pour accéder à cette page.', 'bo-theme') . '</p>';
 	return;
 }
-
-/**
- * My Account navigation.
- *
- * @since 2.6.0
- */
-do_action('woocommerce_account_navigation'); ?>
-
-<div class="woocommerce-MyAccount-content">
-	<?php
-	/**
-	 * My Account content.
-	 *
-	 * @since 2.6.0
-	 */
-	do_action('woocommerce_account_content');
-	?>
+?>
+<div class="my-account-wrapper">
+	<?php wc_get_template('myaccount/navigation.php'); ?>
+	<section class="my-account-content">
+		<?php
+		/**
+		 * My Account content.
+		 *
+		 * @since 2.6.0
+		 */
+		do_action('woocommerce_account_content');
+		?>
+	</section>
 </div>
