@@ -457,7 +457,7 @@
   min-height: 100vh;
   display: flex;
   gap: 2rem;
-  padding-top: 100px; // Décale le contenu sous la navigation sticky/fixed
+  padding-top: 100px;
 
   .my-account-sidebar {
     width: 220px;
@@ -466,7 +466,7 @@
     padding: 2rem 1rem;
     align-self: flex-start;
     position: sticky;
-    top: 100px; // Reste sous la barre de navigation
+    top: 100px;
     height: calc(100vh - 100px);
     overflow-y: auto;
     ul {
@@ -497,13 +497,13 @@
     padding: 2rem;
     min-width: 0;
     min-height: calc(100vh - 100px);
-    .dashboard-title {
+    .ach-title {
       font-size: 2.2rem;
       font-weight: 700;
       margin-bottom: 1.5rem;
     }
 
-    .dashboard-message {
+    .ach-message {
       background: #f7f7fa;
       border-radius: 10px;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
@@ -516,7 +516,7 @@
         font-size: 1.1rem;
         color: #333;
       }
-      .dashboard-desc {
+      .ach-desc {
         color: #666;
         font-size: 1rem;
         margin: 0;

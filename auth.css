@@ -455,12 +455,12 @@
   min-width: 0;
   min-height: calc(100vh - 100px);
 }
-.my-account-wrapper .my-account-content .dashboard-title {
+.my-account-wrapper .my-account-content .ach-title {
   font-size: 2.2rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
 }
-.my-account-wrapper .my-account-content .dashboard-message {
+.my-account-wrapper .my-account-content .ach-message {
   background: #f7f7fa;
   border-radius: 10px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
@@ -468,12 +468,12 @@
   margin-bottom: 2rem;
   text-align: left;
 }
-.my-account-wrapper .my-account-content .dashboard-message p {
+.my-account-wrapper .my-account-content .ach-message p {
   margin: 0 0 1rem 0;
   font-size: 1.1rem;
   color: #333;
 }
-.my-account-wrapper .my-account-content .dashboard-message .dashboard-desc {
+.my-account-wrapper .my-account-content .ach-message .ach-desc {
   color: #666;
   font-size: 1rem;
   margin: 0;

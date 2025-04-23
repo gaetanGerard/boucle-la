@@ -4,15 +4,6 @@
  *
  * Shows the first intro screen on the account dashboard.
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/myaccount/dashboard.php.
- *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
- * (the theme developer) will need to copy the new files to your theme to
- * maintain compatibility. We try to do this as little as possible, but it does
- * happen. When this occurs the version of the template file will be bumped and
- * the readme will list any important changes.
- *
- * @see     https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
  * @version 4.4.0
  */
@@ -26,25 +17,16 @@ $allowed_html = array(
 		'href' => array(),
 	),
 );
-?>
 
-<h1 class="dashboard-title">Tableau de bord</h1>
-<div class="dashboard-message">
-	<p>
-		<?php
-		printf(
-			wp_kses(__('Hello %1$s (not %1$s? <a href="%2$s">Log out</a>)', 'woocommerce'), $allowed_html),
-			'<strong>' . esc_html($current_user->display_name) . '</strong>',
-			esc_url(wc_logout_url())
-		);
-		?>
-	</p>
-	<p class="dashboard-desc">
-		À partir du tableau de bord de votre compte, vous pouvez visualiser vos commandes récentes, gérer vos adresses
-		de livraison et de facturation ainsi que changer votre mot de passe et les détails de votre compte.
-	</p>
-</div>
-<?php
+$title = 'Tableau de bord';
+$message = sprintf(
+	wp_kses(__('Hello %1$s (not %1$s? <a href="%2$s">Se déconnecter</a>)', 'woocommerce'), $allowed_html),
+	'<strong>' . esc_html($current_user->display_name) . '</strong>',
+	esc_url(wc_logout_url())
+);
+$message .= '<br>À partir du tableau de bord de votre compte, vous pouvez visualiser vos commandes récentes, gérer vos adresses de livraison et de facturation ainsi que changer votre mot de passe et les détails de votre compte.';
+include __DIR__ . '/account-content-header.php';
+
 /**
  * My Account dashboard.
  *
@@ -52,18 +34,7 @@ $allowed_html = array(
  */
 do_action('woocommerce_account_dashboard');
 
-/**
- * Deprecated woocommerce_before_my_account action.
- *
- * @deprecated 2.6.0
- */
 do_action('woocommerce_before_my_account');
-
-/**
- * Deprecated woocommerce_after_my_account action.
- *
- * @deprecated 2.6.0
- */
 do_action('woocommerce_after_my_account');
 
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */

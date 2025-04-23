@@ -19,16 +19,11 @@
 
 defined('ABSPATH') || exit;
 
+$title = 'Commandes';
+$message = 'Retrouvez ici la liste de toutes vos commandes passées sur notre boutique. Vous pouvez consulter le détail, le statut et télécharger vos factures si besoin.';
+include __DIR__ . '/account-content-header.php';
+
 ?>
-
-<h1 class="dashboard-title">Commandes</h1>
-<div class="dashboard-message">
-	<p class="dashboard-desc">
-		Retrouvez ici la liste de toutes vos commandes passées sur notre boutique. Vous pouvez consulter le détail, le
-		statut et télécharger vos factures si besoin.
-	</p>
-</div>
-
 <?php do_action('woocommerce_before_account_orders', $has_orders); ?>
 
 <?php if ($has_orders): ?>
@@ -40,7 +35,8 @@ defined('ABSPATH') || exit;
 				<?php foreach (wc_get_account_orders_columns() as $column_id => $column_name): ?>
 					<th scope="col"
 						class="woocommerce-orders-table__header woocommerce-orders-table__header-<?php echo esc_attr($column_id); ?>">
-						<span class="nobr"><?php echo esc_html($column_name); ?></span></th>
+						<span class="nobr"><?php echo esc_html($column_name); ?></span>
+					</th>
 				<?php endforeach; ?>
 			</tr>
 		</thead>
