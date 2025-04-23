@@ -48,7 +48,7 @@ defined('ABSPATH') || exit;
 		<tbody>
 			<?php
 			foreach ($customer_orders->orders as $customer_order) {
-				$order = wc_get_order($customer_order); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+				$order = wc_get_order($customer_order);
 				$item_count = $order->get_item_count() - $order->get_item_count_refunded();
 				?>
 				<tr
@@ -83,7 +83,6 @@ defined('ABSPATH') || exit;
 
 							<?php elseif ('order-total' === $column_id): ?>
 								<?php
-								/* translators: 1: formatted order total 2: total order items */
 								echo wp_kses_post(sprintf(_n('%1$s for %2$s item', '%1$s for %2$s items', $item_count, 'woocommerce'), $order->get_formatted_order_total(), $item_count));
 								?>
 
@@ -92,10 +91,8 @@ defined('ABSPATH') || exit;
 								$actions = wc_get_account_orders_actions($order);
 
 								if (!empty($actions)) {
-									foreach ($actions as $key => $action) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+									foreach ($actions as $key => $action) {
 										if (empty($action['aria-label'])) {
-											// Generate the aria-label based on the action name.
-											/* translators: %1$s Action name, %2$s Order number. */
 											$action_aria_label = sprintf(__('%1$s order number %2$s', 'woocommerce'), $action['name'], $order->get_order_number());
 										} else {
 											$action_aria_label = $action['aria-label'];

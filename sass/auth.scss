@@ -522,6 +522,152 @@
         margin: 0;
       }
     }
+
+    .woocommerce-orders-table {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      background: #fff;
+      margin-bottom: 2rem;
+      border-collapse: separate;
+      border-spacing: 0;
+      table-layout: fixed;
+      overflow: hidden;
+      font-size: 1rem;
+      th,
+      td {
+        padding: 1rem 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid #f0f0f0;
+        word-break: break-word;
+      }
+      th {
+        background: #f7f7fa;
+        font-weight: 700;
+        color: #333;
+        border-bottom: 2px solid #e5e5e5;
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      display: block;
+      thead,
+      tbody,
+      tr,
+      th,
+      td {
+        display: block;
+        width: 100%;
+      }
+      thead {
+        display: none;
+      }
+      tr {
+        margin-bottom: 1.5rem;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        padding: 1rem 0.5rem;
+        width: 100%;
+      }
+      td {
+        border: none;
+        position: relative;
+        padding-left: 7rem;
+        min-height: 40px;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: end;
+        &:before {
+          position: absolute;
+          top: 0.8rem;
+          left: 1rem;
+          width: 45%;
+          white-space: nowrap;
+          color: #888;
+          font-weight: 600;
+          content: attr(data-title);
+        }
+      }
+      td[data-title="Actions"] {
+        &::before {
+          content: none;
+        }
+      }
+      td.woocommerce-orders-table__cell-order-actions {
+        text-align: right;
+        a.button,
+        .woocommerce-button.button {
+          margin-left: 0.5rem;
+          margin-right: 0;
+        }
+      }
+      @media (min-width: 768px) {
+        display: table;
+        thead,
+        tbody,
+        tr,
+        th,
+        td {
+          display: table-row-group;
+          width: auto;
+        }
+        thead {
+          display: table-header-group;
+        }
+        tr {
+          display: table-row;
+          margin-bottom: 0;
+          background: none;
+          border-radius: 0;
+          box-shadow: none;
+          padding: 0;
+        }
+        th,
+        td {
+          display: table-cell;
+          position: static;
+          padding-left: 1rem;
+          min-height: auto;
+          width: auto;
+          box-sizing: border-box;
+          border: 1px solid #f0f0f0;
+        }
+        td:before {
+          display: none;
+          content: none;
+        }
+      }
+      a.button,
+      .woocommerce-button.button {
+        border-radius: 4px;
+        padding: 0.5rem 1.2rem;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: background 0.2s;
+        margin-right: 0.5rem;
+        display: inline-block;
+        border: none;
+      }
+    }
+    .woocommerce-pagination {
+      margin-top: 1.5rem;
+      text-align: right;
+      a,
+      .woocommerce-button {
+        border-radius: 4px;
+        padding: 0.5rem 1.2rem;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: background 0.2s;
+        margin-right: 0.5rem;
+        display: inline-block;
+        border: none;
+      }
+    }
   }
   @media (min-width: 900px) {
     flex-direction: row;

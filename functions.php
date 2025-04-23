@@ -637,7 +637,8 @@ function bo_theme_customize_nav_colors()
 		input.tnp-submit,
 		.login-form-container button,
 		.register-step-btn,
-		.lost-password-container button {
+		.lost-password-container button,
+		.woocommerce-button {
 			background-color:
 				<?php echo esc_html($button_color); ?>
 			;
@@ -675,7 +676,8 @@ function bo_theme_customize_nav_colors()
 		input.tnp-submit:hover,
 		.login-form-container button:hover,
 		.register-step-btn:hover,
-		.lost-password-container button:hover {
+		.lost-password-container button:hover,
+		.woocommerce-button:hover {
 			background-color:
 				<?php echo esc_html($button_hover); ?>
 				!important;
