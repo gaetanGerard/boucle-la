@@ -356,8 +356,8 @@
   width: 100%;
 }
 
-@mixin profile-select-style() {
-  padding: 0.75rem;
+@mixin profile-select-style($padding: 0.75rem) {
+  padding: $padding;
   border: 1px solid #d1d5db;
   background-color: #fff;
   font-size: 0.95rem;

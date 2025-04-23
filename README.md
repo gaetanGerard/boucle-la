@@ -27,6 +27,8 @@
 - Régler problème de redirection pour les pages panier sur le home et ouverture du cart-panel
 - Page mot de passe oublié et success (Desktop & Responsive) -- FAIT --
 - Design de la page 404 (Desktop & Responsive) -- FAIT --
+- Pour le compte design de la page Tableau de bord/Commandes/Adresse/ détails du compte (Desktop & Responsive) -- FAIT --
+- Mis en place d'une conditions si aucune commande n'a jamais été passé pour montrer un design tout simple et une bouton pour aller sur le /
 
 # BUG
 - DE temps en temps lorsque je suis en invité sur le site si j'ajoute un produits et que je j'ajoute autant de produit aussi rapidement que possible je suis rediriger vers la page de login de l'admin

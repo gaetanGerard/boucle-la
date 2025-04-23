@@ -68,6 +68,17 @@ $col = 1;
 		$country = get_user_meta($customer_id, $name . '_country', true);
 		$fields['état/province'] = $state ? (isset(WC()->countries->get_states($country)[$state]) ? WC()->countries->get_states($country)[$state] : $state) : '';
 		$fields['pays'] = $country ? (isset(WC()->countries->countries[$country]) ? WC()->countries->countries[$country] : $country) : '';
+		// Ajout email et téléphone si adresse de facturation
+		if ($name === 'billing') {
+			$email = get_user_meta($customer_id, 'billing_email', true);
+			$phone = get_user_meta($customer_id, 'billing_phone', true);
+			if (!empty($email)) {
+				$fields['email'] = $email;
+			}
+			if (!empty($phone)) {
+				$fields['téléphone'] = $phone;
+			}
+		}
 		?>
 
 		<div class="address-card">
