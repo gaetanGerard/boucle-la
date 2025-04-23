@@ -5,17 +5,15 @@ if (!function_exists('WC') || !WC()->cart instanceof WC_Cart) {
 }
 ?>
 
-<div
-    class="cart-panel-body flex-1 flex flex-col items-center <?php echo WC()->cart->is_empty() ? 'justify-center empty-cart' : 'justify-start'; ?> space-y-4 w-full px-4">
+<div class="cart-panel-body<?php echo WC()->cart->is_empty() ? ' empty-cart' : ''; ?>">
     <?php if (WC()->cart->is_empty()): ?>
         <p><?php esc_html_e('Votre panier est actuellement vide.', 'bo-theme'); ?></p>
         <a href="<?php echo esc_url(wc_get_page_permalink('shop')); ?>" class="button btn-style">
             <?php esc_html_e('Aller à la boutique', 'bo-theme'); ?>
         </a>
     <?php else: ?>
-        <h2 class="text-center text-3xl font-bold">Votre panier</h2>
-
-        <ul class="cart-items w-full space-y-4">
+        <h2 class="cart-panel-title">Votre panier</h2>
+        <ul class="cart-items">
             <?php foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item):
                 $product = $cart_item['data'];
                 $product_name = $product->get_name();
@@ -31,51 +29,49 @@ if (!function_exists('WC') || !WC()->cart instanceof WC_Cart) {
                 $product_image = $product->get_image('thumbnail');
                 ?>
                 <li class="product-card" data-cart-item-key="<?php echo esc_attr($cart_item_key); ?>">
-
                     <div class="product-container">
                         <div class="product-img">
                             <?php echo $product_image; ?>
                         </div>
                         <div class="product-content">
                             <?php if ($product_permalink): ?>
-                                <a href="<?php echo esc_url($product_permalink); ?>"
-                                    class="text-black hover:underline block font-bold">
+                                <a href="<?php echo esc_url($product_permalink); ?>" class="product-link">
                                     <?php echo esc_html($product_name); ?>
                                 </a>
                             <?php else: ?>
-                                <span class="font-bold"><?php echo esc_html($product_name); ?></span>
+                                <span class="product-title"><?php echo esc_html($product_name); ?></span>
                             <?php endif; ?>
 
                             <?php if ($product->get_type() === 'gift_card'): ?>
                                 <?php
                                 if (isset($cart_item['gift_card_amount'])) {
-                                    echo '<div class="text-gray-400 block">Montant : ' . wc_price($cart_item['gift_card_amount']) . '</div>';
+                                    echo '<div class="product-meta">Montant : ' . wc_price($cart_item['gift_card_amount']) . '</div>';
                                 }
                                 if (isset($cart_item['gift_card_sender'])) {
-                                    echo '<div class="text-gray-400 block">Offert par : ' . esc_html($cart_item['gift_card_sender']) . '</div>';
+                                    echo '<div class="product-meta">Offert par : ' . esc_html($cart_item['gift_card_sender']) . '</div>';
                                 }
                                 if (isset($cart_item['gift_card_recipient'])) {
-                                    echo '<div class="text-gray-400 block">Destinataire : ' . esc_html($cart_item['gift_card_recipient']) . '</div>';
+                                    echo '<div class="product-meta">Destinataire : ' . esc_html($cart_item['gift_card_recipient']) . '</div>';
                                 }
                                 if (isset($cart_item['gift_card_email'])) {
-                                    echo '<div class="text-gray-400 block">Email : ' . esc_html($cart_item['gift_card_email']) . '</div>';
+                                    echo '<div class="product-meta">Email : ' . esc_html($cart_item['gift_card_email']) . '</div>';
                                 }
                                 if (isset($cart_item['gift_card_message']) && $cart_item['gift_card_message']) {
-                                    echo '<div class="text-gray-400 block">Message : ' . esc_html($cart_item['gift_card_message']) . '</div>';
+                                    echo '<div class="product-meta">Message : ' . esc_html($cart_item['gift_card_message']) . '</div>';
                                 }
                                 ?>
                             <?php else: ?>
-                                <span class="text-gray-400 block">
+                                <span class="product-meta">
                                     <?php echo $product_price; ?>
                                 </span>
                             <?php endif; ?>
-                            <span class="text-gray-400 block">
+                            <span class="product-meta">
                                 <?php esc_html_e('Quantité :', 'bo-theme'); ?>         <?php echo esc_html($product_quantity); ?>
                             </span>
                         </div>
                     </div>
 
-                    <div class="product-container-for-add-more-or-remove-qty w-1/4">
+                    <div class="product-container-for-add-more-or-remove-qty">
                         <button class="button btn-decrease-item-in-cart btn-product btn-product-qty" type="button">-</button>
                         <button class="button btn-increase-item-in-cart btn-product btn-product-qty" type="button">+</button>
                         <button class="button btn-remove-item-from-cart btn-product btn-product-delete" type="button">X</button>
@@ -84,7 +80,7 @@ if (!function_exists('WC') || !WC()->cart instanceof WC_Cart) {
             <?php endforeach; ?>
         </ul>
 
-        <div class="cart-total w-full mt-4 flex justify-between items-center pt-4">
+        <div class="cart-total">
             <span>
                 <?php esc_html_e('Total :', 'bo-theme'); ?>
                 <span class="custom-cart-total">

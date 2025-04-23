@@ -428,6 +428,12 @@ WooCommerce styles override
   width: 100%;
   padding: 1rem;
 }
+.cart-page-container .cart-panel-body .cart-panel-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
 .cart-page-container .cart-panel-body .cart-items {
   width: 100%;
   display: flex;
@@ -463,6 +469,21 @@ WooCommerce styles override
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+.cart-page-container .cart-panel-body .cart-items .product-card .product-container .product-content .product-link {
+  color: #151515;
+  text-decoration: none;
+  display: block;
+  font-weight: bold;
+}
+.cart-page-container .cart-panel-body .cart-items .product-card .product-container .product-content .product-link:hover {
+  text-decoration: underline;
+}
+.cart-page-container .cart-panel-body .cart-items .product-card .product-container .product-content .product-meta {
+  color: #888;
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
 }
 .cart-page-container .cart-panel-body .cart-items .product-card .product-container-for-add-more-or-remove-qty {
   width: 100%;
@@ -932,6 +953,12 @@ WooCommerce styles override
   width: 100%;
   padding: 1rem;
 }
+.cart-panel .cart-panel-body .cart-panel-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
 .cart-panel .cart-panel-body .cart-items {
   width: 100%;
   display: flex;
@@ -967,6 +994,21 @@ WooCommerce styles override
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+.cart-panel .cart-panel-body .cart-items .product-card .product-container .product-content .product-link {
+  color: #151515;
+  text-decoration: none;
+  display: block;
+  font-weight: bold;
+}
+.cart-panel .cart-panel-body .cart-items .product-card .product-container .product-content .product-link:hover {
+  text-decoration: underline;
+}
+.cart-panel .cart-panel-body .cart-items .product-card .product-container .product-content .product-meta {
+  color: #888;
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
 }
 .cart-panel .cart-panel-body .cart-items .product-card .product-container-for-add-more-or-remove-qty {
   width: 100%;
