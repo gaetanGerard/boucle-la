@@ -359,3 +359,95 @@
     }
   }
 }
+
+// Lost Password Page
+.lost-password-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .lost-password-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      place-content: center;
+      place-items: center;
+      width: 100%;
+      text-align: center;
+      gap: 1rem;
+
+      p {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+
+        label {
+          font-weight: 500;
+          font-size: 0.875rem;
+          margin-bottom: 0.25rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+          padding: 0.75rem;
+          border: 1px solid #d1d5db;
+          background-color: #fff;
+          font-size: 0.95rem;
+          color: #111;
+          border-radius: 4px;
+          margin-top: 0.25rem;
+          width: 100%;
+        }
+
+        select {
+          padding: 0.75rem;
+          border: 1px solid #d1d5db;
+          background-color: #fff;
+          font-size: 0.95rem;
+          color: #111;
+          border-radius: 4px;
+          margin-top: 0.25rem;
+          width: 100%;
+          transition: all 0.3s;
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+
+          &:focus {
+            outline: none;
+            border-color: #d9d9d9;
+          }
+        }
+      }
+
+      @media (min-width: 768px) {
+        width: 50%;
+      }
+    }
+  }
+
+  .confirm-msg-container {
+    width: 90%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    gap: 1rem;
+    a {
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      width: 50%;
+    }
+  }
+}

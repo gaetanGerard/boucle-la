@@ -15,13 +15,20 @@
  * @version 3.9.0
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
-wc_print_notice( esc_html__( 'Password reset email has been sent.', 'woocommerce' ) );
+wc_print_notice(esc_html__("L'email pour réinitialiser votre mot de passe a été envoyer.", 'woocommerce'));
 ?>
 
-<?php do_action( 'woocommerce_before_lost_password_confirmation_message' ); ?>
+<?php do_action('woocommerce_before_lost_password_confirmation_message'); ?>
+<div class="lost-password-page">
+    <div class="confirm-msg-container">
+        <p class="confirm-msg">
+            <?php echo esc_html(apply_filters('woocommerce_lost_password_confirmation_message', esc_html__("Un e-mail de réinitialisation de mot de passe a été envoyé à l'adresse e-mail enregistrée pour votre compte, mais il faudra peut-être quelques minutes pour qu'il apparaisse dans votre boîte de réception. Veuillez patienter au moins 10 minutes avant de tenter une nouvelle réinitialisation.", 'woocommerce'))); ?>
+        </p>
+        <a href="/" class="btn-style">Retour à l'accueil</a>
+    </div>
+</div>
 
-<p><?php echo esc_html( apply_filters( 'woocommerce_lost_password_confirmation_message', esc_html__( 'A password reset email has been sent to the email address on file for your account, but may take several minutes to show up in your inbox. Please wait at least 10 minutes before attempting another reset.', 'woocommerce' ) ) ); ?></p>
 
-<?php do_action( 'woocommerce_after_lost_password_confirmation_message' ); ?>
+<?php do_action('woocommerce_after_lost_password_confirmation_message'); ?>

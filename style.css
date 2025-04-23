@@ -1238,6 +1238,41 @@ body {
   }
 }
 
+.page-404-wrapper {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+.page-404-wrapper img {
+  max-width: 350px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 2rem;
+}
+.page-404-wrapper h1 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.page-404-wrapper .btn-home {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: #e6005a;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: background 0.2s;
+}
+.page-404-wrapper .btn-home:hover {
+  background: #b80046;
+}
+
 .site-header {
   background: #000;
   color: #fff;

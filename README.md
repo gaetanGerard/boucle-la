@@ -1,9 +1,4 @@
 # TODO
-
-# Page secondaire
-1. Design de la page mot de passe oublier
-2. Design de la page 404
-
 ## Checkout
 1) Design de la page de checkout voir woocommerce
 
@@ -27,6 +22,8 @@
 - Travail sur les fonctionnalité de la page mon-compte
 - Intégration du style pour la page de login/register
 - Régler problème de redirection pour les pages panier sur le home et ouverture du cart-panel
+- Page mot de passe oublié et success (Desktop & Responsive) -- FAIT --
+- Design de la page 404 (Desktop & Responsive) -- FAIT --
 
 # BUG
 - DE temps en temps lorsque je suis en invité sur le site si j'ajoute un produits et que je j'ajoute autant de produit aussi rapidement que possible je suis rediriger vers la page de login de l'admin
@@ -37,9 +34,15 @@ Nextend me permet d'utiliser des provider de login comme google, facebook (que j
 
 # Test Feature
 - Email & Newsletter : J'ai déployer un docker avec Mailhog pour tester en local l'envoie d'email et la souscription à la newsletter tout fonctionne comme je l'attends et les emails sont bien envoyer
+  **TEST FAIT** email bien envoyer, inscription à la newsletter fonctionnel
 - Panier : Test qu'il est possible de modifier les quantités du panier de manière asynchrone et de les enlever du panier si nécessaire
+  **TEST FAIT** Il est possible de modifier les auntité de produit et pour une carte cadeau de modifier le prix de la carte
 - Produit : Test des différents états produit (stock/rupture) veiller a ce que un produit ne puisse être ajouter au panier si en rupture
+ **TEST FAIT** Ajout au panier désactiver si rupture
 - Carte Cadeau : Test de soumission du formulaire pour ajouter une carte cadeau au panier, modifications du prix de la carte cadeau dans le panier
+  **TEST FAIT** Création d'une carte cadeau avec un code personnalisé et une validité
+- Login/Register : **TEST FAIT** il est possible de se connecter avec google ou avec email/password, il est également possible de créer un compte avec google ou avec le formulaire d'inscription
+-  Commandes: **TEST FAIT** vérifier qu'il est possible d'effectuer des commandes et vérifier que l'email avec le code cadeau est envoyer une fois le payement effectuer
 
 # TO IMPROVE
 
@@ -56,34 +59,19 @@ et plusieurs inconvénients
 1. je perdrais en flexibilité sur ce qui est possible de faire avec une solution construite
 2. je serais limité sur le design de la page et sur la solution actuel qui m'oblige a intégré le thème
 
--> Prochaines étapes : discuter avec le client sur la solution qu'elle préfère
+-> J'ai intégrer une solution développer à l'aide de l'IA pour créer une carte cadeau et envoyer des emails une fois le payement réceptionner
 
 ## Registration Page
 1. J'utilise un champs select avec les informations des pays ajouter en dur idéalement se serait plus interéssant d'avoir la possibilité d'ajouter les pays dans le select via le customiseur
 
 ## Améliorations a effectuer
 
-### Tailwind
+### Tailwind (DONE)
 - J'ai rencontrer un bug avec tailwind en switchant de page sur certaines les classes ne sont plus utilisé et le style devient cassé
 - j'ai du non seulement installer le plugin wordpress mais également importer les styles via le CDN
 
 **Solutions** :
-1. Je pourrais télécharger le fichier minifier de tailwind et le mettre dans un dossier d'assets
-2. Je devrais me débarasser de tout les importset plugins pour épurer le thème et ne conserver que les fichiers minifier
-3. Tailwind possède certains avantages non négligeable mais il serait également envisageable de le laisser tomber entièrement
-
-***Solutions que j'envisage*** J'envisage une solution Hybride donc j'aurais un fichier minifier de tailwind et un fichier scss Pourquoi ? car lorsque je développe le thème mettre le code scss est beaucoup plus simple facile et supprime tout problème d'import des classes tailwind, néanmoins lorsque je créer une page j'utilise tailwind dans l'éditeur gutenberg pour ajouter des styles facilement.
-
-
-**Problème principales** Avec cet solution je suis confronté à un très gros problème s'est celui que le client en modifiant les pages pourrais casser le thème (et le fera).
-
-Par conséquent cet solution ne doit être considérer que comme temporaire elle ne peux pas être maintenu car elle part du principe que l'utilisateur ne touchera à rien ce qui est un risque.
-
-#### Solution à long termes
-Pour moi la solution à long termes serait :
-
-1. De laisser tomber complètement tailwind au profit du scss
-2. de construire des blocks pour l'éditeur degutenberg qui utiliserais le style de bo_theme et par conséquent qui n'impliquerais plus de cutomiser le css dans l'éditeur gutenberg
+Tailwind à été complètement enlver du code ainsi que le plugin tailpress pour devenir indépendant à cet solution
 
 ## Intégrer beaucoup plus d'option dans le customiseur
 
@@ -101,3 +89,8 @@ L'objectifs étant d'uniformiser le style et de permettre à l'utilisateur de fa
 6. le menu mobile -> permettre à l'utilisateur de l'ouvrir à gauche ou à droite de l'écran (droite serait le défaut)
 7. les input de type texte/select textarea devrait adopter un style similaire au bouton ? ou alors devrait être configurable en suivant plusieurs principe de design comme par exemple le material design de google
 8. page à propos j'utilise des classes CSS about-block et about-block-img-centered il faudrait voire pour créer des blocs dédiés
+
+
+## Admin
+
+1. Ajouter la possibilité de customiser la page 404 natif texte et image
