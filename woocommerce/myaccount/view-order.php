@@ -19,7 +19,12 @@
 
 defined('ABSPATH') || exit;
 
-$notes = $order->get_customer_order_notes();
+// Remplacer la récupération des notes par toutes les notes de la commande
+if (method_exists($order, 'get_notes')) {
+	$notes = $order->get_notes();
+} else {
+	$notes = $order->get_customer_order_notes();
+}
 
 $order_number = $order->get_order_number();
 $order_date = $order->get_date_created();
@@ -63,27 +68,137 @@ $title = 'Commande N°' . $order_number;
 $status = $order_status;
 
 include __DIR__ . '/account-content-header.php';
-?>
-<?php if ($notes): ?>
-	<h2><?php esc_html_e('Order updates', 'woocommerce'); ?></h2>
-	<ol class="woocommerce-OrderUpdates commentlist notes">
-		<?php foreach ($notes as $note): ?>
-			<li class="woocommerce-OrderUpdate comment note">
-				<div class="woocommerce-OrderUpdate-inner comment_container">
-					<div class="woocommerce-OrderUpdate-text comment-text">
-						<p class="woocommerce-OrderUpdate-meta meta">
-							<?php echo date_i18n(esc_html__('l jS \o\f F Y, h:ia', 'woocommerce'), strtotime($note->comment_date)); ?>
-						</p>
-						<div class="woocommerce-OrderUpdate-description description">
-							<?php echo wpautop(wptexturize($note->comment_content)); ?>
-						</div>
-						<div class="clear"></div>
-					</div>
-					<div class="clear"></div>
-				</div>
-			</li>
-		<?php endforeach; ?>
-	</ol>
-<?php endif; ?>
 
-<?php do_action('woocommerce_view_order', $order_id); ?>
+?>
+<table
+	class="woocommerce-orders-table woocommerce-MyAccount-orders shop_table shop_table_responsive my_account_orders account-orders-table">
+	<thead>
+		<tr>
+			<th><?php esc_html_e('Produit', 'woocommerce'); ?></th>
+			<th><?php esc_html_e('Prix unitaire HT', 'woocommerce'); ?></th>
+			<th><?php esc_html_e('Quantité', 'woocommerce'); ?></th>
+			<th><?php esc_html_e('Total HT', 'woocommerce'); ?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach ($order->get_items() as $item_id => $item):
+			$product = $item->get_product();
+			$qty = $item->get_quantity();
+			$total_ht = $item->get_subtotal();
+			$prix_unitaire_ht = $qty > 0 ? $total_ht / $qty : 0;
+			?>
+			<tr>
+				<td data-title="<?php esc_attr_e('Produit', 'woocommerce'); ?>:">
+					<?php echo esc_html($item->get_name()); ?>
+				</td>
+				<td data-title="<?php esc_attr_e('Prix unitaire HT', 'woocommerce'); ?>:">
+					<?php echo wc_price($prix_unitaire_ht); ?>
+				</td>
+				<td data-title="<?php esc_attr_e('Quantité', 'woocommerce'); ?>:">
+					<?php echo esc_html($qty); ?>
+				</td>
+				<td data-title="<?php esc_attr_e('Total HT', 'woocommerce'); ?>:">
+					<?php echo wc_price($total_ht); ?>
+				</td>
+			</tr>
+		<?php endforeach; ?>
+	</tbody>
+</table>
+
+<?php
+$subtotal_ht = $order->get_subtotal();
+$shipping_total = $order->get_shipping_total();
+$total_ttc = $order->get_total();
+$taxes = $order->get_taxes();
+$tva_label = 'TVA';
+$tva_percent = null;
+$tva_amount = 0;
+if (!empty($taxes)) {
+	foreach ($taxes as $tax) {
+		if ($tax->get_rate_percent() !== '') {
+			$tva_percent = floatval($tax->get_rate_percent());
+			$tva_label = $tax->get_label();
+			$tva_amount += floatval($tax->get_tax_total()) + floatval($tax->get_shipping_tax_total());
+			break;
+		}
+	}
+}
+?>
+<table class="woocommerce-order-totals-table">
+	<tbody>
+		<tr>
+			<th><?php esc_html_e('Sous-total HT', 'woocommerce'); ?></th>
+			<td><?php echo wc_price($subtotal_ht); ?></td>
+		</tr>
+		<tr>
+			<th><?php esc_html_e('Frais de livraison', 'woocommerce'); ?></th>
+			<td>
+				<?php echo $shipping_total !== null ? wc_price($shipping_total) : '—'; ?>
+			</td>
+		</tr>
+		<tr>
+			<th>
+				<?php echo esc_html($tva_label); ?>
+				<?php if ($tva_percent !== null): ?>
+					(<?php echo esc_html(number_format($tva_percent, 2)); ?>%)
+				<?php endif; ?>
+			</th>
+			<td>
+				<?php echo $tva_amount ? wc_price($tva_amount) : '—'; ?>
+			</td>
+		</tr>
+		<tr>
+			<th><?php esc_html_e('Total TTC', 'woocommerce'); ?></th>
+			<td><strong><?php echo wc_price($total_ttc); ?></strong></td>
+		</tr>
+	</tbody>
+</table>
+
+<h2><?php esc_html_e('Historique de la commande', 'woocommerce'); ?></h2>
+<table
+	class="woocommerce-orders-table woocommerce-order-history-table shop_table shop_table_responsive my_account_orders account-orders-table">
+	<thead>
+		<tr>
+			<th><?php esc_html_e('Date', 'woocommerce'); ?></th>
+			<th><?php esc_html_e('Statut', 'woocommerce'); ?></th>
+			<th><?php esc_html_e('Message', 'woocommerce'); ?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td data-title="<?php esc_attr_e('Date', 'woocommerce'); ?>:">
+				<?php echo esc_html($order_date ? $order_date->date_i18n(get_option('date_format') . ' ' . get_option('time_format')) : ''); ?>
+			</td>
+			<td data-title="<?php esc_attr_e('Statut', 'woocommerce'); ?>:">
+				<?php esc_html_e('Création de la commande', 'woocommerce'); ?>
+			</td>
+			<td data-title="<?php esc_attr_e('Message', 'woocommerce'); ?>:">
+				<?php echo esc_html($order_status); ?>
+			</td>
+		</tr>
+		<?php if (!empty($notes)): ?>
+			<?php foreach ($notes as $note): ?>
+				<?php
+				$content = wptexturize($note->comment_content);
+				$is_status_change = false;
+				$status_label = '';
+				if (preg_match('/Statut de la commande changé de (.+) à (.+)/i', $content, $matches)) {
+					$is_status_change = true;
+					$status_label = sprintf(__('Changement de statut : %s', 'woocommerce'), $matches[2]);
+				}
+				?>
+				<tr>
+					<td data-title="<?php esc_attr_e('Date', 'woocommerce'); ?>:">
+						<?php echo date_i18n(get_option('date_format') . ' ' . get_option('time_format'), strtotime($note->comment_date)); ?>
+					</td>
+					<td data-title="<?php esc_attr_e('Statut / Mise à jour', 'woocommerce'); ?>:">
+						<?php echo $is_status_change ? esc_html($status_label) : esc_html__('Mise à jour', 'woocommerce'); ?>
+					</td>
+					<td data-title="<?php esc_attr_e('Message / Etat de la commande', 'woocommerce'); ?>:">
+						<?php echo wpautop($content); ?>
+					</td>
+				</tr>
+			<?php endforeach; ?>
+		<?php endif; ?>
+	</tbody>
+</table>

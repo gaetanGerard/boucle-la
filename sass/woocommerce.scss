@@ -685,8 +685,10 @@ $woocommerce__color-info: #3d9cd2;
   }
 
   .gift-card-full-description {
-    margin-top: 4rem;
-
+    h3 {
+      font-size: 1.5rem;
+      margin: 1rem 0;
+    }
     p {
       line-height: 1.6;
     }

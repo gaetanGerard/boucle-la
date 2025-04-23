@@ -1208,8 +1208,9 @@ WooCommerce styles override
   cursor: pointer;
   transition: background 0.3s ease;
 }
-.gift-card-container .gift-card-full-description {
-  margin-top: 4rem;
+.gift-card-container .gift-card-full-description h3 {
+  font-size: 1.5rem;
+  margin: 1rem 0;
 }
 .gift-card-container .gift-card-full-description p {
   line-height: 1.6;

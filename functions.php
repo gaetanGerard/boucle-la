@@ -641,7 +641,8 @@ function bo_theme_customize_nav_colors()
 		.woocommerce-button,
 		.address-edit-btn,
 		.account-form-btn,
-		.orders-empty-btn {
+		.orders-empty-btn,
+		#reorder-btn {
 			background-color:
 				<?php echo esc_html($button_color); ?>
 			;
@@ -683,7 +684,8 @@ function bo_theme_customize_nav_colors()
 		.woocommerce-button:hover,
 		.address-edit-btn:hover,
 		.account-form-btn:hover,
-		.orders-empty-btn:hover {
+		.orders-empty-btn:hover,
+		#reorder-btn:hover {
 			background-color:
 				<?php echo esc_html($button_hover); ?>
 				!important;
@@ -834,7 +836,7 @@ add_action('template_redirect', function () {
 
 // Remove the "Téléchargements" link from WooCommerce My Account navigation
 add_filter('woocommerce_account_menu_items', function ($items) {
-	unset($items['downloads']); // Supprime le lien "Téléchargements"
+	unset($items['downloads']);
 	return $items;
 });
 

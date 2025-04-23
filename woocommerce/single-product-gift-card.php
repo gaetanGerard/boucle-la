@@ -15,6 +15,10 @@ if (!$product)
         <div class="gift-card-info">
             <h1 class="gift-card-title"><?php the_title(); ?></h1>
 
+            <div class="gift-card-full-description">
+                <?php the_content(); ?>
+            </div>
+
             <div class="gift-card-short-description">
                 <?php echo apply_filters('woocommerce_short_description', $post->post_excerpt); ?>
             </div>
@@ -61,9 +65,5 @@ if (!$product)
                 <?php do_action('woocommerce_after_add_to_cart_button'); ?>
             </form>
         </div>
-    </div>
-
-    <div class="gift-card-full-description">
-        <?php the_content(); ?>
     </div>
 </div>
