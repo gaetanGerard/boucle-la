@@ -15,16 +15,20 @@
  * @version 9.3.0
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
+
+$title = 'Mes adresses';
+$message = 'Gérez ici vos adresses de facturation et de livraison. Ces informations seront utilisées par défaut lors de vos commandes.';
+include __DIR__ . '/account-content-header.php';
 
 $customer_id = get_current_user_id();
 
-if ( ! wc_ship_to_billing_address_only() && wc_shipping_enabled() ) {
+if (!wc_ship_to_billing_address_only() && wc_shipping_enabled()) {
 	$get_addresses = apply_filters(
 		'woocommerce_my_account_get_addresses',
 		array(
-			'billing'  => __( 'Billing address', 'woocommerce' ),
-			'shipping' => __( 'Shipping address', 'woocommerce' ),
+			'billing' => __('Billing address', 'woocommerce'),
+			'shipping' => __('Shipping address', 'woocommerce'),
 		),
 		$customer_id
 	);
@@ -32,62 +36,83 @@ if ( ! wc_ship_to_billing_address_only() && wc_shipping_enabled() ) {
 	$get_addresses = apply_filters(
 		'woocommerce_my_account_get_addresses',
 		array(
-			'billing' => __( 'Billing address', 'woocommerce' ),
+			'billing' => __('Billing address', 'woocommerce'),
 		),
 		$customer_id
 	);
 }
 
 $oldcol = 1;
-$col    = 1;
+$col = 1;
 ?>
 
-<p>
-	<?php echo apply_filters( 'woocommerce_my_account_my_address_description', esc_html__( 'The following addresses will be used on the checkout page by default.', 'woocommerce' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-</p>
+<?php if (!wc_ship_to_billing_address_only() && wc_shipping_enabled()): ?>
+	<div class="address-addresses-grid">
+	<?php endif; ?>
 
-<?php if ( ! wc_ship_to_billing_address_only() && wc_shipping_enabled() ) : ?>
-	<div class="u-columns woocommerce-Addresses col2-set addresses">
-<?php endif; ?>
+	<?php foreach ($get_addresses as $name => $address_title): ?>
+		<?php
+		$col = $col * -1;
+		$oldcol = $oldcol * -1;
+		$fields = array(
+			'nom' => get_user_meta($customer_id, $name . '_last_name', true),
+			'prénom' => get_user_meta($customer_id, $name . '_first_name', true),
+			'adresse' => get_user_meta($customer_id, $name . '_address_1', true),
+			'adresse (complément)' => get_user_meta($customer_id, $name . '_address_2', true),
+			'ville' => get_user_meta($customer_id, $name . '_city', true),
+			'code postal' => get_user_meta($customer_id, $name . '_postcode', true),
+			'état/province' => '',
+			'pays' => '',
+		);
+		$state = get_user_meta($customer_id, $name . '_state', true);
+		$country = get_user_meta($customer_id, $name . '_country', true);
+		$fields['état/province'] = $state ? (isset(WC()->countries->get_states($country)[$state]) ? WC()->countries->get_states($country)[$state] : $state) : '';
+		$fields['pays'] = $country ? (isset(WC()->countries->countries[$country]) ? WC()->countries->countries[$country] : $country) : '';
+		?>
 
-<?php foreach ( $get_addresses as $name => $address_title ) : ?>
-	<?php
-		$address = wc_get_account_formatted_address( $name );
-		$col     = $col * -1;
-		$oldcol  = $oldcol * -1;
-	?>
-
-	<div class="u-column<?php echo $col < 0 ? 1 : 2; ?> col-<?php echo $oldcol < 0 ? 1 : 2; ?> woocommerce-Address">
-		<header class="woocommerce-Address-title title">
-			<h2><?php echo esc_html( $address_title ); ?></h2>
-			<a href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', $name ) ); ?>" class="edit">
+		<div class="address-card">
+			<header class="address-card-header">
+				<h2 class="address-title"><?php echo esc_html($address_title); ?></h2>
+				<a href="<?php echo esc_url(wc_get_endpoint_url('edit-address', $name)); ?>"
+					class="address-edit-btn button">
+					<?php
+					$has_address = false;
+					foreach ($fields as $value) {
+						if (!empty($value)) {
+							$has_address = true;
+							break;
+						}
+					}
+					if ($has_address) {
+						printf(esc_html__('Edit %s', 'woocommerce'), esc_html($address_title));
+					} else {
+						if ($name === 'billing') {
+							echo esc_html__('Ajouter une adresse de facturation', 'bo-theme');
+						} elseif ($name === 'shipping') {
+							echo esc_html__('Ajouter une adresse de livraison', 'bo-theme');
+						} else {
+							echo esc_html__('Ajouter une adresse', 'bo-theme');
+						}
+					}
+					?>
+				</a>
+			</header>
+			<address class="address-content">
 				<?php
-					printf(
-						/* translators: %s: Address title */
-						$address ? esc_html__( 'Edit %s', 'woocommerce' ) : esc_html__( 'Add %s', 'woocommerce' ),
-						esc_html( $address_title )
-					);
+				echo '<div class="address-extra-fields">';
+				foreach ($fields as $label => $value) {
+					if (!empty($value)) {
+						echo '<div class="address-field-row"><strong>' . ucfirst($label) . ' :</strong><span>' . esc_html($value) . '</span></div>';
+					}
+				}
+				echo '</div>';
+				do_action('woocommerce_my_account_after_my_address', $name);
 				?>
-			</a>
-		</header>
-		<address>
-			<?php
-				echo $address ? wp_kses_post( $address ) : esc_html_e( 'You have not set up this type of address yet.', 'woocommerce' );
+			</address>
+		</div>
 
-				/**
-				 * Used to output content after core address fields.
-				 *
-				 * @param string $name Address type.
-				 * @since 8.7.0
-				 */
-				do_action( 'woocommerce_my_account_after_my_address', $name );
-			?>
-		</address>
+	<?php endforeach; ?>
+
+	<?php if (!wc_ship_to_billing_address_only() && wc_shipping_enabled()): ?>
 	</div>
-
-<?php endforeach; ?>
-
-<?php if ( ! wc_ship_to_billing_address_only() && wc_shipping_enabled() ) : ?>
-	</div>
-	<?php
-endif;
+<?php endif; ?>
