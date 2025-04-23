@@ -31,59 +31,55 @@
     <div id="page" class="site">
         <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'bo-theme'); ?></a>
 
-        <header id="masthead" class="site-header bg-black text-white fixed top-0 left-0 z-10 w-full">
-            <div class="px-4 flex items-center justify-between relative h-[100px] md:h-[120px] shadow-lg">
+        <header id="masthead" class="site-header">
+            <div class="header-inner">
                 <!-- Menu hamburger -->
-                <div class="lg:hidden flex text-white text-2xl order-3">
-                    <button id="shopping-cart-menu-toggle-desktop"
-                        class="bg-transparent border-none cursor-pointer text-white text-2xl ml-4 relative">
-                        <i class="fas fa-shopping-cart relative">
+                <div class="menu-hamburger">
+                    <button id="shopping-cart-menu-toggle-desktop" class="btn-icon">
+                        <i class="fas fa-shopping-cart">
                             <?php if (WC()->cart->get_cart_contents_count() > 0): ?>
-                                <span
-                                    class="cart-count absolute bottom-[-10px] right-[-10px] bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                                <span class="cart-count">
                                     <?php echo WC()->cart->get_cart_contents_count(); ?>
                                 </span>
                             <?php endif; ?>
                         </i>
                     </button>
-                    <button id="mobile-menu-toggle" class="bg-transparent border-none cursor-pointer text-white">
+                    <button id="mobile-menu-toggle" class="btn-icon">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
 
                 <!-- Left menu -->
-                <div class="hidden lg:flex flex-1 justify-end order-1">
+                <div class="header-left-menu">
                     <?php
                     wp_nav_menu(array(
                         'theme_location' => 'left-menu',
                         'menu_id' => 'left-menu',
                         'container' => false,
-                        'menu_class' => 'flex text-lg font-medium gap-10 m-0',
+                        'menu_class' => 'header-menu',
                     ));
                     ?>
                 </div>
 
                 <!-- Logo -->
-                <div class="site-branding mx-10 w-[80px] md:w-[100px] flex-shrink-0 order-2">
+                <div class="header-logo">
                     <?php the_custom_logo(); ?>
                 </div>
 
                 <!-- Right menu -->
-                <div class="hidden lg:flex flex-1 justify-start items-center order-3">
+                <div class="header-right-menu">
                     <?php
                     wp_nav_menu(array(
                         'theme_location' => 'right-menu',
                         'menu_id' => 'right-menu',
                         'container' => false,
-                        'menu_class' => 'flex text-lg font-medium gap-10 m-0',
+                        'menu_class' => 'header-menu',
                     ));
                     ?>
-                    <button id="shopping-cart-menu-toggle-mobile"
-                        class="bg-transparent border-none cursor-pointer text-white text-2xl ml-4 relative">
-                        <i class="fas fa-shopping-cart relative">
+                    <button id="shopping-cart-menu-toggle-mobile" class="btn-icon">
+                        <i class="fas fa-shopping-cart">
                             <?php if (WC()->cart->get_cart_contents_count() > 0): ?>
-                                <span
-                                    class="cart-count absolute bottom-[-10px] right-[-10px] bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                                <span class="cart-count">
                                     <?php echo WC()->cart->get_cart_contents_count(); ?>
                                 </span>
                             <?php endif; ?>
@@ -93,32 +89,29 @@
             </div>
 
             <!-- Mobile menu -->
-            <nav id="mobile-menu"
-                class="lg:hidden fixed inset-0 z-50 bg-black text-white transform -translate-x-full transition-transform duration-300 ease-in-out">
-                <div class="flex flex-col px-4 py-16 space-y-4">
-                    <div class="flex flex-row-reverse justify-between text-white text-2xl gap-4">
-                        <div class="site-branding mx-10 w-[80px] md:w-[100px] flex-shrink-0 order-2">
+            <nav id="mobile-menu" class="mobile-menu">
+                <div class="mobile-menu-inner">
+                    <div class="mobile-menu-header">
+                        <div class="header-logo">
                             <?php the_custom_logo(); ?>
                         </div>
-                        <button id="close-mobile-menu"
-                            class="text-white text-2xl self-end bg-transparent border-none cursor-pointer mb-4">
+                        <button id="close-mobile-menu" class="btn-icon btn-close-mobile-menu">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
-
-                    <div class="flex flex-col gap-4">
+                    <div class="mobile-menu-content">
                         <?php
                         wp_nav_menu(array(
                             'theme_location' => 'left-menu',
                             'menu_id' => 'mobile-left-menu',
                             'container' => false,
-                            'menu_class' => 'flex flex-col gap-4',
+                            'menu_class' => 'mobile-header-menu',
                         ));
                         wp_nav_menu(array(
                             'theme_location' => 'right-menu',
                             'menu_id' => 'mobile-right-menu',
                             'container' => false,
-                            'menu_class' => 'flex flex-col gap-4',
+                            'menu_class' => 'mobile-header-menu',
                         ));
                         ?>
                     </div>
@@ -127,12 +120,11 @@
         </header>
 
         <div id="cart-panel" class="cart-panel">
-            <div class="cart-panel-header flex flex-row-reverse justify-between text-white text-2xl gap-4 px-4 py-4">
-                <div class="site-branding mx-10 w-[80px] md:w-[100px] flex-shrink-0 order-2">
+            <div class="cart-panel-header">
+                <div class="header-logo">
                     <?php the_custom_logo(); ?>
                 </div>
-                <button id="close-cart-panel"
-                    class="text-black text-2xl self-center bg-transparent border-none cursor-pointer">
+                <button id="close-cart-panel" class="btn-icon btn-close-cart-panel">
                     <i class="fas fa-times"></i>
                 </button>
             </div>

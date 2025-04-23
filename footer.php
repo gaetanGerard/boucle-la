@@ -24,12 +24,12 @@
     // Toggle mobile menu visibility - START
     document.getElementById('mobile-menu-toggle').addEventListener('click', function () {
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenu.classList.toggle('-translate-x-full');
+        mobileMenu.classList.toggle('mobile-menu-open');
     });
 
     document.getElementById('close-mobile-menu').addEventListener('click', function () {
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenu.classList.add('-translate-x-full');
+        mobileMenu.classList.remove('mobile-menu-open');
     });
     // Toggle mobile menu visibility - END
 

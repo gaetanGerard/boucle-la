@@ -543,9 +543,6 @@ $woocommerce__color-info: #3d9cd2;
 // --------------------------------------------------
 // -------------------START--------------------------
 // --------------------------------------------------
-.cart-panel-header {
-  padding-top: 3rem !important;
-}
 .cart-panel {
   position: fixed;
   inset: 0;
@@ -559,13 +556,7 @@ $woocommerce__color-info: #3d9cd2;
   overflow-y: auto;
 
   .cart-panel-header {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem;
-    font-size: 1.5rem;
-    color: white;
+    @include panel-header(black, 4rem);
   }
 
   .cart-panel-body {
@@ -581,8 +572,8 @@ $woocommerce__color-info: #3d9cd2;
 }
 .cart-count {
   position: absolute;
-  right: -0.3rem;
-  bottom: -0.3rem;
+  right: 4px;
+  bottom: 4px;
   background-color: $woocommerce__color-error;
   color: #fff;
   border-radius: 9999px;

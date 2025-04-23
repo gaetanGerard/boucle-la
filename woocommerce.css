@@ -672,7 +672,7 @@ WooCommerce styles override
   color: #666 !important;
   cursor: not-allowed !important;
   box-shadow: none !important;
-  pointer-events: none;
+  pointer-events: none !important;
   transition: none !important;
 }
 .csp-single-product-container .csp-product-info .single_add_to_cart_button {
@@ -866,10 +866,6 @@ WooCommerce styles override
   flex: 1;
 }
 
-.cart-panel-header {
-  padding-top: 3rem !important;
-}
-
 .cart-panel {
   position: fixed;
   inset: 0;
@@ -884,12 +880,47 @@ WooCommerce styles override
 }
 .cart-panel .cart-panel-header {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  color: inherit;
+  font-size: 2rem;
   gap: 1rem;
-  padding: 1rem;
-  font-size: 1.5rem;
-  color: white;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 4rem;
+  padding-bottom: 1rem;
+}
+.cart-panel .cart-panel-header .header-logo {
+  width: 80px;
+  margin-left: 0;
+  margin-right: 0;
+  flex-shrink: 0;
+}
+.cart-panel .cart-panel-header .header-logo img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+@media (min-width: 768px) {
+  .cart-panel .cart-panel-header .header-logo {
+    width: 100px;
+  }
+}
+.cart-panel .cart-panel-header .btn-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 2rem;
+  margin-left: 0.5rem;
+  margin-right: 0;
+  position: relative;
+  padding: 0.25rem 0.5rem;
+  color: black;
+  margin-left: 0;
+  margin-right: 0;
 }
 .cart-panel .cart-panel-body {
   flex: 1;
@@ -1026,8 +1057,8 @@ WooCommerce styles override
 
 .cart-count {
   position: absolute;
-  right: -0.3rem;
-  bottom: -0.3rem;
+  right: 4px;
+  bottom: 4px;
   background-color: #e2401c;
   color: #fff;
   border-radius: 9999px;

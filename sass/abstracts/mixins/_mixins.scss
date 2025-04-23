@@ -1,3 +1,5 @@
+@import "../variables/variables";
+
 // Center block
 @mixin center-block {
   display: block;
@@ -57,7 +59,7 @@
   color: #666 !important;
   cursor: not-allowed !important;
   box-shadow: none !important;
-  pointer-events: none;
+  pointer-events: none !important;
   transition: none !important;
 }
 
@@ -264,5 +266,58 @@
     font-size: 1.125rem;
     font-weight: bold;
     color: black;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin header-btn-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: $header-color;
+  font-size: 2rem;
+  margin-left: 0.5rem;
+  margin-right: 0;
+  position: relative;
+  padding: 0.25rem 0.5rem;
+}
+
+@mixin panel-header($btn-color, $padding-top: 1rem) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: inherit;
+  font-size: 2rem;
+  gap: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: $padding-top;
+  padding-bottom: 1rem;
+  .header-logo {
+    width: $logo-width;
+    margin-left: 0;
+    margin-right: 0;
+    flex-shrink: 0;
+    img {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+    }
+    @media (min-width: 768px) {
+      width: $logo-width-md;
+    }
+  }
+  .btn-icon {
+    @include header-btn-icon;
+    color: $btn-color;
+    margin-left: 0;
+    margin-right: 0;
   }
 }

@@ -51,7 +51,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 --------------------------------------------------------------*/
 
 // Import variables and mixins.
+@import "abstracts/variables/variables";
 @import "abstracts/abstracts";
+@import "abstracts/mixins/mixins";
 
 /*--------------------------------------------------------------
 # Generic
@@ -235,3 +237,175 @@ body {
     }
   }
 }
+
+// Header styles
+//
+// --------------------------------------------------
+// -------------------START--------------------------
+// --------------------------------------------------
+.site-header {
+  background: $header-bg;
+  color: $header-color;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $header-z;
+  width: 100%;
+  .header-inner {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    height: $header-height;
+    box-shadow: $header-shadow;
+    @media (min-width: 768px) {
+      height: $header-height-md;
+    }
+    .menu-hamburger {
+      display: flex;
+      color: $header-color;
+      font-size: 2rem;
+      order: 3;
+      @media (min-width: 1024px) {
+        display: none;
+      }
+      .btn-icon {
+        @include header-btn-icon;
+      }
+    }
+    .header-left-menu {
+      display: none;
+      flex: 1;
+      justify-content: flex-end;
+      order: 1;
+      @media (min-width: 1024px) {
+        display: flex;
+      }
+      .header-menu {
+        display: flex;
+        font-size: $menu-font-size;
+        font-weight: $menu-font-weight;
+        gap: $menu-gap;
+        margin: 0;
+      }
+    }
+    .header-logo {
+      margin-left: 2.5rem;
+      margin-right: 2.5rem;
+      width: $logo-width;
+      flex-shrink: 0;
+      order: 2;
+      @media (min-width: 768px) {
+        width: $logo-width-md;
+      }
+    }
+    .header-right-menu {
+      display: none;
+      flex: 1;
+      justify-content: flex-start;
+      align-items: center;
+      order: 3;
+      @media (min-width: 1024px) {
+        display: flex;
+      }
+      .header-menu {
+        display: flex;
+        font-size: $menu-font-size;
+        font-weight: $menu-font-weight;
+        gap: $menu-gap;
+        margin: 0;
+      }
+      .btn-icon {
+        @include header-btn-icon;
+      }
+    }
+  }
+}
+
+.mobile-menu {
+  display: none;
+  @media (max-width: 1023px) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: $mobile-menu-z;
+    background: $header-bg;
+    color: $header-color;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  &.mobile-menu-open {
+    transform: translateX(0);
+  }
+  .mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    gap: 1rem;
+    .mobile-menu-header {
+      @include panel-header(white);
+    }
+    .mobile-menu-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      .mobile-header-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  }
+}
+
+.btn-close-mobile-menu,
+.btn-close-cart-panel {
+  font-size: 2rem;
+  align-self: end;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.btn-close-cart-panel {
+  color: black;
+}
+
+.cart-panel-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: $header-color;
+  font-size: 2rem;
+  gap: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  .header-logo {
+    width: $logo-width;
+    margin-left: 0;
+    margin-right: 0;
+    flex-shrink: 0;
+    img {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+    }
+    @media (min-width: 768px) {
+      width: $logo-width-md;
+    }
+  }
+}
+
+// --------------------------------------------------
+// -------------------END----------------------------
+// --------------------------------------------------
