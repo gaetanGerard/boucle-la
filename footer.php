@@ -227,6 +227,7 @@
         });
     });
 
+    // Button to handle password visibility
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.toggle-password-visibility').forEach(function (btn) {
             btn.addEventListener('click', function () {

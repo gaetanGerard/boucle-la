@@ -5,9 +5,12 @@
 ## Email
 1. Créer un template d'email pour la newsletter dans le même style que celui pour les commandes
 
-## Page compte
-1) Intégrer le style à la page du compte
-2) Design d'une page pour suivi commandes
+## Page to Design
+1) form-add-payment-method -> pourrais être utiliser a vérifier dans quel cas de figure
+2) form-reset-password -> à vérifier dans quel cas de figure pourrais être utiliser
+3) payment-methods -> à vérifier dans quel cas de figure serait utiliser
+4) Observer les fichier dans woocommerce/checkout pour voire les fichier qui pourrait être utiliser sur le site
+5) lorsque je valide une commande je vais sur plusieurs fichier comme par exemple woocommerce/checkout/thankyou.php
 
 # DONE
 
@@ -29,6 +32,7 @@
 - Design de la page 404 (Desktop & Responsive) -- FAIT --
 - Pour le compte design de la page Tableau de bord/Commandes/Adresse/ détails du compte (Desktop & Responsive) -- FAIT --
 - Mis en place d'une conditions si aucune commande n'a jamais été passé pour montrer un design tout simple et une bouton pour aller sur le /
+- Design de toutes les pages en lien direct avec le compte utilisateurs, Design de la page review-order  (Desktop & Responsive) -- FAIT --
 
 # BUG
 - DE temps en temps lorsque je suis en invité sur le site si j'ajoute un produits et que je j'ajoute autant de produit aussi rapidement que possible je suis rediriger vers la page de login de l'admin

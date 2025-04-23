@@ -520,8 +520,13 @@
           align-items: flex-start;
           gap: 0.2rem;
           .ach-status-chip {
-            margin-left: 0;
-            margin-top: 0.5rem;
+            margin: 0 auto;
+          }
+        }
+        @media (min-width: 768px) {
+          .ach-status-chip {
+            margin-left: 1rem;
+            margin-bottom: 1rem;
           }
         }
       }
@@ -552,9 +557,9 @@
       display: inline-block;
       min-width: 90px;
       text-align: center;
-      margin-left: 1rem;
-      margin-top: 0.5rem;
+      margin: 0 auto;
       @media (min-width: 600px) {
+        margin-left: 1rem;
         margin-top: 0;
       }
     }
@@ -808,6 +813,9 @@
         flex-direction: row;
         gap: 2rem;
       }
+    }
+    .view-order-address-addresses-grid {
+      width: fit-content;
     }
     .address-card {
       background: #f7f7fa;

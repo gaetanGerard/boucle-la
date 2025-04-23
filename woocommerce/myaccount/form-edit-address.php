@@ -37,12 +37,10 @@ do_action('woocommerce_before_edit_account_address_form'); ?>
 				<div class="woocommerce-address-fields__field-wrapper">
 					<?php
 					foreach ($address as $key => $field) {
-						// Ajout des classes pour harmoniser le style avec form-edit-account.php
 						if (!isset($field['class']))
 							$field['class'] = array();
 						$field['class'][] = 'woocommerce-form-row';
 						$field['input_class'][] = 'woocommerce-Input';
-						// Appliquer le style custom au select si le type est défini et vaut 'select'
 						if (isset($field['type']) && $field['type'] === 'select') {
 							$field['input_class'][] = 'profile-select-style';
 						}
