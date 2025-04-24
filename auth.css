@@ -562,6 +562,7 @@
   font-size: 1rem;
   margin: 0;
 }
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods,
 .my-account-wrapper .my-account-content .woocommerce-orders-table {
   width: 100%;
   border-radius: 10px;
@@ -575,6 +576,8 @@
   font-size: 1rem;
   display: block;
 }
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods th,
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods td,
 .my-account-wrapper .my-account-content .woocommerce-orders-table th,
 .my-account-wrapper .my-account-content .woocommerce-orders-table td {
   padding: 1rem 0.75rem;
@@ -582,15 +585,22 @@
   border-bottom: 1px solid #f0f0f0;
   word-break: break-word;
 }
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods th,
 .my-account-wrapper .my-account-content .woocommerce-orders-table th {
   background: #f7f7fa;
   font-weight: 700;
   color: #333;
   border-bottom: 2px solid #e5e5e5;
 }
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods tr:last-child td,
 .my-account-wrapper .my-account-content .woocommerce-orders-table tr:last-child td {
   border-bottom: none;
 }
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods thead,
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods tbody,
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods tr,
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods th,
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods td,
 .my-account-wrapper .my-account-content .woocommerce-orders-table thead,
 .my-account-wrapper .my-account-content .woocommerce-orders-table tbody,
 .my-account-wrapper .my-account-content .woocommerce-orders-table tr,
@@ -599,9 +609,11 @@
   display: block;
   width: 100%;
 }
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods thead,
 .my-account-wrapper .my-account-content .woocommerce-orders-table thead {
   display: none;
 }
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods tr,
 .my-account-wrapper .my-account-content .woocommerce-orders-table tr {
   margin-bottom: 1.5rem;
   background: #fff;
@@ -610,6 +622,7 @@
   padding: 1rem 0.5rem;
   width: 100%;
 }
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods td,
 .my-account-wrapper .my-account-content .woocommerce-orders-table td {
   border: none;
   position: relative;
@@ -622,11 +635,13 @@
   text-align: right;
 }
 @media (min-width: 768px) {
+  .my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods td,
   .my-account-wrapper .my-account-content .woocommerce-orders-table td {
     padding-left: 1rem;
     text-align: left;
   }
 }
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods td:before,
 .my-account-wrapper .my-account-content .woocommerce-orders-table td:before {
   position: absolute;
   top: 0.8rem;
@@ -638,21 +653,31 @@
   content: attr(data-title);
   display: flex;
 }
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods td[data-title=Actions]::before,
 .my-account-wrapper .my-account-content .woocommerce-orders-table td[data-title=Actions]::before {
   content: none;
 }
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods td.woocommerce-orders-table__cell-order-actions,
 .my-account-wrapper .my-account-content .woocommerce-orders-table td.woocommerce-orders-table__cell-order-actions {
   text-align: right;
 }
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods td.woocommerce-orders-table__cell-order-actions a.button,
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods td.woocommerce-orders-table__cell-order-actions .woocommerce-button.button,
 .my-account-wrapper .my-account-content .woocommerce-orders-table td.woocommerce-orders-table__cell-order-actions a.button,
 .my-account-wrapper .my-account-content .woocommerce-orders-table td.woocommerce-orders-table__cell-order-actions .woocommerce-button.button {
   margin-left: 0.5rem;
   margin-right: 0;
 }
 @media (min-width: 768px) {
+  .my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods,
   .my-account-wrapper .my-account-content .woocommerce-orders-table {
     display: table;
   }
+  .my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods thead,
+  .my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods tbody,
+  .my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods tr,
+  .my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods th,
+  .my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods td,
   .my-account-wrapper .my-account-content .woocommerce-orders-table thead,
   .my-account-wrapper .my-account-content .woocommerce-orders-table tbody,
   .my-account-wrapper .my-account-content .woocommerce-orders-table tr,
@@ -661,9 +686,11 @@
     display: table-row-group;
     width: auto;
   }
+  .my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods thead,
   .my-account-wrapper .my-account-content .woocommerce-orders-table thead {
     display: table-header-group;
   }
+  .my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods tr,
   .my-account-wrapper .my-account-content .woocommerce-orders-table tr {
     display: table-row;
     margin-bottom: 0;
@@ -672,6 +699,8 @@
     box-shadow: none;
     padding: 0;
   }
+  .my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods th,
+  .my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods td,
   .my-account-wrapper .my-account-content .woocommerce-orders-table th,
   .my-account-wrapper .my-account-content .woocommerce-orders-table td {
     display: table-cell;
@@ -682,11 +711,14 @@
     box-sizing: border-box;
     border: 1px solid #f0f0f0;
   }
+  .my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods td:before,
   .my-account-wrapper .my-account-content .woocommerce-orders-table td:before {
     display: none;
     content: none;
   }
 }
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods a.button,
+.my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods .woocommerce-button.button,
 .my-account-wrapper .my-account-content .woocommerce-orders-table a.button,
 .my-account-wrapper .my-account-content .woocommerce-orders-table .woocommerce-button.button {
   border-radius: 4px;
@@ -1008,6 +1040,33 @@
     padding: 1rem;
     min-height: auto;
   }
+}
+
+#add_payment_method {
+  background: #f7f7fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+#add_payment_method .woocommerce-Payment ul.woocommerce-PaymentMethods li {
+  padding: 1rem 0;
+}
+#add_payment_method .woocommerce-Payment ul.woocommerce-PaymentMethods li .input-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+#add_payment_method .woocommerce-Payment ul.woocommerce-PaymentMethods li .input-container input[type=radio] {
+  accent-color: #e6005a;
+}
+#add_payment_method .woocommerce-Payment ul.woocommerce-PaymentMethods li .input-container label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
 /*# sourceMappingURL=auth.css.map */

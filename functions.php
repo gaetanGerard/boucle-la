@@ -538,6 +538,14 @@ add_action('template_redirect', function () {
 	}
 });
 
+// Redirect unloggedin usert from /mon-compte to /login
+add_action('template_redirect', function () {
+	if (is_account_page() && !is_user_logged_in()) {
+		wp_redirect(site_url('/login'));
+		exit;
+	}
+});
+
 // Dynamically set login/register background image from first image in page content (if present)
 add_action('wp_head', function () {
 	if (is_page('login')) {
@@ -847,3 +855,18 @@ add_filter('gettext', function ($translated, $text, $domain) {
 	}
 	return $translated;
 }, 20, 3);
+
+
+// Force translate of a message when user order and create an account
+add_filter('gettext', 'custom_translate_temp_password_notice_with_link', 20, 3);
+
+function custom_translate_temp_password_notice_with_link($translated_text, $untranslated_text, $domain)
+{
+	if (strpos($untranslated_text, 'is using a temporary password') !== false) {
+		$account_url = esc_url(site_url('/mon-compte/edit-account'));
+
+		$translated_text = 'Votre compte sur ' . get_bloginfo('name') . ' utilise un mot de passe temporaire. Nous vous avons envoyé un lien pour le modifier. <a href="' . $account_url . '">Gérer votre compte</a>';
+	}
+
+	return $translated_text;
+}

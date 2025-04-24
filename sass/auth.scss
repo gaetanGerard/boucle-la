@@ -609,6 +609,7 @@
       }
     }
 
+    table.woocommerce-MyAccount-paymentMethods,
     .woocommerce-orders-table {
       width: 100%;
       border-radius: 10px;
@@ -1027,6 +1028,38 @@
     .my-account-content {
       padding: 1rem;
       min-height: auto;
+    }
+  }
+}
+
+// Payement Methods
+#add_payment_method {
+  background: #f7f7fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  .woocommerce-Payment {
+    ul.woocommerce-PaymentMethods {
+      li {
+        padding: 1rem 0;
+        .input-container {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-bottom: 1rem;
+          input[type="radio"] {
+            accent-color: #e6005a;
+          }
+          label {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+          }
+        }
+      }
     }
   }
 }

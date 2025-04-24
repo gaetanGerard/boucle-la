@@ -1595,8 +1595,26 @@ p.stars.selected a:not(.active)::before {
 /**
  * Notices
  */
+.woocommerce-info {
+  background-color: #3d9cd2;
+  color: white;
+  border: 1px solid rgb(41.4225941423, 128.870292887, 178.5774058577);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  text-align: left;
+  width: fit-content;
+}
+.woocommerce-info a {
+  color: rgb(22.2175732218, 69.1213389121, 95.7824267782);
+  text-decoration: underline;
+  font-weight: bold;
+}
+.woocommerce-info a:hover {
+  color: rgb(3.0125523013, 9.3723849372, 12.9874476987);
+}
+
 .woocommerce-message,
-.woocommerce-info,
 .woocommerce-error,
 .woocommerce-noreviews,
 p.no-comments {
@@ -1604,7 +1622,6 @@ p.no-comments {
   clear: both;
 }
 
-.woocommerce-info,
 .woocommerce-noreviews,
 p.no-comments {
   background-color: #3d9cd2;
@@ -1627,8 +1644,8 @@ p.no-comments {
 
 @media screen and (min-width: 48em) {
   /**
-   * Header cart
-   */
+  * Header cart
+  */
   .site-header-cart .widget_shopping_cart {
     position: absolute;
     top: 100%;
