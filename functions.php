@@ -520,7 +520,7 @@ function bo_theme_multi_step_register_form_shortcode()
 }
 add_shortcode('multi_step_register_form', 'bo_theme_multi_step_register_form_shortcode');
 
-// Redirige les utilisateurs connectés qui tentent d'accéder à /login ou /register vers l'accueil
+// Redirect logged in  user to /login or /register to home
 add_action('template_redirect', function () {
 	if (is_user_logged_in()) {
 		$login_url = untrailingslashit(site_url('/login'));
@@ -538,7 +538,7 @@ add_action('template_redirect', function () {
 	}
 });
 
-// Redirige les utilisateurs non connectés de /mon-compte vers /login sauf pour lost-password et reset-password
+// Redirect non loggedin user from /mon-compte to /login except for lost-password and reset-password
 add_action('template_redirect', function () {
 	if (is_account_page() && !is_user_logged_in()) {
 		$request_uri = $_SERVER['REQUEST_URI'];
@@ -553,14 +553,6 @@ add_action('template_redirect', function () {
 		exit;
 	}
 });
-
-// // Redirect unloggedin usert from /mon-compte to /login
-// add_action('template_redirect', function () {
-// 	if (is_account_page() && !is_user_logged_in()) {
-// 		wp_redirect(site_url('/login'));
-// 		exit;
-// 	}
-// });
 
 // Dynamically set login/register background image from first image in page content (if present)
 add_action('wp_head', function () {

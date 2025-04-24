@@ -247,6 +247,72 @@
             });
         });
     });
+
+    // Anonymous function to handle translation of WooCommerce blocks text (Checkout so far)
+    (function () {
+        function translateBlocksText(node) {
+            document.querySelectorAll('button, a').forEach(function (el) {
+                if (el.textContent.trim() === 'Add a coupon') {
+                    el.textContent = 'Ajouter un code promo';
+                }
+            });
+            document.querySelectorAll('*').forEach(function (el) {
+                if (el.textContent.trim() === 'Delivery') {
+                    el.textContent = 'Livraison';
+                }
+            });
+            document.querySelectorAll('*').forEach(function (el) {
+                if (el.textContent.trim() === 'You are currently checking out as a guest.') {
+                    el.textContent = 'Vous êtes actuellement en train de passer à la caisse en tant qu\'invité.';
+                }
+            });
+            document.querySelectorAll('*').forEach(function (el) {
+                if (el.textContent.trim() === 'Enter the address where you want your order delivered.') {
+                    el.textContent = 'Entrez l\'adresse où vous souhaitez que votre commande soit livrée.';
+                }
+            });
+            document.querySelectorAll('.wc-block-components-checkbox__label').forEach(function (el) {
+                if (el.textContent.trim() === 'Create an account with Boucle-la') {
+                    el.textContent = 'Créez un compte avec Boucle-la';
+                }
+            });
+            document.querySelectorAll('.wc-block-components-checkbox__label div').forEach(function (el) {
+                if (el.textContent.trim() === 'I would like to receive exclusive emails with discounts and product information') {
+                    el.textContent = 'J’aimerais recevoir des e-mails exclusifs avec des réductions et des informations sur les produits';
+                }
+            });
+            document.querySelectorAll('.wc-block-components-address-form__address_2-toggle').forEach(function (el) {
+                if (el.textContent.trim() === '+ Add appartement, suite, etc.') {
+                    el.textContent = '+ Ajouter appartement, suite, etc.';
+                }
+            });
+            document.querySelectorAll('.wc-block-checkout__login-prompt').forEach(function (el) {
+                if (el.textContent.trim() === 'Identification') {
+                    el.textContent = 'S\'identifier';
+                }
+            });
+            document.querySelectorAll('.wc-block-components-panel__button').forEach(function (el) {
+                el.childNodes.forEach(function (node) {
+                    if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() === 'Add a coupon') {
+                        node.textContent = 'Ajouter un coupon';
+                    }
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            translateBlocksText(document.body);
+        });
+
+        const observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                translateBlocksText(mutation.target);
+            });
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+    })();
+
 </script>
 
 <?php wp_footer(); ?>
