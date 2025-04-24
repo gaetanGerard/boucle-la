@@ -609,7 +609,8 @@ function bo_theme_customize_nav_colors()
 
 		.product-content a,
 		.category-link,
-		.csp-product-categories a {
+		.csp-product-categories a,
+		.wc-block-checkout__actions_row a {
 			color:
 				<?php echo esc_attr($nav_link_color_light); ?>
 			;
@@ -620,7 +621,10 @@ function bo_theme_customize_nav_colors()
 		#menu-footer-menu li a:hover,
 		.product-content a:hover,
 		.category-link:hover,
-		.csp-product-categories a:hover {
+		.csp-product-categories a:hover,
+		.wc-block-checkout__login-prompt:hover,
+		.wc-block-components-checkbox__label a:hover,
+		.wc-block-checkout__actions_row a:hover {
 			color:
 				<?php echo esc_attr($nav_link_hover_color); ?>
 				!important;
@@ -658,7 +662,9 @@ function bo_theme_customize_nav_colors()
 		.address-edit-btn,
 		.account-form-btn,
 		.orders-empty-btn,
-		#reorder-btn {
+		#reorder-btn,
+		.wc-block-checkout__actions_row button,
+		#wc-block-components-totals-coupon__form button {
 			background-color:
 				<?php echo esc_html($button_color); ?>
 			;
@@ -701,7 +707,9 @@ function bo_theme_customize_nav_colors()
 		.address-edit-btn:hover,
 		.account-form-btn:hover,
 		.orders-empty-btn:hover,
-		#reorder-btn:hover {
+		#reorder-btn:hover,
+		.wc-block-checkout__actions_row button:hover,
+		#wc-block-components-totals-coupon__form button:hover {
 			background-color:
 				<?php echo esc_html($button_hover); ?>
 				!important;

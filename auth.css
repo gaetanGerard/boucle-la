@@ -1144,7 +1144,12 @@
 .boucle-la-checkout {
   padding: 150px 5% !important;
 }
-.boucle-la-checkout #contact-fields {
+.boucle-la-checkout #contact-fields,
+.boucle-la-checkout #shipping-fields,
+.boucle-la-checkout #billing-fields,
+.boucle-la-checkout #shipping-option,
+.boucle-la-checkout #payment-method,
+.boucle-la-checkout .wp-block-woocommerce-checkout-order-summary-block {
   background: #f7f7fa;
   border-radius: 10px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
@@ -1155,6 +1160,39 @@
   display: flex;
   flex-direction: column;
   justify-content: start;
+}
+.boucle-la-checkout #contact-fields .wc-block-components-radio-control-accordion-option,
+.boucle-la-checkout #contact-fields .wc-block-components-shipping-rates-control__package,
+.boucle-la-checkout #contact-fields .wc-block-components-radio-control,
+.boucle-la-checkout #contact-fields .wc-block-components-address-card,
+.boucle-la-checkout #shipping-fields .wc-block-components-radio-control-accordion-option,
+.boucle-la-checkout #shipping-fields .wc-block-components-shipping-rates-control__package,
+.boucle-la-checkout #shipping-fields .wc-block-components-radio-control,
+.boucle-la-checkout #shipping-fields .wc-block-components-address-card,
+.boucle-la-checkout #billing-fields .wc-block-components-radio-control-accordion-option,
+.boucle-la-checkout #billing-fields .wc-block-components-shipping-rates-control__package,
+.boucle-la-checkout #billing-fields .wc-block-components-radio-control,
+.boucle-la-checkout #billing-fields .wc-block-components-address-card,
+.boucle-la-checkout #shipping-option .wc-block-components-radio-control-accordion-option,
+.boucle-la-checkout #shipping-option .wc-block-components-shipping-rates-control__package,
+.boucle-la-checkout #shipping-option .wc-block-components-radio-control,
+.boucle-la-checkout #shipping-option .wc-block-components-address-card,
+.boucle-la-checkout #payment-method .wc-block-components-radio-control-accordion-option,
+.boucle-la-checkout #payment-method .wc-block-components-shipping-rates-control__package,
+.boucle-la-checkout #payment-method .wc-block-components-radio-control,
+.boucle-la-checkout #payment-method .wc-block-components-address-card,
+.boucle-la-checkout .wp-block-woocommerce-checkout-order-summary-block .wc-block-components-radio-control-accordion-option,
+.boucle-la-checkout .wp-block-woocommerce-checkout-order-summary-block .wc-block-components-shipping-rates-control__package,
+.boucle-la-checkout .wp-block-woocommerce-checkout-order-summary-block .wc-block-components-radio-control,
+.boucle-la-checkout .wp-block-woocommerce-checkout-order-summary-block .wc-block-components-address-card {
+  background-color: white;
+}
+.boucle-la-checkout #shipping-option input[type=radio]:before,
+.boucle-la-checkout #payment-method input[type=radio]:before {
+  background-color: #e6005a;
+}
+.boucle-la-checkout .wc-block-checkout__sidebar {
+  margin-top: 0 !important;
 }
 
 /*# sourceMappingURL=auth.css.map */

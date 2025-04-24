@@ -1137,7 +1137,12 @@
 .boucle-la-checkout {
   padding: 150px 5% !important;
 
-  #contact-fields {
+  #contact-fields,
+  #shipping-fields,
+  #billing-fields,
+  #shipping-option,
+  #payment-method,
+  .wp-block-woocommerce-checkout-order-summary-block {
     background: #f7f7fa;
     border-radius: 10px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
@@ -1148,5 +1153,24 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
+
+    .wc-block-components-radio-control-accordion-option,
+    .wc-block-components-shipping-rates-control__package,
+    .wc-block-components-radio-control,
+    .wc-block-components-address-card {
+      background-color: white;
+    }
+  }
+
+  #shipping-option,
+  #payment-method {
+    input[type="radio"] {
+      &:before {
+        background-color: #e6005a;
+      }
+    }
+  }
+  .wc-block-checkout__sidebar {
+    margin-top: 0 !important;
   }
 }

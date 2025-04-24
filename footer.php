@@ -71,14 +71,29 @@
         }
     });
 
-    // Open cart panel if URL parameter is present
+    // Handle open cart panel or redirect from checkout
     document.addEventListener('DOMContentLoaded', function () {
         const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('open_cart') === '1') {
-            const cartPanel = document.getElementById('cart-panel');
-            if (cartPanel) {
-                cartPanel.classList.add('cart-panel-open');
-            }
+        const cartPanel = document.getElementById('cart-panel');
+        const cartToggleButtons = [
+            document.getElementById('shopping-cart-menu-toggle-desktop'),
+            document.getElementById('shopping-cart-menu-toggle-mobile')
+        ];
+        if (urlParams.get('open_cart') === '1' && cartPanel) {
+            cartPanel.classList.add('cart-panel-open');
+        }
+        // Not the much clean feature but force the user to be redirect to shop page if click
+        // to open the cart while being on the checkout Page
+        // beceause Ajax functionality is not working on checkout page
+        if (document.body.classList.contains('woocommerce-checkout')) {
+            cartToggleButtons.forEach(function (button) {
+                if (button) {
+                    button.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        window.location.href = '/boutique?open_cart=1';
+                    });
+                }
+            });
         }
     });
 
@@ -289,6 +304,16 @@
             document.querySelectorAll('.wc-block-checkout__login-prompt').forEach(function (el) {
                 if (el.textContent.trim() === 'Identification') {
                     el.textContent = 'S\'identifier';
+                }
+            });
+            document.querySelectorAll('.wc-block-components-totals-item__label').forEach(function (el) {
+                if (el.textContent.trim() === 'Remise&nbsp;') {
+                    el.textContent = 'Remise';
+                }
+            });
+            document.querySelectorAll('.wc-block-components-checkout-step__description span').forEach(function (el) {
+                if (el.textContent.trim() === 'Use another payment method.') {
+                    el.textContent = 'Utiliser un autre moyen de paiement.';
                 }
             });
             document.querySelectorAll('.wc-block-components-panel__button').forEach(function (el) {
