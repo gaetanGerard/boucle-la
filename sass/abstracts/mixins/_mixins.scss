@@ -411,3 +411,22 @@
   border: 1px solid #e6005a;
   padding: 0.5rem 1rem;
 }
+
+@mixin woocommerce-notice($color: $woocommerce__color-msg) {
+  background-color: $color;
+  color: white;
+  border: 1px solid darken($color, 10%);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  text-align: left;
+  width: fit-content;
+  a {
+    color: darken($color, 30%);
+    text-decoration: underline;
+    font-weight: bold;
+    &:hover {
+      color: darken($color, 50%);
+    }
+  }
+}

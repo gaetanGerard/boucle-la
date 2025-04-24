@@ -1216,6 +1216,272 @@ WooCommerce styles override
   line-height: 1.6;
 }
 
+.woocommerce-order {
+  padding: 150px 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.woocommerce-order .woocommerce-thankyou-order-received {
+  background-color: #adadad;
+  color: white;
+  border: 1px solid rgb(147.5, 147.5, 147.5);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  text-align: left;
+  width: fit-content;
+}
+.woocommerce-order .woocommerce-thankyou-order-received a {
+  color: rgb(96.5, 96.5, 96.5);
+  text-decoration: underline;
+  font-weight: bold;
+}
+.woocommerce-order .woocommerce-thankyou-order-received a:hover {
+  color: rgb(45.5, 45.5, 45.5);
+}
+.woocommerce-order .woocommerce-notice--success {
+  background-color: #4ad292;
+  color: white;
+  border: 1px solid rgb(46.3938053097, 186.6061946903, 120.6238938053);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  text-align: left;
+  width: fit-content;
+}
+.woocommerce-order .woocommerce-notice--success a {
+  color: rgb(26.0840707965, 104.9159292035, 67.8185840708);
+  text-decoration: underline;
+  font-weight: bold;
+}
+.woocommerce-order .woocommerce-notice--success a:hover {
+  color: rgb(5.7743362832, 23.2256637168, 15.0132743363);
+}
+.woocommerce-order .woocommerce-thankyou-order-failed,
+.woocommerce-order .woocommerce-notice--error {
+  background-color: #e2401c;
+  color: white;
+  border: 1px solid rgb(180.6220472441, 51.1496062992, 22.3779527559);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  text-align: left;
+  width: fit-content;
+}
+.woocommerce-order .woocommerce-thankyou-order-failed a,
+.woocommerce-order .woocommerce-notice--error a {
+  color: rgb(89.8661417323, 25.4488188976, 11.1338582677);
+  text-decoration: underline;
+  font-weight: bold;
+}
+.woocommerce-order .woocommerce-thankyou-order-failed a:hover,
+.woocommerce-order .woocommerce-notice--error a:hover {
+  color: black;
+}
+.woocommerce-order .woocommerce-notice--info {
+  background-color: #3d9cd2;
+  color: white;
+  border: 1px solid rgb(41.4225941423, 128.870292887, 178.5774058577);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  text-align: left;
+  width: fit-content;
+}
+.woocommerce-order .woocommerce-notice--info a {
+  color: rgb(22.2175732218, 69.1213389121, 95.7824267782);
+  text-decoration: underline;
+  font-weight: bold;
+}
+.woocommerce-order .woocommerce-notice--info a:hover {
+  color: rgb(3.0125523013, 9.3723849372, 12.9874476987);
+}
+.woocommerce-order ul.woocommerce-order-overview {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #151515;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .woocommerce-order ul.woocommerce-order-overview {
+    width: 500px;
+  }
+}
+.woocommerce-order ul.woocommerce-order-overview li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.woocommerce-order ul.woocommerce-order-overview li span {
+  font-weight: normal;
+  color: #333;
+}
+.woocommerce-order ul.woocommerce-order-overview li strong {
+  text-align: right;
+}
+.woocommerce-order .woocommerce-table {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  background: #fff;
+  margin-bottom: 2rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  overflow: hidden;
+  font-size: 1rem;
+  display: block;
+}
+.woocommerce-order .woocommerce-table th,
+.woocommerce-order .woocommerce-table td {
+  padding: 1rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+  word-break: break-word;
+}
+.woocommerce-order .woocommerce-table th {
+  background: #f7f7fa;
+  font-weight: 700;
+  color: #333;
+  border-bottom: 2px solid #e5e5e5;
+}
+.woocommerce-order .woocommerce-table tr:last-child td {
+  border-bottom: none;
+}
+.woocommerce-order .woocommerce-table thead,
+.woocommerce-order .woocommerce-table tbody,
+.woocommerce-order .woocommerce-table tr,
+.woocommerce-order .woocommerce-table th,
+.woocommerce-order .woocommerce-table td {
+  display: block;
+  width: 100%;
+}
+.woocommerce-order .woocommerce-table thead {
+  display: none;
+}
+.woocommerce-order .woocommerce-table tr {
+  margin-bottom: 1.5rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 1rem 0.5rem;
+  width: 100%;
+}
+.woocommerce-order .woocommerce-table td {
+  border: none;
+  position: relative;
+  padding-left: 7rem;
+  min-height: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: end;
+  text-align: right;
+}
+@media (min-width: 768px) {
+  .woocommerce-order .woocommerce-table td {
+    padding-left: 1rem;
+    text-align: left;
+  }
+}
+.woocommerce-order .woocommerce-table td:before {
+  position: absolute;
+  top: 0.8rem;
+  left: 1rem;
+  width: 40%;
+  white-space: nowrap;
+  color: #888;
+  font-weight: 600;
+  content: attr(data-title);
+  display: flex;
+}
+.woocommerce-order .woocommerce-table td[data-title=Actions]::before {
+  content: none;
+}
+.woocommerce-order .woocommerce-table td.woocommerce-orders-table__cell-order-actions {
+  text-align: right;
+}
+.woocommerce-order .woocommerce-table td.woocommerce-orders-table__cell-order-actions a.button,
+.woocommerce-order .woocommerce-table td.woocommerce-orders-table__cell-order-actions .woocommerce-button.button {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+@media (min-width: 768px) {
+  .woocommerce-order .woocommerce-table {
+    width: 500px;
+    display: table;
+  }
+  .woocommerce-order .woocommerce-table thead,
+  .woocommerce-order .woocommerce-table tbody,
+  .woocommerce-order .woocommerce-table tr,
+  .woocommerce-order .woocommerce-table th,
+  .woocommerce-order .woocommerce-table td {
+    display: table-row-group;
+    width: auto;
+  }
+  .woocommerce-order .woocommerce-table thead {
+    display: table-header-group;
+  }
+  .woocommerce-order .woocommerce-table tr {
+    display: table-row;
+    margin-bottom: 0;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+  .woocommerce-order .woocommerce-table th,
+  .woocommerce-order .woocommerce-table td {
+    display: table-cell;
+    position: static;
+    padding-left: 1rem;
+    min-height: auto;
+    width: auto;
+    box-sizing: border-box;
+    border: 1px solid #f0f0f0;
+  }
+  .woocommerce-order .woocommerce-table td:before {
+    display: none;
+    content: none;
+  }
+}
+.woocommerce-order .woocommerce-table a.button,
+.woocommerce-order .woocommerce-table .woocommerce-button.button {
+  border-radius: 4px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.2s;
+  margin-right: 0.5rem;
+  display: inline-block;
+  border: none;
+}
+.woocommerce-order .woocommerce-column--billing-address,
+.woocommerce-order .woocommerce-column--shipping-address {
+  background: #f7f7fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .woocommerce-order .woocommerce-column--billing-address,
+  .woocommerce-order .woocommerce-column--shipping-address {
+    width: 500px;
+  }
+}
+
 @keyframes slideFadeIn {
   from {
     opacity: 0;
@@ -1406,7 +1672,7 @@ ul.products li.product .button {
   display: none;
 }
 .stock.in-stock {
-  color: #0f834d;
+  color: #4ad292;
 }
 .stock.out-of-stock {
   color: #e2401c;
@@ -1566,7 +1832,7 @@ p.stars.selected a:not(.active)::before {
   text-align: right;
 }
 .woocommerce-password-strength.strong {
-  color: #0f834d;
+  color: #4ad292;
 }
 .woocommerce-password-strength.short {
   color: #e2401c;
@@ -1582,7 +1848,7 @@ p.stars.selected a:not(.active)::before {
  * Forms
  */
 .form-row.woocommerce-validated input.input-text {
-  box-shadow: inset 2px 0 0 #0f834d;
+  box-shadow: inset 2px 0 0 #4ad292;
 }
 .form-row.woocommerce-invalid input.input-text {
   box-shadow: inset 2px 0 0 #e2401c;
@@ -1618,7 +1884,7 @@ p.stars.selected a:not(.active)::before {
 .woocommerce-error,
 .woocommerce-noreviews,
 p.no-comments {
-  background-color: #0f834d;
+  background-color: #4ad292;
   clear: both;
 }
 

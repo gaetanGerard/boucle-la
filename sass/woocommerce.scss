@@ -7,8 +7,9 @@ WooCommerce styles override
 
 // WooCommerce color variables
 $woocommerce__color-error: #e2401c;
-$woocommerce__color-success: #0f834d;
+$woocommerce__color-success: #4ad292;
 $woocommerce__color-info: #3d9cd2;
+$woocommerce__color-msg: #adadad;
 
 // Woocommerce Shop Pages Main Styles
 // With Categories and Select + Sorting
@@ -705,6 +706,219 @@ $woocommerce__color-info: #3d9cd2;
 // --------------------------------------------------
 .customer_login {
 }
+// --------------------------------------------------
+// -------------------END----------------------------
+// --------------------------------------------------
+
+// Woocommerce Order Received Page
+//
+// --------------------------------------------------
+// -------------------START--------------------------
+// --------------------------------------------------
+.woocommerce-order {
+  padding: 150px 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .woocommerce-thankyou-order-received {
+    @include woocommerce-notice($woocommerce__color-msg);
+  }
+  .woocommerce-notice--success {
+    @include woocommerce-notice($woocommerce__color-success);
+  }
+  .woocommerce-thankyou-order-failed,
+  .woocommerce-notice--error {
+    @include woocommerce-notice($woocommerce__color-error);
+  }
+  .woocommerce-notice--info {
+    @include woocommerce-notice($woocommerce__color-info);
+  }
+  ul.woocommerce-order-overview {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #151515;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: 500px;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+
+      span {
+        font-weight: normal;
+        color: #333;
+      }
+      strong {
+        text-align: right;
+      }
+    }
+  }
+
+  .woocommerce-table {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    background: #fff;
+    margin-bottom: 2rem;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+    overflow: hidden;
+    font-size: 1rem;
+    th,
+    td {
+      padding: 1rem 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid #f0f0f0;
+      word-break: break-word;
+    }
+    th {
+      background: #f7f7fa;
+      font-weight: 700;
+      color: #333;
+      border-bottom: 2px solid #e5e5e5;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    display: block;
+    thead,
+    tbody,
+    tr,
+    th,
+    td {
+      display: block;
+      width: 100%;
+    }
+    thead {
+      display: none;
+    }
+    tr {
+      margin-bottom: 1.5rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      padding: 1rem 0.5rem;
+      width: 100%;
+    }
+    td {
+      border: none;
+      position: relative;
+      padding-left: 7rem;
+      min-height: 40px;
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: end;
+      text-align: right;
+      @media (min-width: 768px) {
+        padding-left: 1rem;
+        text-align: left;
+      }
+      &:before {
+        position: absolute;
+        top: 0.8rem;
+        left: 1rem;
+        width: 40%;
+        white-space: nowrap;
+        color: #888;
+        font-weight: 600;
+        content: attr(data-title);
+        display: flex;
+      }
+    }
+    td[data-title="Actions"] {
+      &::before {
+        content: none;
+      }
+    }
+    td.woocommerce-orders-table__cell-order-actions {
+      text-align: right;
+      a.button,
+      .woocommerce-button.button {
+        margin-left: 0.5rem;
+        margin-right: 0;
+      }
+    }
+    @media (min-width: 768px) {
+      width: 500px;
+      display: table;
+      thead,
+      tbody,
+      tr,
+      th,
+      td {
+        display: table-row-group;
+        width: auto;
+      }
+      thead {
+        display: table-header-group;
+      }
+      tr {
+        display: table-row;
+        margin-bottom: 0;
+        background: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+      }
+      th,
+      td {
+        display: table-cell;
+        position: static;
+        padding-left: 1rem;
+        min-height: auto;
+        width: auto;
+        box-sizing: border-box;
+        border: 1px solid #f0f0f0;
+      }
+      td:before {
+        display: none;
+        content: none;
+      }
+    }
+    a.button,
+    .woocommerce-button.button {
+      border-radius: 4px;
+      padding: 0.5rem 1.2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin-right: 0.5rem;
+      display: inline-block;
+      border: none;
+    }
+  }
+
+  .woocommerce-column--billing-address,
+  .woocommerce-column--shipping-address {
+    background: #f7f7fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: 500px;
+    }
+  }
+}
+
 // Animations
 @keyframes slideFadeIn {
   from {

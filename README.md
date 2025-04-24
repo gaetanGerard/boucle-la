@@ -1,7 +1,4 @@
 # TODO
-## Checkout
-1) Design de la page de checkout voir woocommerce
-
 ## Email
 1. Créer un template d'email pour la newsletter dans le même style que celui pour les commandes
 
@@ -33,6 +30,7 @@
 - payment-methods (Desktop & Responsive) -- FAIT --
 - form-add-payment-method (Desktop & Responsive) -- FAIT --
 - form-reset-password (Desktop & Responsive) -- FAIT --
+- Design de la page de checkout (Desktop & Responsive) -- FAIT --
 
 
 # BUG
