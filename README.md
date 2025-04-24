@@ -4,7 +4,6 @@
 
 ## Page to Design
 1) Observer les fichier dans woocommerce/checkout pour voire les fichier qui pourrait être utiliser sur le site
-2) lorsque je valide une commande je vais sur plusieurs fichier comme par exemple woocommerce/checkout/thankyou.php
 
 # DONE
 
@@ -31,6 +30,7 @@
 - form-add-payment-method (Desktop & Responsive) -- FAIT --
 - form-reset-password (Desktop & Responsive) -- FAIT --
 - Design de la page de checkout (Desktop & Responsive) -- FAIT --
+- Design page order-received (Desktop & Responsive) -- FAIT --
 
 
 # BUG
