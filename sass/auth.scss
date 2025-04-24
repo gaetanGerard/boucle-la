@@ -452,6 +452,75 @@
   }
 }
 
+// Reset Password page
+.reset-password-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f7fa;
+  .reset-password-form-card {
+    background: #f7f7fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+    max-width: 420px;
+    width: 100%;
+    form {
+      width: 100%;
+      fieldset {
+        border: none;
+        margin: 0;
+        padding: 0;
+        legend {
+          font-size: 1.2rem;
+          font-weight: 600;
+          margin-bottom: 1.2rem;
+          color: #222;
+        }
+
+        .input-container-reset {
+          .password-input-wrapper-reset {
+            input[type="password"],
+            input[type="text"] {
+              @include profile-input-style();
+            }
+            button.show-password-input {
+              display: none;
+            }
+          }
+
+          .password-label-row-reset {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            label {
+              @include profile-label-style();
+            }
+            .toggle-password-visibility {
+              background: none;
+              border: none;
+              cursor: pointer;
+              padding: 0.2rem 0.5rem;
+              display: flex;
+              align-items: center;
+              svg {
+                display: block;
+              }
+            }
+          }
+        }
+      }
+      .reset-password-btn {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
 // Account Page
 .my-account-wrapper {
   min-height: 100vh;
@@ -954,7 +1023,8 @@
             }
           }
           .password-input-wrapper {
-            input[type="password"] {
+            input[type="password"],
+            input[type="text"] {
               @include profile-input-style();
             }
             button {

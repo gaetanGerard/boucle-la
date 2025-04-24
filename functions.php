@@ -538,13 +538,29 @@ add_action('template_redirect', function () {
 	}
 });
 
-// Redirect unloggedin usert from /mon-compte to /login
+// Redirige les utilisateurs non connectés de /mon-compte vers /login sauf pour lost-password et reset-password
 add_action('template_redirect', function () {
 	if (is_account_page() && !is_user_logged_in()) {
+		$request_uri = $_SERVER['REQUEST_URI'];
+		// Exceptions pour lost-password et reset-password
+		if (
+			strpos($request_uri, '/mon-compte/lost-password') !== false ||
+			strpos($request_uri, '/mon-compte/reset-password') !== false
+		) {
+			return;
+		}
 		wp_redirect(site_url('/login'));
 		exit;
 	}
 });
+
+// // Redirect unloggedin usert from /mon-compte to /login
+// add_action('template_redirect', function () {
+// 	if (is_account_page() && !is_user_logged_in()) {
+// 		wp_redirect(site_url('/login'));
+// 		exit;
+// 	}
+// });
 
 // Dynamically set login/register background image from first image in page content (if present)
 add_action('wp_head', function () {
