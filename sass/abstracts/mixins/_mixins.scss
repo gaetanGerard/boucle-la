@@ -258,6 +258,9 @@
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease-in-out;
+            height: 43px;
+            width: 43px;
+            box-sizing: border-box;
 
             &:hover {
               cursor: pointer;
@@ -273,6 +276,11 @@
                 border-color: #d4d4d4;
               }
             }
+          }
+
+          .btn-product-delete {
+            width: 44px !important;
+            height: 44px !important;
           }
         }
       }

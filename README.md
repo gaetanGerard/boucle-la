@@ -70,6 +70,22 @@ et plusieurs inconvénients
 
 -> J'ai intégrer une solution développer à l'aide de l'IA pour créer une carte cadeau et envoyer des emails une fois le payement réceptionner
 
+**DErnière étape** Il faudrait vérifier que la TVA s'applique
+bien sur la carte cadeau il faut également faire en sorte que
+lors du checkout la carte cadeau n'ai pas de frais de livraison
+puisqu'il s'agit d'un produit digital
+
+## Page de compte
+
+### Commandes
+
+- En fonction de l'état de la commande il peut y avoir plus
+d'un bouton présent dans le tableau, si un seul bouton est
+présent le rendu est passable mais si plus d'un bouton est
+présent le rendu actuel des bouton n'est plus satisfaisant il
+faudrait le modifier pour utiliser des icones (oeil-> voir /
+crayon -> modifier / poubelle -> annuler)
+
 ## Registration Page
 1. J'utilise un champs select avec les informations des pays ajouter en dur idéalement se serait plus interéssant d'avoir la possibilité d'ajouter les pays dans le select via le customiseur
 

@@ -758,7 +758,11 @@
         }
       }
       td.woocommerce-orders-table__cell-order-actions {
+        display: flex;
         text-align: right;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
         a.button,
         .woocommerce-button.button {
           margin-left: 0.5rem;

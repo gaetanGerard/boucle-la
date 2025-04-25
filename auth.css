@@ -730,7 +730,11 @@
 }
 .my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods td.woocommerce-orders-table__cell-order-actions,
 .my-account-wrapper .my-account-content .woocommerce-orders-table td.woocommerce-orders-table__cell-order-actions {
+  display: flex;
   text-align: right;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 .my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods td.woocommerce-orders-table__cell-order-actions a.button,
 .my-account-wrapper .my-account-content table.woocommerce-MyAccount-paymentMethods td.woocommerce-orders-table__cell-order-actions .woocommerce-button.button,
